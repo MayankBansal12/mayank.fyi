@@ -10,7 +10,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full h-[83vh] flex flex-col items-center justify-between">
+    <div className="w-full h-screen md:h-[83vh] flex flex-col items-center justify-between">
       <div className="flex flex-col h-full w-full gap-4 justify-center items-center">
         <div className="flex flex-col text-center gap-2">
           <h1 className="text-4xl font-medium">hey. i am mayank.</h1>
@@ -25,7 +25,7 @@ export default function Home() {
           </span> </p>
         </div>
 
-        <div className={`text-lg opacity-80 w-2/3 text-center transition-all duration-500 ${isTextVisible ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        <div className={`text-lg opacity-80 w-full md:w-2/3 text-center transition-all duration-500 ${isTextVisible ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
           } overflow-hidden`}>
           i am a software developer from india with working experience of around a year. <br />
           i have been learning, practicising, working on web development and related projects since 2022
