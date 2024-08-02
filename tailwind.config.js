@@ -21,7 +21,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      primary: ['Poppins', 'sans-serif'],
+      primary: ['Virgil', 'sans-serif'],
       secondary: ['DM Sans', 'sans-serif'],
     },
   },
