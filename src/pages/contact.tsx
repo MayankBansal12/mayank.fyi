@@ -13,7 +13,7 @@ const Contact: React.FC = () => {
           <p>linkedin: <Link href="https://www.linkedin.com/in/mayank-bansal200604012/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">--mb2004--</Link> </p>
 
           <p>you can schedule a online meet using <Link href="https://cal.com/mayankbansal" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all"> cal.com.</Link></p>
-          <p>my blog/newsletter (not super consistent): <Link href="https://cal.com/mayankbansal" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">substack_link</Link></p>
+          <p>my blog/newsletter (not super consistent): <Link href="https://mayank12.substack.com/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">substack_link</Link></p>
           <p>if you wanna leave anonymous message or feedback, <Link href="https://mayank.sayout.net/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">use this</Link> </p>
         </div>
       </div>

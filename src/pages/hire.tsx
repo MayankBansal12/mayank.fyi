@@ -15,7 +15,7 @@ const Hire: React.FC = () => {
                     </p>
                     <p>
                         i take pride in my work ethic and commitment. i have a knack <br />
-                        for handling multiple projects simultaneously (hope that won't be a
+                        for handling multiple projects simultaneously (hope that won&apos;t be a
                         problem for you).<br />
                     </p>
 

@@ -15,13 +15,13 @@ export default function Home() {
         <div className="flex flex-col text-center gap-2">
           <h1 className="text-4xl font-medium">hey. i am mayank.</h1>
           <p className="text-lg opacity-80 flex items-center">your friendly neighborhood developer <span>
-            <span onClick={handleToggleText} className="cursor-pointer transition-all">
+            <button onClick={handleToggleText} className="cursor-pointer transition-all">
               {isTextVisible ? (
                 <RiArrowDropUpLine className="!text-3xl hover:opacity-80 transition-all" />
               ) : (
                 <RiArrowDropDownLine className="!text-3xl hover:opacity-80 transition-all" />
               )}
-            </span>
+            </button>
           </span> </p>
         </div>
 
