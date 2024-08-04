@@ -1,12 +1,21 @@
+import { useState, useEffect, HtmlHTMLAttributes } from 'react';
 import { useTheme } from 'next-themes';
 import { FiMoon, FiSun } from 'react-icons/fi';
-import { HtmlHTMLAttributes } from 'react';
 
 type IThemeToggler = HtmlHTMLAttributes<HTMLButtonElement>;
 
 const ThemeToggler: React.FC<IThemeToggler> = ({ className, ...rest }) => {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const nextTheme = theme === 'light' ? 'dark' : 'light';
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <button
