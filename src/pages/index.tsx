@@ -14,7 +14,8 @@ export default function Home() {
       <div className="flex flex-col h-full w-full gap-4 justify-center items-center">
         <div className="flex flex-col text-center gap-2">
           <h1 className="text-4xl font-medium">hey. i am mayank.</h1>
-          <p className="text-lg opacity-80 flex items-center">your friendly neighborhood developer <span>
+          <p className="text-lg opacity-80 flex items-center">
+            <span>your friendly neighborhood developer</span>
             <button onClick={handleToggleText} className="cursor-pointer transition-all">
               {isTextVisible ? (
                 <RiArrowDropUpLine className="!text-3xl hover:opacity-80 transition-all" />
@@ -22,7 +23,7 @@ export default function Home() {
                 <RiArrowDropDownLine className="!text-3xl hover:opacity-80 transition-all" />
               )}
             </button>
-          </span> </p>
+          </p>
         </div>
 
         <div className={`text-lg opacity-80 w-full md:w-2/3 text-center transition-all duration-500 ${isTextVisible ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'

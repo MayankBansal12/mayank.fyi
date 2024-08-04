@@ -9,7 +9,7 @@ const Header: React.FC = () => {
 
   return (
     <header className='container w-full flex justify-between items-center'>
-      {isHomePage ? <Link title="back" href="/" className="flex items-center text-sm hover:underline hover:opacity-80 transition-all"><IoIosArrowRoundBack /> back</Link> : <div></div>}
+      {isHomePage ? <Link title="back" href="/" className="flex items-center text-sm hover:underline hover:opacity-80 transition-all"><IoIosArrowRoundBack /> back to home</Link> : <div></div>}
       <ThemeToggler />
     </header>
   );

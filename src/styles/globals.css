@@ -9,3 +9,13 @@
     src: url("/fonts/Virgil.woff2");
     font-display: swap;
 }
+
+
+:root{
+    scroll-behavior: smooth;
+}
+
+/* width */
+::-webkit-scrollbar {
+    display: none;
+}

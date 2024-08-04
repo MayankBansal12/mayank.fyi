@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Contact: React.FC = () => {
   return (
-    <div className="my-20 flex flex-col gap-3 justify-center items-center">
+    <div className="mt-20 flex flex-col gap-3 justify-center items-center">
       <div className="w-1/2">
         <h2 className="text-3xl font-semibold mb-4">contact</h2>
         <div className="flex flex-col gap-6 text-xl opacity-80">
