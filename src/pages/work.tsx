@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 const Work: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const Work: React.FC = () => {
           <div className="flex flex-col gap-2 my-2">
             <div className="flex gap-4 justify-between">
               <h3 className="text-xl font-bold">echio - sde intern</h3>
-              <p className="text-sm">jan'24 - present</p>
+              <p className="text-sm">jan&apos;24 - present</p>
             </div>
             <p className="opacity-80">
               worked on frontend in react.js for a product on a freelance basis
@@ -27,7 +27,7 @@ const Work: React.FC = () => {
           <div className="flex flex-col gap-2 my-2">
             <div className="flex gap-4 justify-between items-center">
               <h3 className="text-xl font-bold">feedback</h3>
-              <p className="text-sm">july'24 - present</p>
+              <p className="text-sm">july&apos;24 - present</p>
             </div>
             <p className="flex flex-col gap-2 opacity-80">
               <span>
@@ -49,7 +49,7 @@ const Work: React.FC = () => {
           <div className="flex flex-col gap-2 my-2">
             <div className="flex gap-4 justify-between items-center">
               <h3 className="text-xl font-bold">getogether</h3>
-              <p className="text-sm">may'24 - june'24</p>
+              <p className="text-sm">may&apos;24 - june&apos;24</p>
             </div>
             <p className="flex flex-col gap-2 opacity-80">
               <span>
@@ -68,7 +68,7 @@ const Work: React.FC = () => {
           <div className="flex flex-col gap-2 my-2">
             <div className="flex gap-4 justify-between items-center">
               <h3 className="text-xl font-bold">pushnote</h3>
-              <p className="text-sm">oct'23 - dec'23</p>
+              <p className="text-sm">oct&apos;23 - dec&apos;23</p>
             </div>
             <p className="flex flex-col gap-2 opacity-80">
               <span>
@@ -90,7 +90,7 @@ const Work: React.FC = () => {
           <div className="flex flex-col gap-2 my-2">
             <div className="flex gap-4 justify-between items-center">
               <h3 className="text-xl font-bold">mb docs</h3>
-              <p className="text-sm">dec'23</p>
+              <p className="text-sm">dec&apos;23</p>
             </div>
             <p className="flex flex-col gap-2 opacity-80">
               <span>
@@ -110,7 +110,7 @@ const Work: React.FC = () => {
           <div className="flex flex-col gap-2 my-2">
             <div className="flex gap-4 justify-between">
               <h3 className="text-xl font-bold">examgpt</h3>
-              <p className="text-sm">sept'23</p>
+              <p className="text-sm">sept&apos;23</p>
             </div>
             <p className="flex flex-col gap-2 opacity-80">
               <span>
