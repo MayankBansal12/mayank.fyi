@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NotFound: React.FC = () => {
     return (
-        <div className="w-full h-screen md:h-[83vh] flex flex-col items-center justify-between">
+        <div className="w-full h-full flex flex-col items-center justify-between">
             <div className="flex flex-col h-full w-full gap-4 justify-center items-center">
                 <div className="flex flex-col text-center gap-2">
                     <h1 className="text-4xl font-medium">404 not found</h1>

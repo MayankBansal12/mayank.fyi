@@ -2,14 +2,14 @@ import Link from "next/link";
 
 const Work: React.FC = () => {
   return (
-    <div className="mt-20 flex flex-col gap-3 justify-center items-center">
-      <div className="w-1/2">
+    <div className="mt-20 my-10 flex flex-col gap-3 justify-center items-center">
+      <div className="w-[95%] md:w-2/3 lg:w-1/2">
         <h2 className="text-3xl font-semibold mb-4">work</h2>
         <div className="flex flex-col gap-4 text-xl opacity-80">
           {/* professional experience */}
           <h2 className="font-semibold mt-3">-&#58; professional experience</h2>
           <div className="flex flex-col gap-2 my-2">
-            <div className="flex gap-4 justify-between">
+            <div className="flex gap-2 justify-between flex-col md:flex-row">
               <h3 className="text-xl font-bold">echio - sde intern</h3>
               <p className="text-sm">jan&apos;24 - present</p>
             </div>
@@ -25,7 +25,7 @@ const Work: React.FC = () => {
           <h2 className="font-semibold mt-4">-&#58; personal & hackathon projects</h2>
           {/* feedback */}
           <div className="flex flex-col gap-2 my-2">
-            <div className="flex gap-4 justify-between items-center">
+            <div className="flex gap-2 flex-col md:flex-row justify-between items-start md:items-center">
               <h3 className="text-xl font-bold">feedback</h3>
               <p className="text-sm">july&apos;24 - present</p>
             </div>
@@ -47,7 +47,7 @@ const Work: React.FC = () => {
 
           {/* getogether */}
           <div className="flex flex-col gap-2 my-2">
-            <div className="flex gap-4 justify-between items-center">
+            <div className="flex gap-2 flex-col md:flex-row justify-between items-start md:items-center">
               <h3 className="text-xl font-bold">getogether</h3>
               <p className="text-sm">may&apos;24 - june&apos;24</p>
             </div>
@@ -66,7 +66,7 @@ const Work: React.FC = () => {
 
           {/* pushnote */}
           <div className="flex flex-col gap-2 my-2">
-            <div className="flex gap-4 justify-between items-center">
+            <div className="flex gap-2 flex-col md:flex-row justify-between items-start md:items-center">
               <h3 className="text-xl font-bold">pushnote</h3>
               <p className="text-sm">oct&apos;23 - dec&apos;23</p>
             </div>
@@ -88,7 +88,7 @@ const Work: React.FC = () => {
 
           {/* mb docs */}
           <div className="flex flex-col gap-2 my-2">
-            <div className="flex gap-4 justify-between items-center">
+            <div className="flex gap-2 flex-col md:flex-row justify-between items-start md:items-center">
               <h3 className="text-xl font-bold">mb docs</h3>
               <p className="text-sm">dec&apos;23</p>
             </div>
@@ -108,7 +108,7 @@ const Work: React.FC = () => {
 
           {/* examgpt */}
           <div className="flex flex-col gap-2 my-2">
-            <div className="flex gap-4 justify-between">
+            <div className="flex gap-2 flex-col md:flex-row justify-between items-start md:items-center">
               <h3 className="text-xl font-bold">examgpt</h3>
               <p className="text-sm">sept&apos;23</p>
             </div>
@@ -142,11 +142,11 @@ const Work: React.FC = () => {
             <div className="flex gap-4 items-center">
               <h3 className="text-xl font-semibold">java:</h3>
               <Link href="https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=java&sort=" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">view on github</Link>
-              <p className="text-sm opacity-80">(note:- used java mostly at work)</p>
             </div>
+            <p className="text-sm opacity-80 block sm:inline">(note:- used java mostly at work)</p>
 
             <div className="flex gap-4">
-              <h3 className="text-xl font-semibold">design projects:</h3>
+              <h3 className="text-xl font-semibold">design proj:</h3>
               <Link href="https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=css&sort=" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">view on github</Link>
             </div>
           </div>
