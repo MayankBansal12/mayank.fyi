@@ -7,7 +7,7 @@ const Contact: React.FC = () => {
         <h2 className="text-3xl font-semibold mb-4">contact</h2>
         <div className="flex flex-col gap-6 text-xl opacity-90">
           <p>you can find me online on:</p>
-          <p className="flex gap-6 items-center">-&gt; twitter (don't like to call it x) <Link href="https://x.com/SimplerMayank" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">simplermayank</Link> </p>
+          <p className="flex gap-6 items-center">-&gt; twitter (don&apos;t like to call it x) <Link href="https://x.com/SimplerMayank" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">simplermayank</Link> </p>
           <p className="flex gap-6 items-center">-&gt; github (trying to be consistent) <Link href="https://github.com/MayankBansal12" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">mayankbansal12</Link> </p>
           <p className="flex gap-6 items-center">-&gt; gmail (i read all my emails ^-^) <Link href="mailto:mayankbansal125@gmail.com" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">mayankbansal125@gmail.com</Link> </p>
           <p className="flex gap-6 items-center">-&gt; linkedin (forgot linkedin passwd) <Link href="https://www.linkedin.com/in/mayank-bansal200604012/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">--mb2004--</Link> </p>
