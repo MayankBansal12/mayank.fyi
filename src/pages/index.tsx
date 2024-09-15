@@ -27,9 +27,9 @@ export default function Home() {
         </div>
 
         <div className={`text-lg opacity-80 w-full md:w-2/3 text-center transition-all duration-500 ${isTextVisible ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
-          i am a software developer from india with working experience of around a year. <br />
-          i have been learning, practicising, working on web development and related projects since 2022
-          and have previously worked on developing frontend and managing backend for startups both on freelance and full-time basis.
+          -&gt; i am a software developer from india with working experience of around a year. <br />
+          -&gt; learning, practicising, working on web development and related projects since 2022. <br />
+          -&gt; have previously worked on developing frontend and managing backend for startups both on freelance and full-time basis.
         </div>
 
         <div className="flex gap-2 items-center">

@@ -5,7 +5,7 @@ const Now: React.FC = () => {
         <div className="mt-20 my-10 flex flex-col gap-3 justify-center items-center">
             <div className="w-[95%] md:w-2/3 lg:w-1/2">
                 <h2 className="text-3xl font-semibold mb-4">what am i doing now?</h2>
-                <div className="flex flex-col gap-6 text-xl opacity-80">
+                <div className="flex flex-col gap-6 text-xl opacity-90">
                     <p>
                         i am working as an sde intern in an early-stage startup
                         where i am working on developing the core product mainly

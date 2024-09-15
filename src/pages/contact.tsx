@@ -5,19 +5,19 @@ const Contact: React.FC = () => {
     <div className="mt-20 my-10 flex flex-col gap-3 justify-center items-center">
       <div className="w-[95%] md:w-2/3 lg:w-1/2">
         <h2 className="text-3xl font-semibold mb-4">contact</h2>
-        <div className="flex flex-col gap-6 text-xl opacity-80">
+        <div className="flex flex-col gap-6 text-xl opacity-90">
           <p>you can find me online on:</p>
-          <p>twitter: <Link href="https://x.com/SimplerMayank" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">simplermayank</Link> </p>
-          <p>github: <Link href="https://github.com/MayankBansal12" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">mayankbansal12</Link> </p>
-          <p>mail: <Link href="mailto:mayankbansal125@gmail.com" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">mayankbansal125@gmail.com</Link> </p>
-          <p>linkedin: <Link href="https://www.linkedin.com/in/mayank-bansal200604012/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">--mb2004--</Link> </p>
+          <p className="flex gap-6 items-center">-&gt; twitter (don't like to call it x) <Link href="https://x.com/SimplerMayank" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">simplermayank</Link> </p>
+          <p className="flex gap-6 items-center">-&gt; github (trying to be consistent) <Link href="https://github.com/MayankBansal12" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">mayankbansal12</Link> </p>
+          <p className="flex gap-6 items-center">-&gt; gmail (i read all my emails ^-^) <Link href="mailto:mayankbansal125@gmail.com" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">mayankbansal125@gmail.com</Link> </p>
+          <p className="flex gap-6 items-center">-&gt; linkedin (forgot linkedin passwd) <Link href="https://www.linkedin.com/in/mayank-bansal200604012/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">--mb2004--</Link> </p>
+          <p className="flex gap-6 items-center">-&gt; my blog (not super consistent..) <Link href="https://mayank12.substack.com/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all" > substack_link</Link></p >
 
-          <p>you can schedule a online meet using <Link href="https://cal.com/mayankbansal" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all"> cal.com.</Link></p>
-          <p>my blog/newsletter (not super consistent): <Link href="https://mayank12.substack.com/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">substack_link</Link></p>
-          <p>if you wanna leave anonymous message or feedback, <Link href="https://mayank.sayout.net/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">use this</Link> </p>
-        </div>
-      </div>
-    </div>
+          <p className="flex gap-6 items-center">-&gt; you can schedule a online meet <Link href="https://cal.com/mayankbansal" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all" > cal.com_link</Link> </p >
+          <p className="flex gap-6 items-center">-&gt; leave anonymous mess/feedback <Link href="https://mayank.sayout.net/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">sayout_link</Link> </p >
+        </div >
+      </div >
+    </div >
   );
 };
 

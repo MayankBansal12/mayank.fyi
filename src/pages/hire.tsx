@@ -5,12 +5,12 @@ const Hire: React.FC = () => {
         <div className="mt-20 my-10 flex flex-col gap-4 justify-center items-center">
             <div className="w-[95%] md:w-2/3 lg:w-1/2">
                 <h2 className="text-3xl font-semibold mb-4">hire me</h2>
-                <div className="flex flex-col gap-6 text-xl opacity-80">
+                <div className="flex flex-col gap-6 text-xl opacity-90">
                     <p>
-                        i am currently working at an early-age startup and am available to take on part-time or contract work. <br />
-                        i have previously worked as a freelancer and as an intern and
+                        -&gt; i am currently working at an early-age startup and am available to take on part-time or contract work. <br />
+                        -&gt; i have previously worked as a freelancer and as an intern and
                         managed both frontend and backend for startups. <br />
-                        i have recently graduated and am available for full-time opportunities too.
+                        -&gt; i have recently graduated and am available for full-time opportunities too.
                         <span className="font-medium"> read more <Link href="/about" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">about me</Link> or see my work <Link href="/work" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">here.</Link> </span> <br />
                     </p>
                     <p>

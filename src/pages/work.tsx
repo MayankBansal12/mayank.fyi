@@ -5,21 +5,21 @@ const Work: React.FC = () => {
     <div className="mt-20 my-10 flex flex-col gap-3 justify-center items-center">
       <div className="w-[95%] md:w-2/3 lg:w-1/2">
         <h2 className="text-3xl font-semibold mb-4">work</h2>
-        <div className="flex flex-col gap-4 text-xl opacity-80">
+        <div className="flex flex-col gap-4 text-xl opacity-90">
           {/* professional experience */}
           <h2 className="font-semibold mt-3">-&#58; professional experience</h2>
           <div className="flex flex-col gap-2 my-2">
             <div className="flex gap-2 justify-between flex-col md:flex-row">
-              <h3 className="text-xl font-bold">echio - sde intern</h3>
+              <h3 className="text-xl font-bold">backend developer - echio</h3>
               <p className="text-sm">jan&apos;24 - present</p>
             </div>
-            <p className="opacity-80">
-              worked on frontend in react.js for a product on a freelance basis
-              was hired as an intern and handling backend for the app in java
-              and springboot. occasionally working on website (next.js, express.js,
-              typescript).
+            <p className="opacity-90">
+              -&gt; working as a backend developer and involved in development of core product. <br />
+              -&gt; majorly working on backend for the app written in java and springboot and website backend (bun.js).<br />
+              -&gt; occassionally works on website frontend (next.js) for bug fixes.<br />
             </p>
           </div>
+          <p className="text-sm opacity-80 block sm:inline">(note:- freelance works not included in professional experience.)</p>
 
           {/* personal projects */}
           <h2 className="font-semibold mt-4">-&#58; personal & hackathon projects</h2>
@@ -29,7 +29,7 @@ const Work: React.FC = () => {
               <h3 className="text-xl font-bold">feedback</h3>
               <p className="text-sm">july&apos;24 - present</p>
             </div>
-            <p className="flex flex-col gap-2 opacity-80">
+            <p className="flex flex-col gap-2 opacity-90">
               <span>
                 <Link href="https://github.com/MayankBansal12/Feedback" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">view on github</Link> | <Link href="https://feedback-easy.vercel.app/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">live link</Link>
               </span>
@@ -51,7 +51,7 @@ const Work: React.FC = () => {
               <h3 className="text-xl font-bold">getogether</h3>
               <p className="text-sm">may&apos;24 - june&apos;24</p>
             </div>
-            <p className="flex flex-col gap-2 opacity-80">
+            <p className="flex flex-col gap-2 opacity-90">
               <span>
                 <Link href="https://github.com/MayankBansal12/Getogether" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">view on github</Link> | <Link href="https://getogether-ten.vercel.app" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">live link</Link>
               </span>
@@ -70,7 +70,7 @@ const Work: React.FC = () => {
               <h3 className="text-xl font-bold">pushnote</h3>
               <p className="text-sm">oct&apos;23 - dec&apos;23</p>
             </div>
-            <p className="flex flex-col gap-2 opacity-80">
+            <p className="flex flex-col gap-2 opacity-90">
               <span>
                 <Link href="https://github.com/MayankBansal12/pushnote" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">view on github</Link> | <Link href="https://pushnote-mayankbansal12.vercel.app" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">live link</Link>
               </span>
@@ -92,7 +92,7 @@ const Work: React.FC = () => {
               <h3 className="text-xl font-bold">mb docs</h3>
               <p className="text-sm">dec&apos;23</p>
             </div>
-            <p className="flex flex-col gap-2 opacity-80">
+            <p className="flex flex-col gap-2 opacity-90">
               <span>
                 <Link href="https://github.com/MayankBansal12/MB-Docs" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">view on github</Link> | <Link href="http://mb-docs.vercel.app/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">live link</Link>
               </span>
@@ -112,7 +112,7 @@ const Work: React.FC = () => {
               <h3 className="text-xl font-bold">examgpt</h3>
               <p className="text-sm">sept&apos;23</p>
             </div>
-            <p className="flex flex-col gap-2 opacity-80">
+            <p className="flex flex-col gap-2 opacity-90">
               <span>
                 <Link href="https://github.com/MayankBansal12/Exam-GPT" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">view on github</Link> | <Link href="https://examgpt.vercel.app/" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">live link</Link>
               </span>
