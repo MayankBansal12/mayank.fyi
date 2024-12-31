@@ -19,7 +19,7 @@ const ThemeToggler: React.FC<IThemeToggler> = ({ className, ...rest }) => {
 
   return (
     <button
-      className={`text-2xl cursor-pointer ${className} hover:scale-[1.02] duration-150 transition ease-in-out delay-150 cursor-pointer`}
+      className={`text-xl cursor-pointer ${className} hover:scale-[1.02] duration-150 transition ease-in-out delay-150 cursor-pointer`}
       title={`Toggle ${nextTheme} theme`}
       type='button'
       onClick={() => setTheme(nextTheme)}

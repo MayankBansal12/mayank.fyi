@@ -1,3 +1,4 @@
+import { SquareArrowOutUpRight } from "lucide-react"
 import Link from "next/link"
 
 const Hire: React.FC = () => {
@@ -11,7 +12,7 @@ const Hire: React.FC = () => {
                         -&gt; i have previously worked as a freelancer and as an intern and
                         managed both frontend and backend for startups. <br />
                         -&gt; i have recently graduated and am available for full-time opportunities too.
-                        <span className="font-medium"> read more <Link href="/about" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">about me</Link> or see my work <Link href="/work" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">here.</Link> </span> <br />
+                        <span className="font-medium"> read more <Link href="/about" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">about me <SquareArrowOutUpRight size={10} className="inline" /></Link> or see my work <Link href="/work" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">here <SquareArrowOutUpRight size={10} className="inline" /></Link> </span> <br />
                     </p>
                     <p>
                         i take pride in my work ethic and commitment. i have a knack <br />
@@ -19,8 +20,8 @@ const Hire: React.FC = () => {
                         problem for you).<br />
                     </p>
                     <p>
-                        you can reach out to me on <Link href="https://x.com/SimplerMayank" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">twitter</Link> or try mail at
-                        <Link href="mailto:mayankbansal125@gmail.com" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all"> mayankbansal125@gmail.com</Link> <br /> you can also schedule a online meet <Link href="https://cal.com/mayankbansal" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all"> here.</Link>
+                        you can reach out to me on <Link href="https://x.com/SimplerMayank" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">twitter <SquareArrowOutUpRight size={10} className="inline" /></Link> or try mail at
+                        <Link href="mailto:mayankbansal125@gmail.com" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all"> mayankbansal125@gmail.com <SquareArrowOutUpRight size={10} className="inline" /></Link> <br /> you can also schedule a online meet <Link href="https://cal.com/mayankbansal" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">here <SquareArrowOutUpRight size={10} className="inline" /></Link>
                     </p>
                 </div>
             </div>

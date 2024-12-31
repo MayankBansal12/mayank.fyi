@@ -15,7 +15,7 @@ export default function Home() {
         <div className="flex flex-col text-center gap-2">
           <h1 className="text-4xl font-medium">hey. i am mayank.</h1>
           <p className="text-lg opacity-80 flex items-center">
-            <span>your friendly neighborhood developer</span>
+            <span>your friendly neighbourhood developer</span>
             <button onClick={handleToggleText} className="cursor-pointer transition-all">
               {isTextVisible ? (
                 <RiArrowDropUpLine className="!text-3xl hover:opacity-80 transition-all" />

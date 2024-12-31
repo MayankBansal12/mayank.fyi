@@ -21,7 +21,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      primary: ['Virgil', 'sans-serif'],
+      primary: ['Excalifont-Regular', 'sans-serif'],
       secondary: ['DM Sans', 'sans-serif'],
     },
   },
