@@ -1,5 +1,5 @@
-import { useState, useEffect, HtmlHTMLAttributes } from 'react';
 import { useTheme } from 'next-themes';
+import { type HtmlHTMLAttributes, useEffect, useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 
 type IThemeToggler = HtmlHTMLAttributes<HTMLButtonElement>;
