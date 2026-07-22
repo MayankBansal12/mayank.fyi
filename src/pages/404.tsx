@@ -1,29 +1,36 @@
-import Link from 'next/link';
+import RoughArrow from '@/components/rough/RoughArrow';
+import RoughBox from '@/components/rough/RoughBox';
+import RoughChip from '@/components/rough/RoughChip';
 
 const NotFound: React.FC = () => {
   return (
-    <div className='w-full h-full flex flex-col items-center justify-between'>
-      <div className='flex flex-col h-full w-full gap-4 justify-center items-center'>
-        <div className='flex flex-col text-center gap-2'>
-          <h1 className='text-4xl font-medium'>404 not found</h1>
-          <p className='text-lg opacity-80 text-center'>
-            <span>wrong url, let me help you</span>
-          </p>
-        </div>
-        <div className='flex gap-4'>
-          <Link href='/' className='text-sm hover:underline hover:opacity-80 transition-all'>
-            home
-          </Link>
-          <Link href='/about' className='text-sm hover:underline hover:opacity-80 transition-all'>
-            about
-          </Link>
-          <Link href='/work' className='text-sm hover:underline hover:opacity-80 transition-all'>
-            works
-          </Link>
-          <Link href='/contact' className='text-sm hover:underline hover:opacity-80 transition-all'>
-            contact
-          </Link>
-        </div>
+    <div className='flex h-full w-full flex-col items-center justify-center gap-5'>
+      <RoughBox
+        seed={801}
+        dashed
+        className='w-full max-w-md'
+        contentClassName='flex flex-col items-center gap-2 text-center'
+        paddingClassName='px-8 py-8'
+      >
+        <h1 className='text-4xl font-medium'>404 not found</h1>
+        <p className='text-lg opacity-80'>wrong url, let me help you</p>
+      </RoughBox>
+
+      <RoughArrow seed={802} direction='down' height={28} />
+
+      <div className='flex flex-wrap items-center justify-center gap-3'>
+        <RoughChip href='/' seed={803}>
+          home
+        </RoughChip>
+        <RoughChip href='/about' seed={804}>
+          about
+        </RoughChip>
+        <RoughChip href='/work' seed={805}>
+          works
+        </RoughChip>
+        <RoughChip href='/contact' seed={806}>
+          contact
+        </RoughChip>
       </div>
     </div>
   );

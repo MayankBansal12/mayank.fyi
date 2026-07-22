@@ -4,6 +4,7 @@
 
 @source "../pages/**/*.{js,ts,jsx,tsx,mdx}";
 @source "../components/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../lib/**/*.{js,ts,jsx,tsx,mdx}";
 @source "../app/**/*.{js,ts,jsx,tsx,mdx}";
 
 @theme {
@@ -12,10 +13,13 @@
   --color-light-heading: #ffffff;
   --color-dark-heading: #000000;
   --color-dark-content: #666666;
-  --color-dark-background: #000000;
+  --color-dark-background: #161616;
   --color-dark-card: #363636;
   --color-green-text: #018c0f;
   --color-github-link: #0969da;
+  --color-board-paper: #faf7f0;
+  --color-board-ink: #1e1e1e;
+  --color-board-muted: #6b6b6b;
   --font-primary: "Excalifont-Regular", sans-serif;
   --font-secondary: "DM Sans", sans-serif;
 }
@@ -30,9 +34,35 @@
 
 :root {
   scroll-behavior: smooth;
+  color: #1e1e1e;
+  background-color: #faf7f0;
+}
+
+.dark {
+  color: #e8e4d9;
+  background-color: #161616;
+}
+
+/* Excalidraw-style subtle dot grid */
+.board-surface {
+  background-color: #faf7f0;
+  background-image: radial-gradient(circle, rgba(30, 30, 30, 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.dark .board-surface {
+  background-color: #161616;
+  background-image: radial-gradient(circle, rgba(232, 228, 217, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
 /* width */
 ::-webkit-scrollbar {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
 }

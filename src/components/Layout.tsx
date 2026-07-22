@@ -10,11 +10,11 @@ const Layout: React.FC<ILayout> = ({ children }) => {
   return (
     <>
       <Metadata />
-      <main className='flex min-h-screen w-full flex-col items-center py-6 lg:py-8 px-4 dark:bg-dark-background lowercase'>
+      <main className='board-surface flex min-h-screen w-full flex-col items-center px-4 py-6 lowercase lg:py-8'>
         <Header />
         <section
           id='container'
-          className='container font-primary overflow-y-scroll h-[calc(100vh-5.5rem)]'
+          className='container h-[calc(100vh-5.5rem)] overflow-y-scroll font-primary'
         >
           {children}
         </section>

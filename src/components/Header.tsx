@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { IoIosArrowRoundBack } from 'react-icons/io';
+import RoughChip from '@/components/rough/RoughChip';
 import ThemeToggler from './ThemeToggler';
 
 const Header: React.FC = () => {
@@ -8,17 +9,17 @@ const Header: React.FC = () => {
   const isHomePage = router.pathname !== '/';
 
   return (
-    <header className='container w-full flex justify-between items-center pb-4 md:pb-0'>
+    <header className='container flex w-full items-center justify-between pb-4 md:pb-2'>
       {isHomePage ? (
-        <Link
-          title='back'
-          href='/'
-          className='flex items-center text-sm hover:underline hover:opacity-80 transition-all'
-        >
-          <IoIosArrowRoundBack /> back to home
+        <Link href='/' title='back' className='inline-flex'>
+          <RoughChip seed={3} className='text-sm'>
+            <span className='inline-flex items-center gap-0.5'>
+              <IoIosArrowRoundBack className='text-lg' /> back to home
+            </span>
+          </RoughChip>
         </Link>
       ) : (
-        <div></div>
+        <div />
       )}
       <ThemeToggler />
     </header>

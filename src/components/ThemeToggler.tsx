@@ -1,31 +1,34 @@
 import { useTheme } from 'next-themes';
 import { type HtmlHTMLAttributes, useEffect, useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
+import RoughChip from '@/components/rough/RoughChip';
 
 type IThemeToggler = HtmlHTMLAttributes<HTMLButtonElement>;
 
-const ThemeToggler: React.FC<IThemeToggler> = ({ className, ...rest }) => {
+const ThemeToggler: React.FC<IThemeToggler> = ({ className = '', ...rest }) => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const nextTheme = theme === 'light' ? 'dark' : 'light';
+  const { resolvedTheme, setTheme } = useTheme();
+  const nextTheme = resolvedTheme === 'light' ? 'dark' : 'light';
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
-    return null;
+    return <div className='h-8 w-8' aria-hidden />;
   }
 
   return (
     <button
-      className={`text-xl cursor-pointer ${className} hover:scale-[1.02] duration-150 transition ease-in-out delay-150 cursor-pointer`}
+      className={`cursor-pointer ${className}`}
       title={`Toggle ${nextTheme} theme`}
       type='button'
       onClick={() => setTheme(nextTheme)}
       {...rest}
     >
-      {theme === 'light' ? <FiMoon /> : <FiSun />}
+      <RoughChip seed={7} className='text-base'>
+        {resolvedTheme === 'light' ? <FiMoon /> : <FiSun />}
+      </RoughChip>
     </button>
   );
 };
