@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = () => {
-      document.getElementById("container")?.scrollTo(0, 0);
+      document.getElementById('container')?.scrollTo(0, 0);
     };
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {

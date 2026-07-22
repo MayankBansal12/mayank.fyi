@@ -1,21 +1,38 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+@import "tailwindcss";
 
-@font-face {
-    font-family: "Excalifont-Regular";
-    src: url("/fonts/Excalifont-Regular.woff2");
-    font-display: swap;
+@source "../pages/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../components/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../app/**/*.{js,ts,jsx,tsx,mdx}";
+
+@theme {
+  --color-solid-heading: #42446e;
+  --color-light-content: #a7a7a7;
+  --color-light-heading: #ffffff;
+  --color-dark-heading: #000000;
+  --color-dark-content: #666666;
+  --color-dark-background: #000000;
+  --color-dark-card: #363636;
+  --color-green-text: #018c0f;
+  --color-github-link: #0969da;
+  --font-primary: "Excalifont-Regular", sans-serif;
+  --font-secondary: "DM Sans", sans-serif;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "Excalifont-Regular";
+  src: url("/fonts/Excalifont-Regular.woff2");
+  font-display: swap;
+}
 
 :root {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* width */
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }

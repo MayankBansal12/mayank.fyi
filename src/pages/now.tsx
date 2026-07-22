@@ -1,39 +1,51 @@
-import { SquareArrowOutUpRight } from "lucide-react"
-import Link from "next/link"
+import { SquareArrowOutUpRight } from 'lucide-react';
+import Link from 'next/link';
 
 const Now: React.FC = () => {
-    return (
-        <div className="mt-20 my-10 flex flex-col gap-3 justify-center items-center">
-            <div className="w-[95%] md:w-2/3 lg:w-1/2">
-                <h2 className="text-3xl font-semibold mb-4">what am i doing now?</h2>
-                <div className="flex flex-col gap-6 text-xl opacity-90">
-                    <p>
-                        i am working as a backend developer in an early-stage startup
-                        where i am working on developing the core product mainly
-                        handling backend development in java and springboot and deployments using docker.
-                    </p>
-                    {/* <p>
+  return (
+    <div className='mt-20 my-10 flex flex-col gap-3 justify-center items-center'>
+      <div className='w-[95%] md:w-2/3 lg:w-1/2'>
+        <h2 className='text-3xl font-semibold mb-4'>what am i doing now?</h2>
+        <div className='flex flex-col gap-6 text-xl opacity-90'>
+          <p>
+            i am working as a backend developer in an early-stage startup where i am working on
+            developing the core product mainly handling backend development in java and springboot
+            and deployments using docker.
+          </p>
+          {/* <p>
                         apart from that, i am building a developer tool as a side
                         project <Link href="https://github.com/MayankBansal12/feedback" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">(called feedback)</Link>. mainly using next.js, and typescript for this one and
                         building it gradually as i learn more things.
                     </p> */}
 
-                    <p>
-                        apart from that, i am trying to build more complex side projects and exploring and learning more topics.
-                    </p>
+          <p>
+            apart from that, i am trying to build more complex side projects and exploring and
+            learning more topics.
+          </p>
 
-                    <p>
-                        i am learning more about docker these days. have the basic
-                        understanding of how it works, i am trying to learn more
-                        advanced topics and using it more. <br />
-                    </p>
+          <p>
+            i am learning more about docker these days. have the basic understanding of how it
+            works, i am trying to learn more advanced topics and using it more. <br />
+          </p>
 
-                    <p>p.s.&#41; &#41; what am i doing now? i would probably be watching movies or sleeping, if not staring into my coding editor. </p>
-                    <p>p.p.s.&#41; &#41; i am available for <Link href="/hire" className="font-semibold text-lg hover:underline hover:opacity-90 transition-all">hire <SquareArrowOutUpRight size={10} className="inline" /></Link> ... it might look i am doing a lot but i am exaggerating...need more work ^-^*</p>
-                </div>
-            </div>
+          <p>
+            p.s.&#41; &#41; what am i doing now? i would probably be watching movies or sleeping, if
+            not staring into my coding editor.{' '}
+          </p>
+          <p>
+            p.p.s.&#41; &#41; i am available for{' '}
+            <Link
+              href='/hire'
+              className='font-semibold text-lg hover:underline hover:opacity-90 transition-all'
+            >
+              hire <SquareArrowOutUpRight size={10} className='inline' />
+            </Link>{' '}
+            ... it might look i am doing a lot but i am exaggerating...need more work ^-^*
+          </p>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Now
+export default Now;

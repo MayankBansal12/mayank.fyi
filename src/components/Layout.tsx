@@ -1,5 +1,5 @@
+import type { ReactNode } from 'react';
 import Header from '@/components/Header';
-import { ReactNode } from 'react';
 import Metadata from './Metadata';
 
 interface ILayout {
@@ -12,7 +12,12 @@ const Layout: React.FC<ILayout> = ({ children }) => {
       <Metadata />
       <main className='flex min-h-screen w-full flex-col items-center py-6 lg:py-8 px-4 dark:bg-dark-background lowercase'>
         <Header />
-        <section id="container" className='container font-primary overflow-y-scroll h-[calc(100vh-5.5rem)]'>{children}</section>
+        <section
+          id='container'
+          className='container font-primary overflow-y-scroll h-[calc(100vh-5.5rem)]'
+        >
+          {children}
+        </section>
       </main>
     </>
   );
