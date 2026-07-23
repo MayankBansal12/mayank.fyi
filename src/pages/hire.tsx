@@ -10,7 +10,7 @@ const Hire: React.FC = () => {
         <p className='text-base font-medium'>available for part-time, contract & full-time</p>
       </RoughSticky>
 
-      <RoughBox seed={502} paddingClassName='p-4 md:p-5'>
+      <RoughBox seed={502}>
         <div className='flex flex-col gap-4 text-lg opacity-90 md:text-xl'>
           <p>
             -&gt; i am currently working at an early-age startup and am available to take on

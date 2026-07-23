@@ -84,7 +84,7 @@ const Work: React.FC = () => {
         <div className='flex flex-col gap-6 text-xl opacity-90'>
           <RoughDivider seed={210} label='professional experience' />
 
-          <RoughBox seed={211} paddingClassName='p-4 md:p-5'>
+          <RoughBox seed={211}>
             <div className='flex flex-col gap-2'>
               <div className='flex flex-col justify-between gap-2 md:flex-row md:items-center'>
                 <h3 className='text-xl font-bold'>

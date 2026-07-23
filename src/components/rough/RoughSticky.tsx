@@ -1,4 +1,11 @@
 import type { ReactNode } from 'react';
+import {
+  ROUGH_FRAME_SKETCH,
+  ROUGH_INSET,
+  ROUGH_PADDING,
+  ROUGH_RADIUS,
+  roundedRectPath,
+} from '@/lib/rough/geometry';
 import { baseStrokeOptions, type RoughPalette } from '@/lib/rough/theme';
 import { useRoughDraw } from '@/lib/rough/useRoughDraw';
 
@@ -40,19 +47,23 @@ const RoughSticky: React.FC<RoughStickyProps> = ({
     seed,
     deps: [color],
     draw: ({ rc, svg, width, height, palette, reducedMotion }) => {
-      const inset = 2;
+      const inset = ROUGH_INSET.sticky;
       svg.appendChild(
-        rc.rectangle(
-          inset,
-          inset,
-          Math.max(0, width - inset * 2),
-          Math.max(0, height - inset * 2),
+        rc.path(
+          roundedRectPath(
+            inset,
+            inset,
+            Math.max(0, width - inset * 2),
+            Math.max(0, height - inset * 2),
+            ROUGH_RADIUS,
+          ),
           {
             ...baseStrokeOptions(palette, {
               seed,
               reducedMotion,
               strokeWidth: 1.4,
-              roughness: 1.4,
+              roughness: ROUGH_FRAME_SKETCH.roughness,
+              bowing: ROUGH_FRAME_SKETCH.bowing,
             }),
             fill: stickyFill(palette, color),
             fillStyle: 'solid',
@@ -71,7 +82,7 @@ const RoughSticky: React.FC<RoughStickyProps> = ({
         className='pointer-events-none absolute inset-0 h-full w-full'
         aria-hidden
       />
-      <div className={`relative z-10 px-3 py-2 ${contentClassName}`}>{children}</div>
+      <div className={`relative z-10 ${ROUGH_PADDING.sticky} ${contentClassName}`}>{children}</div>
     </div>
   );
 };

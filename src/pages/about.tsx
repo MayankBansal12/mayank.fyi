@@ -3,6 +3,7 @@ import RoughBox from '@/components/rough/RoughBox';
 import RoughChip from '@/components/rough/RoughChip';
 import RoughLink from '@/components/rough/RoughLink';
 import RoughSticky from '@/components/rough/RoughSticky';
+import { ROUGH_PADDING } from '@/lib/rough/geometry';
 
 const About: React.FC = () => {
   return (
@@ -57,7 +58,12 @@ const About: React.FC = () => {
         </p>
       </RoughSticky>
 
-      <RoughBox seed={309} dashed paddingClassName='px-3 py-2' className='ml-auto w-fit'>
+      <RoughBox
+        seed={309}
+        dashed
+        paddingClassName={ROUGH_PADDING.compact}
+        className='ml-auto w-fit'
+      >
         <p className='text-xs opacity-60'>last update: 2024-12-30</p>
       </RoughBox>
     </PageShell>

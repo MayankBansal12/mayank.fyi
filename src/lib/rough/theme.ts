@@ -45,16 +45,23 @@ export type RoughBaseOptions = {
   reducedMotion?: boolean;
   strokeWidth?: number;
   roughness?: number;
+  bowing?: number;
 };
 
 export function baseStrokeOptions(
   palette: RoughPalette,
-  { seed = 1, reducedMotion = false, strokeWidth = 1.5, roughness = 1.25 }: RoughBaseOptions = {},
+  {
+    seed = 1,
+    reducedMotion = false,
+    strokeWidth = 1.5,
+    roughness = 1.25,
+    bowing = 1,
+  }: RoughBaseOptions = {},
 ): Options {
   return {
     seed,
     roughness: reducedMotion ? 0 : roughness,
-    bowing: reducedMotion ? 0 : 1,
+    bowing: reducedMotion ? 0 : bowing,
     stroke: palette.ink,
     strokeWidth,
     fillStyle: 'solid',

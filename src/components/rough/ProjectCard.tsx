@@ -19,12 +19,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   seed = 80,
 }) => {
   return (
-    <RoughBox
-      seed={seed}
-      className='h-full'
-      contentClassName='flex h-full flex-col gap-2'
-      paddingClassName='p-4'
-    >
+    <RoughBox seed={seed} className='h-full' contentClassName='flex h-full flex-col gap-2'>
       <div className='flex flex-col gap-1 md:flex-row md:items-center md:justify-between'>
         <h3 className='text-xl font-bold'>{title}</h3>
         <p className='text-sm opacity-70'>{date}</p>

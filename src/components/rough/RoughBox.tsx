@@ -1,4 +1,11 @@
 import type { ReactNode } from 'react';
+import {
+  ROUGH_FRAME_SKETCH,
+  ROUGH_INSET,
+  ROUGH_PADDING,
+  ROUGH_RADIUS,
+  roundedRectPath,
+} from '@/lib/rough/geometry';
 import { baseStrokeOptions } from '@/lib/rough/theme';
 import { useRoughDraw } from '@/lib/rough/useRoughDraw';
 
@@ -22,7 +29,7 @@ const RoughBox: React.FC<RoughBoxProps> = ({
   seed = 11,
   fill = 'none',
   fillColor,
-  paddingClassName = 'p-4 md:p-5',
+  paddingClassName = ROUGH_PADDING.box,
   strokeWidth = 1.6,
   dashed = false,
 }) => {
@@ -30,9 +37,15 @@ const RoughBox: React.FC<RoughBoxProps> = ({
     seed,
     deps: [fill, fillColor, strokeWidth, dashed],
     draw: ({ rc, svg, width, height, palette, reducedMotion }) => {
-      const inset = 3;
+      const inset = ROUGH_INSET.box;
       const opts = {
-        ...baseStrokeOptions(palette, { seed, reducedMotion, strokeWidth }),
+        ...baseStrokeOptions(palette, {
+          seed,
+          reducedMotion,
+          strokeWidth,
+          roughness: ROUGH_FRAME_SKETCH.roughness,
+          bowing: ROUGH_FRAME_SKETCH.bowing,
+        }),
         ...(dashed
           ? {
               strokeLineDash: [8, 6] as number[],
@@ -54,11 +67,14 @@ const RoughBox: React.FC<RoughBoxProps> = ({
       }
 
       svg.appendChild(
-        rc.rectangle(
-          inset,
-          inset,
-          Math.max(0, width - inset * 2),
-          Math.max(0, height - inset * 2),
+        rc.path(
+          roundedRectPath(
+            inset,
+            inset,
+            Math.max(0, width - inset * 2),
+            Math.max(0, height - inset * 2),
+            ROUGH_RADIUS,
+          ),
           opts,
         ),
       );

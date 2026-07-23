@@ -15,7 +15,7 @@ const ThemeToggler: React.FC<IThemeToggler> = ({ className = '', ...rest }) => {
   }, []);
 
   if (!mounted) {
-    return <div className='h-8 w-8' aria-hidden />;
+    return <div className='h-9 w-9' aria-hidden />;
   }
 
   return (

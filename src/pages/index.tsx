@@ -5,6 +5,7 @@ import RoughArrow from '@/components/rough/RoughArrow';
 import RoughBox from '@/components/rough/RoughBox';
 import RoughChip from '@/components/rough/RoughChip';
 import RoughSticky from '@/components/rough/RoughSticky';
+import { ROUGH_PADDING } from '@/lib/rough/geometry';
 
 export default function Home() {
   const [isTextVisible, setIsTextVisible] = useState(false);
@@ -16,7 +17,7 @@ export default function Home() {
           seed={101}
           className='w-full max-w-xl'
           contentClassName='flex flex-col items-center gap-2 text-center'
-          paddingClassName='px-6 py-6 md:px-10 md:py-8'
+          paddingClassName={ROUGH_PADDING.hero}
         >
           <h1 className='text-4xl font-medium'>hey. i am mayank.</h1>
           <p className='flex items-center text-lg opacity-80'>
@@ -45,7 +46,7 @@ export default function Home() {
               dashed
               className='w-full max-w-xl'
               contentClassName='text-center text-base opacity-80 md:text-lg'
-              paddingClassName='px-5 py-4 md:px-8'
+              paddingClassName={ROUGH_PADDING.wide}
             >
               <p>
                 -&gt; i am a software developer from india with working experience of around a year.
