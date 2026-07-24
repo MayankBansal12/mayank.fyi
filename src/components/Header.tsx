@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import RoughLink from '@/components/rough/RoughLink';
+import AppearanceControls from './AppearanceControls';
 import ThemeToggler from './ThemeToggler';
 
 const Header: React.FC = () => {
@@ -18,7 +19,10 @@ const Header: React.FC = () => {
       ) : (
         <div />
       )}
-      <ThemeToggler />
+      <div className='flex items-center gap-2'>
+        <AppearanceControls />
+        <ThemeToggler />
+      </div>
     </header>
   );
 };

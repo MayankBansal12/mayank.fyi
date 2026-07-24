@@ -1,7 +1,6 @@
 import { useTheme } from 'next-themes';
 import { type HtmlHTMLAttributes, useEffect, useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
-import RoughChip from '@/components/rough/RoughChip';
 
 type IThemeToggler = HtmlHTMLAttributes<HTMLButtonElement>;
 
@@ -20,15 +19,14 @@ const ThemeToggler: React.FC<IThemeToggler> = ({ className = '', ...rest }) => {
 
   return (
     <button
-      className={`cursor-pointer ${className}`}
+      className={`appearance-trigger ${className}`}
+      aria-label={`Toggle ${nextTheme} theme`}
       title={`Toggle ${nextTheme} theme`}
       type='button'
       onClick={() => setTheme(nextTheme)}
       {...rest}
     >
-      <RoughChip seed={7} className='text-base'>
-        {resolvedTheme === 'light' ? <FiMoon /> : <FiSun />}
-      </RoughChip>
+      {resolvedTheme === 'light' ? <FiMoon /> : <FiSun />}
     </button>
   );
 };
