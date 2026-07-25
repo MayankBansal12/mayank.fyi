@@ -16,7 +16,7 @@ const Metadata: React.FC = () => {
       <meta name='twitter:title' content='mayank bansal • your friendly neighbourhood developer' />
       <meta
         name='twitter:description'
-        content='mayank bansal portfolio, your friendly neighbourhood developer. full stack developer'
+        content='mayank bansal portfolio, backend developer and software engineer.'
       />
       <meta property='twitter:url' content='https://mayankbansal.xyz' />
       <meta property='twitter:domain' content='mayankbansal.xyz' />
@@ -24,14 +24,11 @@ const Metadata: React.FC = () => {
         name='twitter:image'
         content='https://res.cloudinary.com/dwuyp1nss/image/upload/v1735586934/mayankbansal.xyz/g2s0ah77imvhuzpac1nu.jpg'
       />
-      <meta
-        name='twitter:card'
-        content='i am a developer from india with a working experience of around a year. currently working as a backend developer at an early stage startup...always looking to explore and work on interesting tech projects'
-      />
+      <meta name='twitter:card' content='summary_large_image' />
 
       <meta
         name='description'
-        content='mayank bansal portfolio, your friendly neighbourhood developer.'
+        content='mayank bansal portfolio, backend developer and software engineer.'
       />
       <script
         defer
