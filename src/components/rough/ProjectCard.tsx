@@ -18,56 +18,61 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   githubLink,
   liveLink,
-  skills = [],
   seed = 80,
 }) => {
   return (
     <RoughBox
       seed={seed}
       className='portfolio-project-card group h-full'
-      contentClassName='flex h-full flex-col gap-3 p-5'
+      contentClassName='flex h-full flex-col p-1'
       paddingClassName='p-0'
       fill='solid'
       fillColor='var(--portfolio-surface)'
     >
-      <span className='project-card-wash' aria-hidden />
-      <div className='flex flex-col gap-1 md:flex-row md:items-center md:justify-between'>
-        <h3 className='relative z-10 text-xl font-bold'>{title}</h3>
-        <p className='relative z-10 text-xs text-board-muted'>{date}</p>
+      <div className='project-preview' aria-hidden>
+        <div className='project-preview-bar'>
+          <span />
+          <span />
+          <span />
+          <small>preview</small>
+        </div>
+        <div className='project-preview-canvas'>
+          <span className='project-preview-shape' />
+          <strong>{title.slice(0, 2)}</strong>
+          <span className='project-preview-line project-preview-line-one' />
+          <span className='project-preview-line project-preview-line-two' />
+        </div>
       </div>
-      <div className='relative z-10 flex flex-1 flex-col gap-1 text-sm opacity-80 md:text-base'>
-        {description.map((line) => (
-          <p key={line}>{line}</p>
-        ))}
-      </div>
-      {skills.length > 0 ? (
-        <div className='relative z-10 flex flex-wrap gap-2'>
-          {skills.map((skill) => (
-            <span key={skill} className='portfolio-tag'>
-              {skill}
-            </span>
+      <div className='flex flex-1 flex-col gap-2 px-3 pt-3 pb-2'>
+        <div className='flex items-baseline justify-between gap-3'>
+          <h3 className='text-base font-bold'>{title}</h3>
+          <p className='shrink-0 text-[0.65rem] text-board-muted'>{date}</p>
+        </div>
+        <div className='flex flex-1 flex-col gap-1 text-xs leading-relaxed opacity-75'>
+          {description.map((line) => (
+            <p key={line}>{line}</p>
           ))}
         </div>
-      ) : null}
-      {(githubLink || liveLink) && (
-        <div className='relative z-10 mt-auto flex flex-wrap items-center gap-3 pt-1 text-sm'>
-          {githubLink ? (
-            <RoughLink href={githubLink} seed={seed + 1} className='font-semibold'>
-              github
-            </RoughLink>
-          ) : null}
-          {liveLink ? (
-            <a
-              href={liveLink}
-              target='_blank'
-              rel='noreferrer noopener'
-              className='project-live-link ml-auto inline-flex items-center gap-1 font-semibold'
-            >
-              view project <ArrowUpRight size={14} aria-hidden />
-            </a>
-          ) : null}
-        </div>
-      )}
+        {(githubLink || liveLink) && (
+          <div className='mt-auto flex flex-wrap items-center gap-3 pt-1 text-xs'>
+            {githubLink ? (
+              <RoughLink href={githubLink} seed={seed + 1} className='font-semibold'>
+                github
+              </RoughLink>
+            ) : null}
+            {liveLink ? (
+              <a
+                href={liveLink}
+                target='_blank'
+                rel='noreferrer noopener'
+                className='project-live-link ml-auto inline-flex items-center gap-1 font-semibold'
+              >
+                view project <ArrowUpRight size={14} aria-hidden />
+              </a>
+            ) : null}
+          </div>
+        )}
+      </div>
     </RoughBox>
   );
 };

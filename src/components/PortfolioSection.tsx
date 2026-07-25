@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import RoughDivider from '@/components/rough/RoughDivider';
 
 type PortfolioSectionProps = {
   id: string;
@@ -25,7 +24,7 @@ export default function PortfolioSection({
         {note ? <p className='pb-1 text-right text-xs text-board-muted'>{note}</p> : null}
       </header>
       {children}
-      <RoughDivider seed={seed} className='mt-9 opacity-55' />
+      <div className='portfolio-section-divider mt-9' data-seed={seed} aria-hidden />
     </section>
   );
 }

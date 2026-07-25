@@ -2,12 +2,12 @@ import { ArrowUpRight, CalendarDays, Mail } from 'lucide-react';
 import BlogRow from '@/components/BlogRow';
 import ExperienceAccordion from '@/components/ExperienceAccordion';
 import Footer from '@/components/Footer';
+import GitHubContributions from '@/components/GitHubContributions';
 import Monogram from '@/components/Monogram';
 import NewsletterSection from '@/components/NewsletterSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import ProjectCard from '@/components/rough/ProjectCard';
 import RoughCurvedArrow from '@/components/rough/RoughCurvedArrow';
-import RoughSticky from '@/components/rough/RoughSticky';
 import { blogPosts, experiences, profile, projects, skillGroups, socials } from '@/data/portfolio';
 
 export default function Home() {
@@ -20,30 +20,25 @@ export default function Home() {
 
       <div className='portfolio-rail'>
         <section id='about' className='portfolio-hero scroll-mt-32'>
-          <div className='flex items-start gap-4 sm:gap-5'>
-            <Monogram />
-            <div className='min-w-0 flex-1 pt-1'>
-              <div className='flex flex-wrap items-start justify-between gap-3'>
-                <div>
-                  <h1 className='text-3xl leading-none font-semibold md:text-4xl'>
-                    hey. i&apos;m mayank.
-                  </h1>
-                  <p className='mt-2 text-sm text-board-muted md:text-base'>{profile.role}</p>
-                </div>
-                <RoughSticky seed={102} color='green' rotate={1} className='shrink-0'>
-                  <span className='text-xs font-semibold'>available for work</span>
-                </RoughSticky>
+          <div className='portfolio-identity'>
+            <div className='portfolio-avatar-wrap'>
+              <div className='portfolio-availability-note'>
+                <span>i&apos;m available for hire</span>
+                <RoughCurvedArrow seed={102} width={48} height={30} className='ml-auto' />
               </div>
+              <Monogram />
+            </div>
+            <div className='portfolio-identity-copy'>
+              <h1 className='text-3xl leading-none font-semibold md:text-4xl'>
+                hey. i&apos;m mayank.
+              </h1>
+              <p className='mt-2 text-sm text-board-muted md:text-base'>{profile.role}</p>
             </div>
           </div>
 
-          <div className='relative mt-7 max-w-2xl space-y-4 text-base leading-relaxed md:text-lg'>
+          <div className='mt-8 max-w-2xl space-y-4 text-base leading-relaxed md:text-lg'>
             <p>{profile.intro}</p>
             <p className='opacity-80'>{profile.now}</p>
-            <div className='absolute -top-10 -right-1 hidden items-end opacity-55 sm:flex'>
-              <span className='mr-1 text-xs'>what i&apos;m up to</span>
-              <RoughCurvedArrow seed={103} width={45} height={30} />
-            </div>
           </div>
 
           <div className='mt-6 flex flex-wrap gap-3'>
@@ -78,6 +73,9 @@ export default function Home() {
               ))}
             </div>
           </div>
+
+          <GitHubContributions />
+          <div className='portfolio-section-divider mt-9' aria-hidden />
         </section>
 
         <PortfolioSection

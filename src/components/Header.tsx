@@ -10,33 +10,11 @@ const Header: React.FC = () => {
 
   if (!showBackLink) {
     return (
-      <header className='portfolio-header sticky top-0 z-40 w-full max-w-[760px]'>
-        <div className='flex items-center justify-between gap-3'>
-          <a href='#top' className='portfolio-wordmark' aria-label='mayank bansal, back to top'>
-            mb.
-          </a>
-          <nav className='portfolio-nav hidden items-center gap-1 md:flex' aria-label='portfolio'>
-            <a href='#about'>about</a>
-            <a href='#experience'>experience</a>
-            <a href='#projects'>projects</a>
-            <a href='#blogs'>blogs</a>
-            <a href='#skills'>skills</a>
-          </nav>
-          <div className='flex items-center gap-1'>
-            <AppearanceControls />
-            <ThemeToggler />
-          </div>
+      <header className='portfolio-controls sticky top-0 z-40 flex w-full max-w-[760px] justify-end'>
+        <div className='flex items-center gap-1'>
+          <AppearanceControls />
+          <ThemeToggler />
         </div>
-        <nav
-          className='portfolio-nav portfolio-nav-mobile mt-2 flex overflow-x-auto md:hidden'
-          aria-label='portfolio'
-        >
-          <a href='#about'>about</a>
-          <a href='#experience'>experience</a>
-          <a href='#projects'>projects</a>
-          <a href='#blogs'>blogs</a>
-          <a href='#skills'>skills</a>
-        </nav>
       </header>
     );
   }
