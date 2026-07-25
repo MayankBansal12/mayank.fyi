@@ -10,7 +10,7 @@ const Header: React.FC = () => {
 
   if (!showBackLink) {
     return (
-      <header className='portfolio-controls sticky top-0 z-40 flex w-full max-w-[760px] justify-end'>
+      <header className='portfolio-controls sticky top-0 z-40 flex w-full justify-end'>
         <div className='flex items-center gap-1'>
           <AppearanceControls />
           <ThemeToggler />

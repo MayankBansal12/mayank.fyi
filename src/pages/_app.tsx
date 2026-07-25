@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   return (
-    <ThemeProvider attribute='class'>
+    <ThemeProvider attribute='class' defaultTheme='light'>
       <AppearanceProvider>
         <Layout>
           <Component {...pageProps} />

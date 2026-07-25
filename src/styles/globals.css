@@ -90,6 +90,31 @@
   backdrop-filter: blur(12px);
 }
 
+.portfolio-home {
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      var(--portfolio-border) 0,
+      var(--portfolio-border) 7px,
+      transparent 7px,
+      transparent 15px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--portfolio-border) 0,
+      var(--portfolio-border) 7px,
+      transparent 7px,
+      transparent 15px
+    );
+  background-position:
+    left top,
+    right top;
+  background-repeat: no-repeat;
+  background-size:
+    1px 100%,
+    1px 100%;
+}
+
 .portfolio-opening,
 .portfolio-closing {
   position: relative;
@@ -108,6 +133,10 @@
     16px 16px;
   mask-image: linear-gradient(to bottom, transparent, black 24%, black 76%, transparent);
   opacity: 0.62;
+}
+
+.portfolio-opening {
+  margin-inline: 0.75rem;
 }
 
 .portfolio-closing {
@@ -169,8 +198,8 @@
       transparent 15px
     );
   background-position:
-    left top,
-    right top;
+    0.75rem top,
+    calc(100% - 0.75rem) top;
   background-repeat: no-repeat;
   background-size:
     1px 100%,
@@ -190,7 +219,7 @@
 .portfolio-identity {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.25rem;
   min-height: 5.5rem;
 }
@@ -204,9 +233,9 @@
   display: flex;
   min-height: 5.25rem;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  text-align: center;
+  text-align: left;
 }
 
 .portfolio-availability-note {
@@ -296,6 +325,7 @@
 
 .social-chip-arrow,
 .view-all-arrow,
+.subscribe-arrow,
 .project-live-link svg,
 .blog-row-action svg {
   transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
@@ -340,6 +370,24 @@
   opacity: 0.72;
 }
 
+.portfolio-section-divider::before,
+.portfolio-section-divider::after {
+  position: absolute;
+  top: 0;
+  width: 0.75rem;
+  height: 11px;
+  content: "";
+  background: var(--portfolio-border);
+}
+
+.portfolio-section-divider::before {
+  left: max(0.75rem, calc(50% - 380px));
+}
+
+.portfolio-section-divider::after {
+  right: max(0.75rem, calc(50% - 380px));
+}
+
 .github-activity {
   margin-top: 1.75rem;
   border: 1px solid var(--portfolio-border);
@@ -350,20 +398,20 @@
 }
 
 .github-grid-scroll {
-  overflow-x: auto;
-  padding-bottom: 0.25rem;
+  width: 100%;
 }
 
 .github-grid {
   display: grid;
-  width: max-content;
+  width: 100%;
   grid-auto-flow: column;
-  grid-auto-columns: 8px;
-  grid-template-rows: repeat(7, 8px);
+  grid-auto-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(7, auto);
   gap: 2px;
 }
 
 .github-cell {
+  aspect-ratio: 1;
   border: 1px solid var(--portfolio-border-muted);
   border-radius: 2px;
   background: color-mix(in srgb, var(--portfolio-surface) 88%, transparent);
@@ -383,6 +431,22 @@
 
 .github-cell[data-level="4"] {
   background: #3d8139;
+}
+
+.github-legend {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 3px;
+  color: var(--portfolio-ink-muted);
+  font-family: var(--font-secondary);
+  font-size: 0.6rem;
+}
+
+.github-legend .github-cell {
+  width: 8px;
+  height: 8px;
+  aspect-ratio: auto;
 }
 
 .portfolio-inline-control {
@@ -567,6 +631,7 @@
 }
 
 .portfolio-view-all {
+  display: flex;
   min-height: 2.35rem;
   width: fit-content;
   border-radius: 0.55rem;
@@ -679,6 +744,7 @@
 
   .social-chip:hover .social-chip-arrow,
   .portfolio-view-all:hover .view-all-arrow,
+  .portfolio-button:hover .subscribe-arrow,
   .portfolio-project-card:hover .project-live-link svg,
   .blog-row:hover .blog-row-action svg,
   .portfolio-inline-control:hover .control-arrow {

@@ -1,4 +1,5 @@
 import RoughBox from '@/components/rough/RoughBox';
+import { site } from '@/data/portfolio';
 
 export default function Monogram() {
   return (
@@ -12,9 +13,9 @@ export default function Monogram() {
       strokeWidth={1.8}
     >
       <span className='-rotate-3 text-2xl font-bold tracking-tight' aria-hidden>
-        mb
+        {site.initials}
       </span>
-      <span className='sr-only'>mayank bansal</span>
+      <span className='sr-only'>{site.name}</span>
     </RoughBox>
   );
 }

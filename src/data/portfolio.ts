@@ -18,7 +18,6 @@ export type Project = {
   description: string[];
   skills: string[];
   featured?: boolean;
-  seed: number;
 };
 
 export type BlogPost = {
@@ -36,15 +35,85 @@ export type Social = {
   href: string;
 };
 
-export const profile = {
+export const site = {
   name: 'mayank bansal',
-  role: 'backend developer & software engineer',
-  intro:
-    'i build backend systems, developer tools, and useful products while learning how far i can push an idea.',
-  now: 'currently working on core product development with java, spring boot, bun, docker, and the occasional next.js fix.',
+  initials: 'mb',
+  url: 'https://mayank.fyi',
+  title: 'mayank bansal • your friendly neighbourhood developer',
+  description: 'mayank bansal portfolio, backend developer and software engineer.',
+  socialDescription: 'portfolio website for mayank bansal',
+  socialImage:
+    'https://res.cloudinary.com/dwuyp1nss/image/upload/v1735586934/mayankbansal.xyz/g2s0ah77imvhuzpac1nu.jpg',
+  socialImageAlt: 'mayank bansal portfolio',
+};
+
+export const links = {
   email: 'mailto:mayankbansal125@gmail.com',
   calendar: 'https://cal.com/mayankbansal',
-  substack: 'https://mayank12.substack.com/subscribe',
+  github: 'https://github.com/MayankBansal12',
+  repositories: 'https://github.com/MayankBansal12?tab=repositories',
+  twitter: 'https://x.com/SimplerMayank',
+  linkedin: 'https://www.linkedin.com/in/mayank-bansal200604012/',
+  substack: 'https://mayank12.substack.com/',
+  subscribe: 'https://mayank12.substack.com/subscribe',
+  anonymousNote: 'https://mayank.sayout.net/',
+};
+
+export const home = {
+  hero: {
+    heading: "hey. i'm mayank.",
+    role: 'just an engineer trying to create things that matter',
+    intro:
+      'i build backend systems, developer tools, and useful products while learning how far i can push an idea.',
+    currentStatus:
+      'currently working on core product development with java, spring boot, bun, docker, and the occasional next.js fix.',
+    availability: {
+      visible: true,
+      text: "i'm available for hire",
+    },
+    calendarCta: 'book an intro call',
+    emailCta: 'reach out on email',
+    socialHeading: 'find me around the internet',
+  },
+  sections: {
+    experience: {
+      title: 'experience',
+      note: 'click a row to see details',
+    },
+    projects: {
+      title: 'selected projects',
+      note: 'things i have built',
+      viewAllLabel: 'view all repositories',
+    },
+    writing: {
+      title: 'writing',
+      note: 'need to clear up my drafts :)',
+      viewAllLabel: 'visit my substack',
+    },
+    skills: {
+      title: 'skills & tools',
+      note: 'used at work and in projects',
+    },
+  },
+};
+
+export const githubActivity = {
+  username: 'MayankBansal12',
+  title: 'github activity',
+  description: 'a sketch of recent rhythm',
+  profileLabel: 'profile',
+  previewLabel: 'activity preview',
+};
+
+export const newsletter = {
+  eyebrow: '',
+  heading: 'join my newsletter',
+  description:
+    'writes about stuff i learn or find interesting (from an ameteur point of view)',
+  emailLabel: 'email address',
+  placeholder: 'you@example.com',
+  buttonLabel: 'subscribe',
+  helpText: "you'll finish signing up on substack.",
 };
 
 export const experiences: Experience[] = [
@@ -88,7 +157,6 @@ export const projects: Project[] = [
     ],
     skills: ['html', 'css', 'javascript', 'browser APIs'],
     featured: true,
-    seed: 201,
   },
   {
     title: 'feedback',
@@ -100,7 +168,6 @@ export const projects: Project[] = [
     ],
     skills: ['typescript', 'APIs', 'documentation', 'product engineering'],
     featured: true,
-    seed: 202,
   },
   {
     title: 'getogether',
@@ -112,7 +179,6 @@ export const projects: Project[] = [
     ],
     skills: ['react', 'express', 'postgresql', 'prisma'],
     featured: true,
-    seed: 203,
   },
   {
     title: 'pushnote',
@@ -124,7 +190,6 @@ export const projects: Project[] = [
     ],
     skills: ['react', 'express', 'REST APIs', 'team project'],
     featured: true,
-    seed: 204,
   },
   {
     title: 'mb docs',
@@ -133,7 +198,6 @@ export const projects: Project[] = [
     liveLink: 'http://mb-docs.vercel.app/',
     description: ['a real-time collaborative document editor for writing together.'],
     skills: ['react', 'socket.io', 'mongodb', 'quill'],
-    seed: 205,
   },
   {
     title: 'examgpt',
@@ -142,7 +206,6 @@ export const projects: Project[] = [
     liveLink: 'https://examgpt.vercel.app/',
     description: ['an oral-exam assistant that creates questions from an uploaded PDF.'],
     skills: ['react', 'express', 'openAI', 'pdf.js', 'speech APIs'],
-    seed: 206,
   },
 ];
 
@@ -183,26 +246,26 @@ export const socials: Social[] = [
   {
     label: 'github',
     handle: 'mayankbansal12',
-    href: 'https://github.com/MayankBansal12',
+    href: links.github,
   },
   {
     label: 'twitter',
     handle: 'simplermayank',
-    href: 'https://x.com/SimplerMayank',
+    href: links.twitter,
   },
   {
     label: 'linkedin',
     handle: '--mb2004--',
-    href: 'https://www.linkedin.com/in/mayank-bansal200604012/',
+    href: links.linkedin,
   },
   {
     label: 'substack',
     handle: 'mayank12',
-    href: 'https://mayank12.substack.com/',
+    href: links.substack,
   },
   {
-    label: 'anonymous note',
+    label: 'leave an anonymous note',
     handle: 'sayout',
-    href: 'https://mayank.sayout.net/',
+    href: links.anonymousNote,
   },
 ];

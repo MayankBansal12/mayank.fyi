@@ -32,8 +32,8 @@ const isBackground = (value: string): value is BackgroundId =>
 const isFont = (value: string): value is FontId => fonts.some((option) => option.id === value);
 
 export function AppearanceProvider({ children }: { children: ReactNode }) {
-  const [background, setBackground] = useState<BackgroundId>('paper');
-  const [font, setFont] = useState<FontId>('excalifont');
+  const [background, setBackground] = useState<BackgroundId>('cream');
+  const [font, setFont] = useState<FontId>('dm-sans');
   const [preferencesLoaded, setPreferencesLoaded] = useState(false);
 
   useEffect(() => {

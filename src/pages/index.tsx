@@ -8,7 +8,15 @@ import NewsletterSection from '@/components/NewsletterSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import ProjectCard from '@/components/rough/ProjectCard';
 import RoughCurvedArrow from '@/components/rough/RoughCurvedArrow';
-import { blogPosts, experiences, profile, projects, skillGroups, socials } from '@/data/portfolio';
+import {
+  blogPosts,
+  experiences,
+  home,
+  links,
+  projects,
+  skillGroups,
+  socials,
+} from '@/data/portfolio';
 
 export default function Home() {
   return (
@@ -22,41 +30,43 @@ export default function Home() {
         <section id='about' className='portfolio-hero scroll-mt-32'>
           <div className='portfolio-identity'>
             <div className='portfolio-avatar-wrap'>
-              <div className='portfolio-availability-note'>
-                <span>i&apos;m available for hire</span>
-                <RoughCurvedArrow seed={102} width={48} height={30} className='ml-auto' />
-              </div>
+              {home.hero.availability.visible ? (
+                <div className='portfolio-availability-note'>
+                  <span>{home.hero.availability.text}</span>
+                  <RoughCurvedArrow seed={102} width={48} height={30} className='ml-auto' />
+                </div>
+              ) : null}
               <Monogram />
             </div>
             <div className='portfolio-identity-copy'>
               <h1 className='text-3xl leading-none font-semibold md:text-4xl'>
-                hey. i&apos;m mayank.
+                {home.hero.heading}
               </h1>
-              <p className='mt-2 text-sm text-board-muted md:text-base'>{profile.role}</p>
+              <p className='mt-2 text-sm text-board-muted md:text-base'>{home.hero.role}</p>
             </div>
           </div>
 
           <div className='mt-8 max-w-2xl space-y-4 text-base leading-relaxed md:text-lg'>
-            <p>{profile.intro}</p>
-            <p className='opacity-80'>{profile.now}</p>
+            <p>{home.hero.intro}</p>
+            <p className='opacity-80'>{home.hero.currentStatus}</p>
           </div>
 
           <div className='mt-6 flex flex-wrap gap-3'>
             <a
-              href={profile.calendar}
+              href={links.calendar}
               target='_blank'
               rel='noreferrer noopener'
               className='portfolio-button'
             >
-              <CalendarDays size={15} aria-hidden /> book an intro call
+              <CalendarDays size={15} aria-hidden /> {home.hero.calendarCta}
             </a>
-            <a href={profile.email} className='portfolio-button portfolio-button-secondary'>
-              <Mail size={15} aria-hidden /> send an email
+            <a href={links.email} className='portfolio-button portfolio-button-secondary'>
+              <Mail size={15} aria-hidden /> {home.hero.emailCta}
             </a>
           </div>
 
           <div className='mt-7'>
-            <p className='mb-3 text-sm text-board-muted'>find me around the internet</p>
+            <p className='mb-3 text-sm text-board-muted'>{home.hero.socialHeading}</p>
             <div className='flex flex-wrap gap-2'>
               {socials.map((social) => (
                 <a
@@ -80,8 +90,8 @@ export default function Home() {
 
         <PortfolioSection
           id='experience'
-          title='experience'
-          note='click a row to open it'
+          title={home.sections.experience.title}
+          note={home.sections.experience.note}
           seed={301}
         >
           <ExperienceAccordion items={experiences} />
@@ -89,49 +99,54 @@ export default function Home() {
 
         <PortfolioSection
           id='projects'
-          title='selected projects'
-          note='things i have built'
+          title={home.sections.projects.title}
+          note={home.sections.projects.note}
           seed={401}
         >
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             {projects
               .filter((project) => project.featured)
-              .map((project) => (
-                <ProjectCard key={project.title} {...project} />
+              .map((project, index) => (
+                <ProjectCard key={project.title} {...project} seed={201 + index} />
               ))}
           </div>
           <a
-            href='https://github.com/MayankBansal12?tab=repositories'
+            href={links.repositories}
             target='_blank'
             rel='noreferrer noopener'
-            className='portfolio-view-all group mt-5'
+            className='portfolio-view-all group mx-auto mt-5'
           >
-            view all repositories
+            {home.sections.projects.viewAllLabel}
             <ArrowUpRight size={15} className='view-all-arrow' aria-hidden />
           </a>
         </PortfolioSection>
 
-        <PortfolioSection id='blogs' title='writing' note='mock posts for now' seed={501}>
+        <PortfolioSection
+          id='blogs'
+          title={home.sections.writing.title}
+          note={home.sections.writing.note}
+          seed={501}
+        >
           <div className='portfolio-list-frame overflow-hidden'>
             {blogPosts.map((post) => (
               <BlogRow key={post.title} post={post} />
             ))}
           </div>
           <a
-            href='https://mayank12.substack.com/'
+            href={links.substack}
             target='_blank'
             rel='noreferrer noopener'
-            className='portfolio-view-all group mt-5'
+            className='portfolio-view-all group mx-auto mt-5'
           >
-            visit my substack
+            {home.sections.writing.viewAllLabel}
             <ArrowUpRight size={15} className='view-all-arrow' aria-hidden />
           </a>
         </PortfolioSection>
 
         <PortfolioSection
           id='skills'
-          title='skills & tools'
-          note='used at work and in projects'
+          title={home.sections.skills.title}
+          note={home.sections.skills.note}
           seed={601}
         >
           <div className='space-y-5'>

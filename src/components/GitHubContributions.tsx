@@ -1,5 +1,5 @@
-import { ArrowUpRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { githubActivity } from '@/data/portfolio';
 
 type ContributionCell = {
   id: string;
@@ -20,7 +20,6 @@ const fallbackCells: ContributionCell[] = Array.from({ length: 364 }, (_, index)
 
 export default function GitHubContributions() {
   const [cells, setCells] = useState(fallbackCells);
-  const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -28,7 +27,7 @@ export default function GitHubContributions() {
     async function loadContributions() {
       try {
         const response = await fetch(
-          'https://github-contributions-api.jogruber.de/v4/MayankBansal12?y=last',
+          `https://github-contributions-api.jogruber.de/v4/${githubActivity.username}?y=last`,
           { signal: controller.signal },
         );
         if (!response.ok) return;
@@ -44,7 +43,6 @@ export default function GitHubContributions() {
             level: Math.max(0, Math.min(4, contribution.level)),
           })),
         );
-        setIsLive(true);
       } catch (error) {
         if (error instanceof DOMException && error.name === 'AbortError') return;
       }
@@ -59,18 +57,21 @@ export default function GitHubContributions() {
       <div className='mb-3 flex items-center justify-between gap-4'>
         <div>
           <h2 id='github-activity-title' className='text-sm font-semibold'>
-            github activity
+            {githubActivity.title}
           </h2>
-          <p className='mt-0.5 text-xs text-board-muted'>a sketch of recent building rhythm</p>
+          <p className='mt-0.5 text-xs text-board-muted'>{githubActivity.description}</p>
         </div>
-        <a
-          href='https://github.com/MayankBansal12'
-          target='_blank'
-          rel='noreferrer noopener'
-          className='portfolio-inline-control group'
+        <div
+          className='github-legend'
+          role='img'
+          aria-label='contribution activity from less to more'
         >
-          profile <ArrowUpRight size={13} className='control-arrow' aria-hidden />
-        </a>
+          <span>less</span>
+          {[0, 1, 2, 3, 4].map((level) => (
+            <span key={level} className='github-cell' data-level={level} aria-hidden />
+          ))}
+          <span>more</span>
+        </div>
       </div>
       <div className='github-grid-scroll'>
         <div className='github-grid' aria-hidden>
@@ -79,9 +80,6 @@ export default function GitHubContributions() {
           ))}
         </div>
       </div>
-      <p className='mt-2 text-[0.65rem] text-board-muted'>
-        {isLive ? 'live contribution activity' : 'activity preview'} · visit github for details
-      </p>
     </section>
   );
 }
