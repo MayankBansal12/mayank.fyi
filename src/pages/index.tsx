@@ -48,12 +48,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className='mt-8 max-w-2xl space-y-4 text-base leading-relaxed md:text-lg'>
+          <div className='portfolio-hero-copy mt-8 max-w-2xl space-y-4 text-base leading-relaxed md:text-lg'>
             <p>{home.hero.intro}</p>
             <p className='opacity-80'>{home.hero.currentStatus}</p>
           </div>
 
-          <div className='mt-6 flex flex-wrap gap-3'>
+          <div className='portfolio-hero-actions mt-6 flex flex-wrap gap-3'>
             <a
               href={links.calendar}
               target='_blank'
@@ -68,8 +68,10 @@ export default function Home() {
           </div>
 
           <div className='mt-7'>
-            <p className='mb-3 text-sm text-board-muted'>{home.hero.socialHeading}</p>
-            <div className='flex flex-wrap gap-2'>
+            <p className='portfolio-social-heading mb-3 text-sm text-board-muted'>
+              {home.hero.socialHeading}
+            </p>
+            <div className='portfolio-social-list flex flex-wrap gap-2'>
               {socials.map((social) => (
                 <a
                   key={social.href}
