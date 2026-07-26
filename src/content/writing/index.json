@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "dns-resolution-on-the-internet",
+    "title": "DNS resolution on the internet",
+    "description": "how a domain name gets resolved to a server IP (browser cache, authoritative nameserver and everything in between)",
+    "publishedAt": "16-07-2026",
+    "publishedAtISO": "2026-07-16T12:22:08.000Z",
+    "sourceUrl": "https://mayank12.substack.com/p/dns-resolution-on-the-internet"
+  },
+  {
+    "slug": "what-excites-me-most-about-ai",
+    "title": "what excites me most about AI",
+    "description": "personal thoughts on LLMs",
+    "publishedAt": "28-12-2025",
+    "publishedAtISO": "2025-12-28T15:39:24.000Z",
+    "sourceUrl": "https://mayank12.substack.com/p/what-excites-me-most-about-ai"
+  },
+  {
+    "slug": "deeply-nested-code-and-the-art-of",
+    "title": "Deeply Nested Code and the art of refactoring and writing good code",
+    "description": "Spending some time to improve code quality and organizing to make it more readable and maintainable",
+    "publishedAt": "13-07-2025",
+    "publishedAtISO": "2025-07-13T20:59:21.000Z",
+    "sourceUrl": "https://mayank12.substack.com/p/deeply-nested-code-and-the-art-of"
+  },
+  {
+    "slug": "building-a-video-transcoding-service",
+    "title": "Building a video transcoding service for Adaptive Bitrate streaming",
+    "description": "how i build a video transcoding service to use HLS for video streaming using ffmpeg, message queues and docker containers",
+    "publishedAt": "22-06-2025",
+    "publishedAtISO": "2025-06-22T20:57:49.000Z",
+    "sourceUrl": "https://mayank12.substack.com/p/building-a-video-transcoding-service"
+  },
+  {
+    "slug": "a-look-at-the-javascript-patterns",
+    "title": "A look at the JavaScript Patterns (WIP)",
+    "description": "using it as a living document for penning down discoveries related to patterns in JavaScript",
+    "publishedAt": "06-04-2025",
+    "publishedAtISO": "2025-04-06T21:01:05.000Z",
+    "sourceUrl": "https://mayank12.substack.com/p/a-look-at-the-javascript-patterns"
+  },
+  {
+    "slug": "to-stack-it-or-to-break-it",
+    "title": "To stack it or To break it: managing big changes in PRs",
+    "description": "stacking PRs on top of one other or breaking them down in separate self-contained PRs for better code review and debugging",
+    "publishedAt": "19-01-2025",
+    "publishedAtISO": "2025-01-19T13:59:33.000Z",
+    "sourceUrl": "https://mayank12.substack.com/p/to-stack-it-or-to-break-it"
+  },
+  {
+    "slug": "message-queues",
+    "title": "Message Queues and bullMQ from a beginner's POV",
+    "description": "Learnt about the message queues and implemented basic message queues using bullMQ, and hence, penning down my learnings here.",
+    "publishedAt": "22-04-2024",
+    "publishedAtISO": "2024-04-22T19:37:22.000Z",
+    "sourceUrl": "https://mayank12.substack.com/p/message-queues"
+  }
+]

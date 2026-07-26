@@ -1,4 +1,5 @@
 import { ArrowUpRight, CalendarDays, Mail } from 'lucide-react';
+import Link from 'next/link';
 import BlogRow from '@/components/BlogRow';
 import ExperienceAccordion from '@/components/ExperienceAccordion';
 import Footer from '@/components/Footer';
@@ -9,17 +10,14 @@ import PortfolioSection from '@/components/PortfolioSection';
 import ProjectCard from '@/components/rough/ProjectCard';
 import RoughCurvedArrow from '@/components/rough/RoughCurvedArrow';
 import ScrollMinimap from '@/components/ScrollMinimap';
-import {
-  blogPosts,
-  experiences,
-  home,
-  links,
-  projects,
-  skillGroups,
-  socials,
-} from '@/data/portfolio';
+import { experiences, home, links, projects, skillGroups, socials } from '@/data/portfolio';
+import { getAllWritings, type WritingIndexItem } from '@/lib/writing';
 
-export default function Home() {
+type HomeProps = {
+  writings: WritingIndexItem[];
+};
+
+export default function Home({ writings }: HomeProps) {
   return (
     <div id='top' className='portfolio-home mx-auto w-full max-w-[760px]'>
       <ScrollMinimap />
@@ -132,19 +130,14 @@ export default function Home() {
           seed={501}
         >
           <ul className='writing-list'>
-            {blogPosts.map((post) => (
-              <BlogRow key={post.title} post={post} />
+            {writings.map((post) => (
+              <BlogRow key={post.slug} post={{ ...post, href: `/writing/${post.slug}` }} />
             ))}
           </ul>
-          <a
-            href={links.substack}
-            target='_blank'
-            rel='noreferrer noopener'
-            className='portfolio-view-all group mx-auto mt-5'
-          >
+          <Link href='/writing' className='portfolio-view-all group mx-auto mt-5'>
             {home.sections.writing.viewAllLabel}
             <ArrowUpRight size={15} className='view-all-arrow' aria-hidden />
-          </a>
+          </Link>
         </PortfolioSection>
 
         <PortfolioSection
@@ -182,4 +175,12 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export function getStaticProps() {
+  return {
+    props: {
+      writings: getAllWritings().slice(0, 3),
+    },
+  };
 }
