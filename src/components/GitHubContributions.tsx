@@ -62,7 +62,7 @@ export default function GitHubContributions() {
 
   return (
     <section className='github-activity' aria-labelledby='github-activity-title'>
-      <div className='mb-3 flex items-center justify-between gap-4'>
+      <div className='mb-3 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center sm:gap-4'>
         <div>
           <h2 id='github-activity-title' className='text-sm font-semibold'>
             {githubActivity.title}
