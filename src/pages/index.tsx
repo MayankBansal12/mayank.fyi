@@ -8,6 +8,7 @@ import NewsletterSection from '@/components/NewsletterSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import ProjectCard from '@/components/rough/ProjectCard';
 import RoughCurvedArrow from '@/components/rough/RoughCurvedArrow';
+import ScrollMinimap from '@/components/ScrollMinimap';
 import {
   blogPosts,
   experiences,
@@ -21,6 +22,7 @@ import {
 export default function Home() {
   return (
     <div id='top' className='portfolio-home mx-auto w-full max-w-[760px]'>
+      <ScrollMinimap />
       <div className='portfolio-opening' aria-hidden>
         <span className='portfolio-cross portfolio-cross-left' />
         <span className='portfolio-cross portfolio-cross-right' />
@@ -127,11 +129,11 @@ export default function Home() {
           note={home.sections.writing.note}
           seed={501}
         >
-          <div className='portfolio-list-frame overflow-hidden'>
+          <ul className='writing-list'>
             {blogPosts.map((post) => (
               <BlogRow key={post.title} post={post} />
             ))}
-          </div>
+          </ul>
           <a
             href={links.substack}
             target='_blank'

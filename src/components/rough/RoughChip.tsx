@@ -84,7 +84,7 @@ const RoughChip: React.FC<RoughChipProps> = ({
 
   if (onClick) {
     return (
-      <button type='button' onClick={onClick} className='inline-flex cursor-pointer'>
+      <button type='button' onClick={onClick} className='inline-flex'>
         {body}
       </button>
     );

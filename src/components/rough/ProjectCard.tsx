@@ -8,7 +8,6 @@ type ProjectCardProps = {
   description: string[];
   githubLink?: string;
   liveLink?: string;
-  skills?: string[];
   seed?: number;
 };
 
@@ -18,7 +17,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   githubLink,
   liveLink,
-  skills,
   seed = 80,
 }) => {
   return (
@@ -54,15 +52,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <p key={line}>{line}</p>
           ))}
         </div>
-        {skills?.length ? (
-          <div className='flex flex-wrap gap-1.5 pt-1'>
-            {skills.map((skill) => (
-              <span key={skill} className='portfolio-tag'>
-                {skill}
-              </span>
-            ))}
-          </div>
-        ) : null}
         {(githubLink || liveLink) && (
           <div className='mt-auto flex flex-wrap items-center gap-3 pt-1 text-xs'>
             {githubLink ? (

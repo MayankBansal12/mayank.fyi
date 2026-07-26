@@ -16,16 +16,12 @@ export type Project = {
   githubLink?: string;
   liveLink?: string;
   description: string[];
-  skills: string[];
   featured?: boolean;
 };
 
 export type BlogPost = {
   title: string;
   publishedAt: string;
-  summary: string;
-  tags: string[];
-  readingTime: string;
   href?: string;
 };
 
@@ -108,8 +104,7 @@ export const githubActivity = {
 export const newsletter = {
   eyebrow: '',
   heading: 'join my newsletter',
-  description:
-    'writes about stuff i learn or find interesting (from an ameteur point of view)',
+  description: 'writes about stuff i learn or find interesting (from an ameteur point of view)',
   emailLabel: 'email address',
   placeholder: 'you@example.com',
   buttonLabel: 'subscribe',
@@ -155,7 +150,6 @@ export const projects: Project[] = [
     description: [
       'a browser extension for blocking distracting sites, planning focus hours, and managing browser activity.',
     ],
-    skills: ['html', 'css', 'javascript', 'browser APIs'],
     featured: true,
   },
   {
@@ -166,7 +160,6 @@ export const projects: Project[] = [
     description: [
       'a developer tool for collecting and managing product feedback through APIs and a focused dashboard.',
     ],
-    skills: ['typescript', 'APIs', 'documentation', 'product engineering'],
     featured: true,
   },
   {
@@ -177,7 +170,6 @@ export const projects: Project[] = [
     description: [
       'a hackathon-built platform for organizing events, with work across the frontend and backend.',
     ],
-    skills: ['react', 'express', 'postgresql', 'prisma'],
     featured: true,
   },
   {
@@ -188,7 +180,6 @@ export const projects: Project[] = [
     description: [
       'a collaborative project and task manager that won second place in a three-week hackathon.',
     ],
-    skills: ['react', 'express', 'REST APIs', 'team project'],
     featured: true,
   },
   {
@@ -197,7 +188,6 @@ export const projects: Project[] = [
     githubLink: 'https://github.com/MayankBansal12/MB-Docs',
     liveLink: 'http://mb-docs.vercel.app/',
     description: ['a real-time collaborative document editor for writing together.'],
-    skills: ['react', 'socket.io', 'mongodb', 'quill'],
   },
   {
     title: 'examgpt',
@@ -205,33 +195,21 @@ export const projects: Project[] = [
     githubLink: 'https://github.com/MayankBansal12/Exam-GPT',
     liveLink: 'https://examgpt.vercel.app/',
     description: ['an oral-exam assistant that creates questions from an uploaded PDF.'],
-    skills: ['react', 'express', 'openAI', 'pdf.js', 'speech APIs'],
   },
 ];
 
 export const blogPosts: BlogPost[] = [
   {
     title: 'what shipping small tools taught me about product work',
-    publishedAt: 'draft',
-    summary: 'notes on narrowing an idea, finding the useful core, and resisting feature creep.',
-    tags: ['building', 'product'],
-    readingTime: '5 min read',
+    publishedAt: '14-02-2025',
   },
   {
     title: 'learning spring boot by working in production',
-    publishedAt: 'draft',
-    summary:
-      'the practical lessons that only appeared after APIs met users, logs, and deployments.',
-    tags: ['java', 'backend'],
-    readingTime: '7 min read',
+    publishedAt: '28-01-2025',
   },
   {
     title: 'docker beyond the commands i memorized',
-    publishedAt: 'draft',
-    summary:
-      'a working mental model for images, containers, networking, and repeatable deployments.',
-    tags: ['docker', 'learning'],
-    readingTime: '6 min read',
+    publishedAt: '09-01-2025',
   },
 ];
 

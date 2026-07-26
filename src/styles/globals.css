@@ -38,6 +38,23 @@
   background-color: #faf7f0;
 }
 
+*,
+*::before,
+*::after {
+  cursor: default;
+  scrollbar-width: none;
+}
+
+::selection {
+  background: #1e1e1e;
+  color: #faf7f0;
+}
+
+.dark ::selection {
+  background: #e8e4d9;
+  color: #161616;
+}
+
 .dark {
   color: #e8e4d9;
   background-color: #161616;
@@ -67,20 +84,23 @@
   --portfolio-border: rgba(30, 30, 30, 0.24);
   --portfolio-border-muted: rgba(30, 30, 30, 0.13);
   --portfolio-surface: color-mix(in srgb, var(--board-background) 92%, white 8%);
-  --portfolio-surface-hover: color-mix(in srgb, var(--board-background) 84%, #8b87ff 16%);
+  --portfolio-surface-hover: rgba(30, 30, 30, 0.035);
   --portfolio-ink-muted: rgba(30, 30, 30, 0.62);
-  --portfolio-focus: #6c63ff;
+  --portfolio-focus: rgba(30, 30, 30, 0.72);
   --portfolio-sticky-wash: rgba(255, 243, 191, 0.72);
+  --portfolio-row-hover: rgba(30, 30, 30, 0.035);
+  --portfolio-badge-radius: 0.45rem;
 }
 
 .dark .board-surface {
   --portfolio-border: rgba(232, 228, 217, 0.25);
   --portfolio-border-muted: rgba(232, 228, 217, 0.13);
   --portfolio-surface: color-mix(in srgb, var(--board-background) 91%, white 9%);
-  --portfolio-surface-hover: color-mix(in srgb, var(--board-background) 86%, #7972d8 14%);
+  --portfolio-surface-hover: rgba(232, 228, 217, 0.055);
   --portfolio-ink-muted: rgba(232, 228, 217, 0.64);
-  --portfolio-focus: #a9a3ff;
+  --portfolio-focus: rgba(232, 228, 217, 0.74);
   --portfolio-sticky-wash: rgba(92, 78, 30, 0.48);
+  --portfolio-row-hover: rgba(232, 228, 217, 0.055);
 }
 
 .portfolio-controls {
@@ -135,7 +155,8 @@
   opacity: 0.62;
 }
 
-.portfolio-opening {
+.portfolio-opening,
+.portfolio-closing {
   margin-inline: 0.75rem;
 }
 
@@ -182,6 +203,7 @@
 }
 
 .portfolio-rail {
+  position: relative;
   background-image:
     repeating-linear-gradient(
       to bottom,
@@ -204,6 +226,32 @@
   background-size:
     1px 100%,
     1px 100%;
+}
+
+.portfolio-rail::before,
+.portfolio-rail::after {
+  position: absolute;
+  right: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+  height: 1px;
+  content: "";
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--portfolio-border) 0,
+    var(--portfolio-border) 7px,
+    transparent 7px,
+    transparent 15px
+  );
+  pointer-events: none;
+}
+
+.portfolio-rail::before {
+  top: 0;
+}
+
+.portfolio-rail::after {
+  bottom: 0;
 }
 
 .portfolio-hero,
@@ -261,7 +309,6 @@
 .portfolio-view-all,
 .portfolio-icon-button {
   display: inline-flex;
-  cursor: pointer;
   align-items: center;
   gap: 0.45rem;
   border: 1px solid var(--portfolio-border);
@@ -329,13 +376,6 @@
 .project-live-link svg,
 .blog-row-action svg {
   transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.portfolio-list-frame {
-  border: 1px solid var(--portfolio-border);
-  border-radius: 0.75rem;
-  background: color-mix(in srgb, var(--portfolio-surface) 88%, transparent);
-  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--board-background) 80%, transparent);
 }
 
 .portfolio-section-divider {
@@ -411,10 +451,65 @@
 }
 
 .github-cell {
+  position: relative;
   aspect-ratio: 1;
   border: 1px solid var(--portfolio-border-muted);
   border-radius: 2px;
   background: color-mix(in srgb, var(--portfolio-surface) 88%, transparent);
+}
+
+.github-grid .github-cell::after {
+  position: absolute;
+  bottom: calc(100% + 7px);
+  left: 50%;
+  z-index: 10;
+  width: max-content;
+  max-width: 13rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px dashed var(--portfolio-border);
+  border-radius: 0.35rem 0.48rem 0.4rem 0.52rem;
+  background: var(--board-background);
+  box-shadow: 2px 2px 0 var(--portfolio-border-muted);
+  color: inherit;
+  content: attr(data-tooltip);
+  font-family: var(--font-primary);
+  font-size: 0.68rem;
+  line-height: 1.2;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 2px) rotate(-0.4deg);
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+  white-space: nowrap;
+}
+
+.github-grid .github-cell:hover {
+  border-color: var(--portfolio-border);
+}
+
+.github-grid .github-cell:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0) rotate(-0.4deg);
+}
+
+.github-grid .github-cell:nth-child(-n + 7)::after {
+  left: 0;
+  transform: translate(0, 2px) rotate(-0.4deg);
+}
+
+.github-grid .github-cell:nth-child(-n + 7):hover::after {
+  transform: translate(0, 0) rotate(-0.4deg);
+}
+
+.github-grid .github-cell:nth-last-child(-n + 7)::after {
+  right: 0;
+  left: auto;
+  transform: translate(0, 2px) rotate(-0.4deg);
+}
+
+.github-grid .github-cell:nth-last-child(-n + 7):hover::after {
+  transform: translate(0, 0) rotate(-0.4deg);
 }
 
 .github-cell[data-level="1"] {
@@ -466,21 +561,30 @@
     transform 120ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.experience-item,
-.blog-row {
-  border-bottom: 1px dashed var(--portfolio-border);
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.experience-card {
+  width: 100%;
+  isolation: isolate;
 }
 
 .experience-trigger {
   display: flex;
-  width: 100%;
-  cursor: pointer;
+  width: calc(100% - 8px);
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 1.05rem;
+  margin: 4px;
+  padding: 0.8rem;
+  border-radius: 0.45rem;
   color: inherit;
-  transition: background-color 180ms ease;
+  transition:
+    background-color 160ms ease,
+    transform 100ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .experience-chevron {
@@ -510,13 +614,16 @@
   display: inline-flex;
   align-items: center;
   border: 1px solid var(--portfolio-border-muted);
-  border-radius: 0.3rem;
-  background: color-mix(in srgb, var(--portfolio-surface) 82%, transparent);
-  padding: 0.15rem 0.4rem;
-  font-family: var(--font-secondary);
+  border-radius: var(--portfolio-badge-radius);
+  background: color-mix(in srgb, var(--portfolio-surface) 90%, transparent);
+  padding: 0.16rem 0.42rem;
   font-size: 0.68rem;
   line-height: 1.15rem;
   color: var(--portfolio-ink-muted);
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
 }
 
 .portfolio-text-link {
@@ -640,29 +747,60 @@
   font-weight: 600;
 }
 
-.blog-row {
+.writing-list {
+  border-top: 1px dashed var(--portfolio-border);
+}
+
+.writing-item {
+  border-bottom: 1px dashed var(--portfolio-border);
+}
+
+.writing-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
-  padding: 1.05rem;
-  transition: background-color 180ms ease;
+  gap: 1rem;
+  border-radius: 0.35rem;
+  padding: 0.9rem 0.25rem;
+  color: var(--portfolio-ink-muted);
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    padding-inline 180ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.blog-row-action {
+.writing-title {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.writing-title > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.writing-title > span:first-child {
   flex: none;
-  color: var(--portfolio-ink-muted);
+}
+
+.writing-date {
+  flex: none;
   font-family: var(--font-secondary);
-  font-size: 0.67rem;
+  font-size: 0.68rem;
   white-space: nowrap;
 }
 
 .skill-chip {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--portfolio-border);
-  border-radius: 0.5rem;
-  background: var(--portfolio-surface);
+  border: 1px solid var(--portfolio-border-muted);
+  border-style: dashed;
+  border-radius: var(--portfolio-badge-radius);
+  background: color-mix(in srgb, var(--portfolio-surface) 90%, transparent);
   padding: 0.38rem 0.62rem;
   font-size: 0.8rem;
   color: var(--portfolio-ink-muted);
@@ -692,16 +830,19 @@
 
 .portfolio-input {
   min-height: 2.6rem;
-  border: 1px solid var(--portfolio-border);
-  border-radius: 0.55rem;
+  border: 1px dashed var(--portfolio-border);
+  border-radius: 0.48rem 0.58rem 0.5rem 0.62rem;
   background: var(--board-background);
   padding: 0.55rem 0.75rem;
   color: inherit;
   font-family: var(--font-secondary);
   font-size: 0.85rem;
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--portfolio-surface) 75%, transparent);
+  transform: rotate(-0.08deg);
   transition:
     border-color 160ms ease,
-    box-shadow 160ms ease;
+    box-shadow 160ms ease,
+    transform 160ms ease;
 }
 
 .portfolio-input::placeholder {
@@ -714,7 +855,7 @@
 .portfolio-icon-button:focus-visible,
 .social-chip:focus-visible,
 .experience-trigger:focus-visible,
-.blog-row:focus-visible,
+.writing-row:focus-visible,
 .project-live-link:focus-visible,
 .portfolio-text-link:focus-visible,
 .skill-chip:focus-visible,
@@ -724,16 +865,30 @@
 }
 
 .portfolio-input:focus-visible {
-  border-color: var(--portfolio-focus);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--portfolio-focus) 18%, transparent);
+  border-color: var(--portfolio-border);
+  outline: 1px dashed var(--portfolio-focus);
+  outline-offset: 4px;
+  box-shadow:
+    2px 1px 0 color-mix(in srgb, var(--portfolio-focus) 18%, transparent),
+    -1px -2px 0 color-mix(in srgb, var(--portfolio-focus) 10%, transparent);
+  transform: rotate(0.08deg);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .social-chip:hover,
-  .experience-trigger:hover,
-  .blog-row:hover,
-  .skill-chip:hover {
+  .social-chip:hover {
     background: var(--portfolio-surface-hover);
+    color: inherit;
+  }
+
+  .experience-trigger:hover {
+    background: var(--portfolio-row-hover);
+    color: inherit;
+    transform: translateX(1px);
+  }
+
+  .writing-row:hover {
+    background: var(--portfolio-row-hover);
+    padding-inline: 0.4rem;
     color: inherit;
   }
 
@@ -742,11 +897,17 @@
     border-color: var(--portfolio-border);
   }
 
+  .portfolio-tag:hover,
+  .skill-chip:hover {
+    border-color: var(--portfolio-border);
+    background: var(--portfolio-row-hover);
+    color: inherit;
+  }
+
   .social-chip:hover .social-chip-arrow,
   .portfolio-view-all:hover .view-all-arrow,
   .portfolio-button:hover .subscribe-arrow,
   .portfolio-project-card:hover .project-live-link svg,
-  .blog-row:hover .blog-row-action svg,
   .portfolio-inline-control:hover .control-arrow {
     transform: rotate(45deg);
   }
@@ -783,9 +944,13 @@
 .portfolio-button:active,
 .portfolio-view-all:active,
 .portfolio-icon-button:active,
-.experience-trigger:active,
 .portfolio-inline-control:active {
   transform: scale(0.98);
+}
+
+.experience-trigger:active {
+  background: var(--portfolio-row-hover);
+  transform: translateY(1px);
 }
 
 .portfolio-back-to-top {
@@ -794,6 +959,135 @@
   bottom: 1rem;
   z-index: 40;
   box-shadow: 0 8px 20px rgba(30, 30, 30, 0.12);
+}
+
+.scroll-minimap {
+  --minimap-inset: 2px;
+  position: fixed;
+  top: 50%;
+  right: 0.65rem;
+  left: auto;
+  z-index: 35;
+  width: 20px;
+  height: 100px;
+  opacity: 1;
+  outline: none;
+  touch-action: none;
+  transform: translateY(-50%);
+  user-select: none;
+}
+
+.scroll-minimap-lines {
+  position: absolute;
+  inset: var(--minimap-inset);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.scroll-minimap::before {
+  position: absolute;
+  inset: -10px -6px;
+  content: "";
+}
+
+.scroll-minimap-lines > span {
+  width: 16px;
+  height: 1px;
+  background: var(--portfolio-border);
+  box-shadow: 0.5px 0.5px 0 var(--portfolio-border-muted);
+}
+
+.scroll-minimap-lines > span:nth-child(3n + 1) {
+  width: 13px;
+  transform: rotate(-2deg);
+}
+
+.scroll-minimap-lines > span:nth-child(3n + 2) {
+  transform: rotate(1.5deg);
+}
+
+.scroll-minimap-lines > span:first-child,
+.scroll-minimap-lines > span:last-child {
+  width: 9px;
+  opacity: 0.72;
+}
+
+.scroll-minimap-thumb {
+  position: absolute;
+  top: var(--minimap-inset);
+  left: var(--minimap-inset);
+  width: calc(100% - var(--minimap-inset) * 2);
+  min-height: 20px;
+  border: 1px dashed var(--portfolio-border);
+  border-radius: 0.22rem 0.34rem 0.26rem 0.38rem;
+  background: color-mix(in srgb, var(--portfolio-sticky-wash) 86%, var(--board-background));
+  box-shadow:
+    1px 1px 0 var(--portfolio-border),
+    -1px -1px 0 color-mix(in srgb, var(--portfolio-border-muted) 70%, transparent);
+  transition:
+    background-color 140ms ease,
+    box-shadow 140ms ease;
+  will-change: transform;
+}
+
+.scroll-minimap-thumb::after {
+  position: absolute;
+  inset: 2px -2px -2px 2px;
+  border-right: 1px solid var(--portfolio-border-muted);
+  border-bottom: 1px solid var(--portfolio-border-muted);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+
+.scroll-minimap:focus-visible {
+  outline: 1px dashed var(--portfolio-focus);
+  outline-offset: 4px;
+}
+
+.scroll-minimap[data-dragging="true"] .scroll-minimap-thumb {
+  background: color-mix(in srgb, var(--portfolio-sticky-wash) 82%, currentColor 18%);
+  box-shadow: 1px 1px 0 var(--portfolio-border);
+}
+
+html.scroll-minimap-dragging {
+  scroll-behavior: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .scroll-minimap:hover .scroll-minimap-thumb {
+    background: color-mix(in srgb, var(--portfolio-sticky-wash) 88%, currentColor 12%);
+  }
+
+  .scroll-minimap:hover .scroll-minimap-lines > span {
+    background: color-mix(in srgb, currentColor 72%, transparent);
+  }
+}
+
+@media (max-width: 639px) {
+  .scroll-minimap {
+    --minimap-inset: 2px;
+    right: 0.2rem;
+    left: auto;
+    width: 14px;
+    height: 84px;
+  }
+
+  .scroll-minimap-lines > span {
+    width: 10px;
+  }
+
+  .scroll-minimap-lines > span:nth-child(3n + 1) {
+    width: 8px;
+  }
+
+  .scroll-minimap-lines > span:first-child,
+  .scroll-minimap-lines > span:last-child {
+    width: 6px;
+  }
 }
 
 @media (min-width: 640px) {
@@ -829,7 +1123,6 @@
   display: inline-flex;
   min-width: 2.25rem;
   min-height: 2.25rem;
-  cursor: pointer;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -869,7 +1162,6 @@
   display: flex;
   width: 100%;
   min-height: 2.75rem;
-  cursor: pointer;
   align-items: center;
   gap: 0.5rem;
   border-radius: 0.375rem;
@@ -925,16 +1217,20 @@
   .experience-trigger,
   .experience-chevron,
   .experience-panel,
+  .github-grid .github-cell::after,
   .project-preview::after,
   .project-preview-shape,
   .project-preview-canvas strong,
   .project-live-link svg,
-  .blog-row,
-  .blog-row-action svg,
+  .writing-row,
   .skill-chip,
   .portfolio-input,
   .portfolio-inline-control {
     transition-duration: 0.01ms;
+  }
+
+  .scroll-minimap {
+    transition: none;
   }
 }
 

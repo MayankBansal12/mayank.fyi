@@ -4,6 +4,7 @@ import { githubActivity } from '@/data/portfolio';
 type ContributionCell = {
   id: string;
   level: number;
+  count: number | null;
 };
 
 const fallbackCells: ContributionCell[] = Array.from({ length: 364 }, (_, index) => {
@@ -15,8 +16,14 @@ const fallbackCells: ContributionCell[] = Array.from({ length: 364 }, (_, index)
   else if (signal < 12) level = 1;
   else if (signal < 16) level = 2;
   else if (signal < 18) level = 3;
-  return { id: `week-${week}-day-${day}`, level };
+  return { id: `week-${week}-day-${day}`, level, count: null };
 });
+
+function getContributionLabel(cell: ContributionCell) {
+  if (cell.count === null) return `Activity level ${cell.level} of 4`;
+  const unit = cell.count === 1 ? 'contribution' : 'contributions';
+  return `${cell.count} ${unit} on ${cell.id}`;
+}
 
 export default function GitHubContributions() {
   const [cells, setCells] = useState(fallbackCells);
@@ -33,7 +40,7 @@ export default function GitHubContributions() {
         if (!response.ok) return;
 
         const data = (await response.json()) as {
-          contributions?: Array<{ date: string; level: number }>;
+          contributions?: Array<{ date: string; level: number; count: number }>;
         };
         if (!data.contributions || data.contributions.length === 0) return;
 
@@ -41,6 +48,7 @@ export default function GitHubContributions() {
           data.contributions.slice(-364).map((contribution) => ({
             id: contribution.date,
             level: Math.max(0, Math.min(4, contribution.level)),
+            count: Number.isFinite(contribution.count) ? contribution.count : null,
           })),
         );
       } catch (error) {
@@ -76,7 +84,12 @@ export default function GitHubContributions() {
       <div className='github-grid-scroll'>
         <div className='github-grid' aria-hidden>
           {cells.map((cell) => (
-            <span key={cell.id} className='github-cell' data-level={cell.level} />
+            <span
+              key={cell.id}
+              className='github-cell'
+              data-level={cell.level}
+              data-tooltip={getContributionLabel(cell)}
+            />
           ))}
         </div>
       </div>
