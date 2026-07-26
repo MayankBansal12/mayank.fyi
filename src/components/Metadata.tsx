@@ -1,38 +1,29 @@
 import Head from 'next/head';
+import { site } from '@/data/portfolio';
+
+const siteDomain = new URL(site.url).hostname;
 
 const Metadata: React.FC = () => {
   return (
     <Head>
-      <title>mayank bansal • your friendly neighbourhood developer</title>
-      <meta property='og:title' content='mayank bansal • your friendly neighbourhood developer' />
-      <meta property='og:description' content='portfolio website for mayank bansal' />
-      <meta property='og:url' content='https://mayankbansal.xyz' />
-      <meta
-        property='og:image'
-        content='https://res.cloudinary.com/dwuyp1nss/image/upload/v1735586934/mayankbansal.xyz/g2s0ah77imvhuzpac1nu.jpg'
-      />
+      <title>{site.title}</title>
+      <link rel='canonical' href={site.url} />
+      <meta property='og:title' content={site.title} />
+      <meta property='og:description' content={site.socialDescription} />
+      <meta property='og:url' content={site.url} />
+      <meta property='og:image' content={site.socialImage} />
+      <meta property='og:image:alt' content={site.socialImageAlt} />
       <meta property='og:type' content='website' />
 
-      <meta name='twitter:title' content='mayank bansal • your friendly neighbourhood developer' />
-      <meta
-        name='twitter:description'
-        content='mayank bansal portfolio, your friendly neighbourhood developer. full stack developer'
-      />
-      <meta property='twitter:url' content='https://mayankbansal.xyz' />
-      <meta property='twitter:domain' content='mayankbansal.xyz' />
-      <meta
-        name='twitter:image'
-        content='https://res.cloudinary.com/dwuyp1nss/image/upload/v1735586934/mayankbansal.xyz/g2s0ah77imvhuzpac1nu.jpg'
-      />
-      <meta
-        name='twitter:card'
-        content='i am a developer from india with a working experience of around a year. currently working as a backend developer at an early stage startup...always looking to explore and work on interesting tech projects'
-      />
+      <meta name='twitter:title' content={site.title} />
+      <meta name='twitter:description' content={site.description} />
+      <meta property='twitter:url' content={site.url} />
+      <meta property='twitter:domain' content={siteDomain} />
+      <meta name='twitter:image' content={site.socialImage} />
+      <meta name='twitter:image:alt' content={site.socialImageAlt} />
+      <meta name='twitter:card' content='summary_large_image' />
 
-      <meta
-        name='description'
-        content='mayank bansal portfolio, your friendly neighbourhood developer.'
-      />
+      <meta name='description' content={site.description} />
       <script
         defer
         src='https://cloud.umami.is/script.js'

@@ -4,28 +4,29 @@ import { FiMoon, FiSun } from 'react-icons/fi';
 
 type IThemeToggler = HtmlHTMLAttributes<HTMLButtonElement>;
 
-const ThemeToggler: React.FC<IThemeToggler> = ({ className, ...rest }) => {
+const ThemeToggler: React.FC<IThemeToggler> = ({ className = '', ...rest }) => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const nextTheme = theme === 'light' ? 'dark' : 'light';
+  const { resolvedTheme, setTheme } = useTheme();
+  const nextTheme = resolvedTheme === 'light' ? 'dark' : 'light';
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
-    return null;
+    return <div className='h-9 w-9' aria-hidden />;
   }
 
   return (
     <button
-      className={`text-xl cursor-pointer ${className} hover:scale-[1.02] duration-150 transition ease-in-out delay-150 cursor-pointer`}
+      className={`appearance-trigger ${className}`}
+      aria-label={`Toggle ${nextTheme} theme`}
       title={`Toggle ${nextTheme} theme`}
       type='button'
       onClick={() => setTheme(nextTheme)}
       {...rest}
     >
-      {theme === 'light' ? <FiMoon /> : <FiSun />}
+      {resolvedTheme === 'light' ? <FiMoon /> : <FiSun />}
     </button>
   );
 };

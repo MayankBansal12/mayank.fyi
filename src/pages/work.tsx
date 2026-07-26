@@ -1,295 +1,164 @@
-import { SquareArrowOutUpRight } from 'lucide-react';
-import Link from 'next/link';
+import ProjectCard from '@/components/rough/ProjectCard';
+import RoughBox from '@/components/rough/RoughBox';
+import RoughChip from '@/components/rough/RoughChip';
+import RoughDivider from '@/components/rough/RoughDivider';
+import RoughLink from '@/components/rough/RoughLink';
+
+const projects = [
+  {
+    title: 'browserpop',
+    date: "dec'24",
+    githubLink: 'https://github.com/MayankBansal12/browser-pop-main',
+    liveLink: 'https://browserpop.vercel.app/',
+    description: [
+      'an extension to manage your browser activities',
+      'used plain html, css, js, features include blocking websites, setting up focus hours, with site time tracking (to be implemented)',
+    ],
+    seed: 201,
+  },
+  {
+    title: 'feedback',
+    date: "july'24 - present",
+    githubLink: 'https://github.com/MayankBansal12/Feedback',
+    liveLink: 'https://feedback-easy.vercel.app/',
+    description: [
+      'trying to build a developer tool for managing and collecting user feedbacks on apps and websites.',
+      'i worked on writing backend apis and third party apis to be used by developers and documentation for the usage.',
+      'now working on improving the dashboard and adding more features as i learn more.',
+    ],
+    seed: 202,
+  },
+  {
+    title: 'getogether',
+    date: "may'24 - june'24",
+    githubLink: 'https://github.com/MayankBansal12/Getogether',
+    liveLink: 'https://getogether-ten.vercel.app',
+    description: [
+      'a platform to help you manage your event in a better and organised way! built in a hackathon along with couple of my friends.',
+      'i worked on both frontend and backend (used React.js, Express.js, PostgreSQL, Prisma)',
+    ],
+    seed: 203,
+  },
+  {
+    title: 'pushnote',
+    date: "oct'23 - nov'23",
+    githubLink: 'https://github.com/MayankBansal12/pushnote',
+    liveLink: 'https://pushnote-mayankbansal12.vercel.app',
+    description: [
+      'PushNote lets you manage your team effectively by making it easy for you to organize your projects and tasks.',
+      'i worked on writing backend in express.js and integrating apis in the frontend (react.js)',
+      'it was a 3 week hackthon and i participated with couple of my friends and won second prize in the hackathon.',
+    ],
+    seed: 204,
+  },
+  {
+    title: 'mb docs',
+    date: "dec'23",
+    githubLink: 'https://github.com/MayankBansal12/MB-Docs',
+    liveLink: 'http://mb-docs.vercel.app/',
+    description: [
+      'MB Docs is a collaborative document editing platform that allows users to edit, and collaborate on documents in real time.',
+      'Used React.js, socket.io, vanilla CSS and MongoDB, quill.js etc.',
+    ],
+    seed: 205,
+  },
+  {
+    title: 'examgpt',
+    date: "sept'23",
+    githubLink: 'https://github.com/MayankBansal12/Exam-GPT',
+    liveLink: 'https://examgpt.vercel.app/',
+    description: [
+      'Conduct oral exams based on pdf provided. Uses OpenAI APIs for generating response.',
+      'Used React.js, Express.js, pdfjs-dist to extract text from pdf, react speech recogination library for speech-to-text and speechSynthesis for text-to-speech',
+    ],
+    seed: 206,
+  },
+];
 
 const Work: React.FC = () => {
   return (
-    <div className='mt-20 my-10 flex flex-col gap-3 justify-center items-center'>
-      <div className='w-[95%] md:w-2/3 lg:w-1/2'>
-        <h2 className='text-3xl font-semibold mb-4'>work</h2>
-        <div className='flex flex-col gap-4 text-xl opacity-90'>
-          {/* professional experience */}
-          <h2 className='text-2xl font-semibold mt-4'>-&#58; professional experience</h2>
-          <div className='flex flex-col gap-2 my-2'>
-            <div className='flex gap-2 justify-between flex-col md:flex-row'>
-              <h3 className='text-xl font-bold'>
-                echio{' '}
-                <Link
-                  href='https://echio.in'
-                  className='font-semibold text-sm opacity-90 hover:underline hover:opacity-70 transition-all'
-                >
-                  (echio.in <SquareArrowOutUpRight size={10} className='inline' />)
-                </Link>
-              </h3>
-              <p className='text-sm'>jan&apos;24 - present</p>
+    <div className='mt-12 mb-10 flex flex-col items-center justify-center gap-3 md:mt-16'>
+      <div className='w-[95%] md:w-2/3 lg:w-3/5 xl:w-1/2'>
+        <h2 className='mb-6 text-3xl font-semibold'>work</h2>
+
+        <div className='flex flex-col gap-6 text-xl opacity-90'>
+          <RoughDivider seed={210} label='professional experience' />
+
+          <RoughBox seed={211}>
+            <div className='flex flex-col gap-2'>
+              <div className='flex flex-col justify-between gap-2 md:flex-row md:items-center'>
+                <h3 className='text-xl font-bold'>
+                  echio{' '}
+                  <RoughLink href='https://echio.in' seed={212} className='text-sm font-semibold'>
+                    echio.in
+                  </RoughLink>
+                </h3>
+                <p className='text-sm opacity-70'>jan&apos;24 - present</p>
+              </div>
+              <p className='text-base opacity-90 md:text-lg'>
+                -&gt; working as a backend developer and involved in the development of core
+                product.
+                <br />
+                -&gt; writing rest apis for the app backend in java and springboot and website
+                backend (bun.js).
+                <br />
+                -&gt; worked on setting up a azure function for media optimization using blob
+                trigger (node.js, azure)
+                <br />
+                -&gt; managing deployments using docker and occassionally fixing bugs in web app
+                frontend (next.js)
+              </p>
             </div>
-            <p className='text-lg opacity-90'>
-              -&gt; working as a backend developer and involved in the development of core product.{' '}
-              <br />
-              -&gt; writing rest apis for the app backend in java and springboot and website backend
-              (bun.js).
-              <br />
-              -&gt; worked on setting up a azure function for media optimization using blob trigger
-              (node.js, azure)
-              <br />
-              -&gt; managing deployments using docker and occassionally fixing bugs in web app
-              frontend (next.js)
-              <br />
-            </p>
-          </div>
-          <p className='text-sm opacity-80 block sm:inline'>
+          </RoughBox>
+
+          <p className='block text-sm opacity-70 sm:inline'>
             (note:- freelance works not included in professional experience.)
           </p>
 
-          {/* personal projects */}
-          <h2 className='text-2xl font-semibold mt-6'>-&#58; personal & hackathon projects</h2>
-          {/* browserpop */}
-          <div className='flex flex-col gap-2 my-2'>
-            <div className='flex gap-2 flex-col md:flex-row justify-between items-start md:items-center'>
-              <h3 className='text-xl font-bold'>browserpop</h3>
-              <p className='text-sm'>dec&apos;24</p>
-            </div>
-            <p className='flex flex-col gap-2 text-lg opacity-90'>
-              <span className='opacity-90 text-sm'>
-                <Link
-                  href='https://github.com/MayankBansal12/browser-pop-main'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  view on github <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>{' '}
-                |{' '}
-                <Link
-                  href='https://browserpop.vercel.app/'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  live link <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>
-              </span>
-              <span>-&gt; an extension to manage your browser activities</span>
-              <span>
-                -&gt; used plain html, css, js, features include blocking websites, setting up focus
-                hours, with site time tracking (to be implemented)
-              </span>
-            </p>
+          <RoughDivider seed={213} label='personal & hackathon projects' className='mt-2' />
+
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+            {projects.map((project) => (
+              <ProjectCard key={project.title} {...project} />
+            ))}
           </div>
 
-          {/* feedback */}
-          <div className='flex flex-col gap-2 my-2'>
-            <div className='flex gap-2 flex-col md:flex-row justify-between items-start md:items-center'>
-              <h3 className='text-xl font-bold'>feedback</h3>
-              <p className='text-sm'>july&apos;24 - present</p>
-            </div>
-            <p className='flex flex-col gap-2 text-lg opacity-90'>
-              <span className='opacity-90 text-sm'>
-                <Link
-                  href='https://github.com/MayankBansal12/Feedback'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  view on github <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>{' '}
-                |{' '}
-                <Link
-                  href='https://feedback-easy.vercel.app/'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  live link <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>
-              </span>
-              <span>
-                -&gt; trying to build a developer tool for managing and collecting user feedbacks on
-                apps and websites.
-              </span>
-              <span>
-                -&gt; i worked on writing backend apis and third party apis to be used by developers
-                and documentation for the usage.
-              </span>
-              <span>
-                -&gt; now working on improving the dashboard and adding more features as i learn
-                more.
-              </span>
-            </p>
+          <RoughDivider
+            seed={214}
+            label='view all works related to language on github'
+            className='mt-2'
+          />
+
+          <div className='flex flex-wrap gap-3'>
+            <RoughChip
+              seed={215}
+              href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=typescript&sort='
+            >
+              typescript
+            </RoughChip>
+            <RoughChip
+              seed={216}
+              href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=javascript&sort='
+            >
+              javascript
+            </RoughChip>
+            <RoughChip
+              seed={217}
+              href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=css&sort='
+            >
+              design proj
+            </RoughChip>
+            <RoughChip
+              seed={218}
+              href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=java&sort='
+            >
+              java
+            </RoughChip>
           </div>
-
-          {/* getogether */}
-          <div className='flex flex-col gap-2 my-2'>
-            <div className='flex gap-2 flex-col md:flex-row justify-between items-start md:items-center'>
-              <h3 className='text-xl font-bold'>getogether</h3>
-              <p className='text-sm'>may&apos;24 - june&apos;24</p>
-            </div>
-            <p className='flex flex-col gap-2 text-lg opacity-90'>
-              <span className='opacity-90 text-sm'>
-                <Link
-                  href='https://github.com/MayankBansal12/Getogether'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  view on github <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>{' '}
-                |{' '}
-                <Link
-                  href='https://getogether-ten.vercel.app'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  live link <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>
-              </span>
-              <span>
-                -&gt; a platform to help you manage your event in a better and organised way! built
-                in a hackathon along with couple of my friends.
-              </span>
-              <span>
-                -&gt; i worked on both frontend and backend (used React.js, Express.js, PostgreSQL,
-                Prisma)
-              </span>
-            </p>
-          </div>
-
-          {/* pushnote */}
-          <div className='flex flex-col gap-2 my-2'>
-            <div className='flex gap-2 flex-col md:flex-row justify-between items-start md:items-center'>
-              <h3 className='text-xl font-bold'>pushnote</h3>
-              <p className='text-sm'>oct&apos;23 - nov&apos;23</p>
-            </div>
-            <p className='flex flex-col gap-2 text-lg opacity-90'>
-              <span className='opacity-90 text-sm'>
-                <Link
-                  href='https://github.com/MayankBansal12/pushnote'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  view on github <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>{' '}
-                |{' '}
-                <Link
-                  href='https://pushnote-mayankbansal12.vercel.app'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  live link <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>
-              </span>
-              <span>
-                -&gt; PushNote lets you manage your team effectively by making it easy for you to
-                organize your projects and tasks.
-              </span>
-              <span>
-                -&gt; i worked on writing backend in express.js and integrating apis in the frontend
-                (react.js)
-              </span>
-              <span>
-                -&gt; it was a 3 week hackthon and i participated with couple of my friends and won
-                second prize in the hackathon.
-              </span>
-            </p>
-          </div>
-
-          {/* mb docs */}
-          <div className='flex flex-col gap-2 my-2'>
-            <div className='flex gap-2 flex-col md:flex-row justify-between items-start md:items-center'>
-              <h3 className='text-xl font-bold'>mb docs</h3>
-              <p className='text-sm'>dec&apos;23</p>
-            </div>
-            <p className='flex flex-col gap-2 text-lg opacity-90'>
-              <span className='opacity-90 text-sm'>
-                <Link
-                  href='https://github.com/MayankBansal12/MB-Docs'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  view on github <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>{' '}
-                |{' '}
-                <Link
-                  href='http://mb-docs.vercel.app/'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  live link <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>
-              </span>
-              <span>
-                -&gt; MB Docs is a collaborative document editing platform that allows users to
-                edit, and collaborate on documents in real time.
-              </span>
-              <span>-&gt; Used React.js, socket.io, vanilla CSS and MongoDB, quill.js etc.</span>
-            </p>
-          </div>
-
-          {/* examgpt */}
-          <div className='flex flex-col gap-2 my-2'>
-            <div className='flex gap-2 flex-col md:flex-row justify-between items-start md:items-center'>
-              <h3 className='text-xl font-bold'>examgpt</h3>
-              <p className='text-sm'>sept&apos;23</p>
-            </div>
-            <p className='flex flex-col gap-2 text-lg opacity-90'>
-              <span className='opacity-90 text-sm'>
-                <Link
-                  href='https://github.com/MayankBansal12/Exam-GPT'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  view on github <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>{' '}
-                |{' '}
-                <Link
-                  href='https://examgpt.vercel.app/'
-                  className='font-semibold hover:underline hover:opacity-90 transition-all'
-                >
-                  live link <SquareArrowOutUpRight size={10} className='inline' />
-                </Link>
-              </span>
-              <span>
-                -&gt; Conduct oral exams based on pdf provided. Uses OpenAI APIs for generating
-                response.
-              </span>
-              <span>
-                -&gt; Used React.js, Express.js, pdfjs-dist to extract text from pdf, react speech
-                recogination library for speech-to-text and speechSynthesis for text-to-speech
-              </span>
-            </p>
-          </div>
-
-          {/* list of projects categorized by languages */}
-          <h2 className='font-semibold mt-3 text-2xl'>
-            -&#58; view all works related to language on github
-          </h2>
-          <div className='flex flex-col gap-2 my-2'>
-            <div className='flex gap-4'>
-              <h3 className='text-lg font-semibold'>typescript:</h3>
-              <Link
-                href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=typescript&sort='
-                className='text-lg hover:underline hover:opacity-90 transition-all'
-              >
-                view on github <SquareArrowOutUpRight size={10} className='inline' />
-              </Link>
-            </div>
-
-            <div className='flex gap-4'>
-              <h3 className='text-lg font-semibold'>javascript:</h3>
-              <Link
-                href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=javascript&sort='
-                className='text-lg hover:underline hover:opacity-90 transition-all'
-              >
-                view on github <SquareArrowOutUpRight size={10} className='inline' />
-              </Link>
-            </div>
-
-            <div className='flex gap-4'>
-              <h3 className='text-lg font-semibold'>design proj:</h3>
-              <Link
-                href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=css&sort='
-                className='text-lg hover:underline hover:opacity-90 transition-all'
-              >
-                view on github <SquareArrowOutUpRight size={10} className='inline' />
-              </Link>
-            </div>
-
-            <div className='flex gap-4 items-center'>
-              <h3 className='text-lg font-semibold'>java:</h3>
-              <Link
-                href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=java&sort='
-                className='text-lg hover:underline hover:opacity-90 transition-all'
-              >
-                view on github <SquareArrowOutUpRight size={10} className='inline' />
-              </Link>
-            </div>
-            <p className='text-sm opacity-80 block sm:inline'>(note:- used java mostly at work)</p>
-          </div>
+          <p className='text-sm opacity-70'>(note:- used java mostly at work)</p>
         </div>
-        <p className='text-xs opacity-50 py-2 text-right'>last update: 2024-12-30</p>
+
+        <p className='py-4 text-right text-xs opacity-50'>last update: 2024-12-30</p>
       </div>
     </div>
   );

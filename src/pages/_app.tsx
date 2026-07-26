@@ -4,6 +4,7 @@ import Layout from '@/components/Layout';
 import '@/styles/globals.css';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { AppearanceProvider } from '@/components/AppearanceProvider';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -18,10 +19,12 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   return (
-    <ThemeProvider attribute='class'>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+    <ThemeProvider attribute='class' defaultTheme='light'>
+      <AppearanceProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AppearanceProvider>
     </ThemeProvider>
   );
 }

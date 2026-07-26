@@ -1,65 +1,182 @@
-import Link from 'next/link';
-import { useState } from 'react';
-import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
+import { ArrowUpRight, CalendarDays, Mail } from 'lucide-react';
+import BlogRow from '@/components/BlogRow';
+import ExperienceAccordion from '@/components/ExperienceAccordion';
+import Footer from '@/components/Footer';
+import GitHubContributions from '@/components/GitHubContributions';
+import Monogram from '@/components/Monogram';
+import NewsletterSection from '@/components/NewsletterSection';
+import PortfolioSection from '@/components/PortfolioSection';
+import ProjectCard from '@/components/rough/ProjectCard';
+import RoughCurvedArrow from '@/components/rough/RoughCurvedArrow';
+import ScrollMinimap from '@/components/ScrollMinimap';
+import {
+  blogPosts,
+  experiences,
+  home,
+  links,
+  projects,
+  skillGroups,
+  socials,
+} from '@/data/portfolio';
 
 export default function Home() {
-  const [isTextVisible, setIsTextVisible] = useState(false);
-
-  const handleToggleText = () => {
-    setIsTextVisible(!isTextVisible);
-  };
-
   return (
-    <div className='w-full h-full flex flex-col items-center justify-between'>
-      <div className='flex flex-col h-full w-full gap-4 justify-center items-center'>
-        <div className='flex flex-col text-center gap-2'>
-          <h1 className='text-4xl font-medium'>hey. i am mayank.</h1>
-          <p className='text-lg opacity-80 flex items-center'>
-            <span>your friendly neighbourhood developer</span>
-            <button
-              type='button'
-              onClick={handleToggleText}
-              className='cursor-pointer transition-all'
-            >
-              {isTextVisible ? (
-                <RiArrowDropUpLine className='!text-3xl hover:opacity-80 transition-all' />
-              ) : (
-                <RiArrowDropDownLine className='!text-3xl hover:opacity-80 transition-all' />
-              )}
-            </button>
-          </p>
-        </div>
-
-        <div
-          className={`text-lg opacity-80 w-full md:w-2/3 text-center transition-all duration-500 ${isTextVisible ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}
-        >
-          -&gt; i am a software developer from india with working experience of around a year.{' '}
-          <br />
-          -&gt; learning, practicising, working on web development and related projects since 2022.{' '}
-          <br />
-          -&gt; have previously worked on developing frontend and managing backend for startups both
-          on freelance and full-time basis.
-        </div>
-
-        <div className='flex gap-2 items-center'>
-          <div className='h-2 w-2 bg-green-600 rounded-full'>
-            <div className='h-1.5 w-1.5 bg-green-400 blur-sm rounded-full'></div>
-          </div>
-          <Link href='/hire' className='text-sm hover:underline hover:opacity-80 transition-all'>
-            <small>available for hire</small>
-          </Link>
-        </div>
+    <div id='top' className='portfolio-home mx-auto w-full max-w-[760px]'>
+      <ScrollMinimap />
+      <div className='portfolio-opening' aria-hidden>
+        <span className='portfolio-cross portfolio-cross-left' />
+        <span className='portfolio-cross portfolio-cross-right' />
       </div>
-      <div className='flex gap-4 pt-4 md:pt-0'>
-        <Link href='/about' className='text-sm hover:underline hover:opacity-80 transition-all'>
-          about
-        </Link>
-        <Link href='/work' className='text-sm hover:underline hover:opacity-80 transition-all'>
-          works
-        </Link>
-        <Link href='/contact' className='text-sm hover:underline hover:opacity-80 transition-all'>
-          contact
-        </Link>
+
+      <div className='portfolio-rail'>
+        <section id='about' className='portfolio-hero scroll-mt-32'>
+          <div className='portfolio-identity'>
+            <div className='portfolio-avatar-wrap'>
+              {home.hero.availability.visible ? (
+                <div className='portfolio-availability-note'>
+                  <span>{home.hero.availability.text}</span>
+                  <RoughCurvedArrow seed={102} width={48} height={30} className='ml-auto' />
+                </div>
+              ) : null}
+              <Monogram />
+            </div>
+            <div className='portfolio-identity-copy'>
+              <h1 className='text-3xl leading-none font-semibold md:text-4xl'>
+                {home.hero.heading}
+              </h1>
+              <p className='mt-2 text-sm text-board-muted md:text-base'>{home.hero.role}</p>
+            </div>
+          </div>
+
+          <div className='mt-8 max-w-2xl space-y-4 text-base leading-relaxed md:text-lg'>
+            <p>{home.hero.intro}</p>
+            <p className='opacity-80'>{home.hero.currentStatus}</p>
+          </div>
+
+          <div className='mt-6 flex flex-wrap gap-3'>
+            <a
+              href={links.calendar}
+              target='_blank'
+              rel='noreferrer noopener'
+              className='portfolio-button'
+            >
+              <CalendarDays size={15} aria-hidden /> {home.hero.calendarCta}
+            </a>
+            <a href={links.email} className='portfolio-button portfolio-button-secondary'>
+              <Mail size={15} aria-hidden /> {home.hero.emailCta}
+            </a>
+          </div>
+
+          <div className='mt-7'>
+            <p className='mb-3 text-sm text-board-muted'>{home.hero.socialHeading}</p>
+            <div className='flex flex-wrap gap-2'>
+              {socials.map((social) => (
+                <a
+                  key={social.href}
+                  href={social.href}
+                  target='_blank'
+                  rel='noreferrer noopener'
+                  className='social-chip group'
+                  aria-label={`${social.label}: ${social.handle}`}
+                >
+                  <span>{social.label}</span>
+                  <ArrowUpRight className='social-chip-arrow' size={13} aria-hidden />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <GitHubContributions />
+          <div className='portfolio-section-divider mt-9' aria-hidden />
+        </section>
+
+        <PortfolioSection
+          id='experience'
+          title={home.sections.experience.title}
+          note={home.sections.experience.note}
+          seed={301}
+        >
+          <ExperienceAccordion items={experiences} />
+        </PortfolioSection>
+
+        <PortfolioSection
+          id='projects'
+          title={home.sections.projects.title}
+          note={home.sections.projects.note}
+          seed={401}
+        >
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+            {projects
+              .filter((project) => project.featured)
+              .map((project, index) => (
+                <ProjectCard key={project.title} {...project} seed={201 + index} />
+              ))}
+          </div>
+          <a
+            href={links.repositories}
+            target='_blank'
+            rel='noreferrer noopener'
+            className='portfolio-view-all group mx-auto mt-5'
+          >
+            {home.sections.projects.viewAllLabel}
+            <ArrowUpRight size={15} className='view-all-arrow' aria-hidden />
+          </a>
+        </PortfolioSection>
+
+        <PortfolioSection
+          id='blogs'
+          title={home.sections.writing.title}
+          note={home.sections.writing.note}
+          seed={501}
+        >
+          <ul className='writing-list'>
+            {blogPosts.map((post) => (
+              <BlogRow key={post.title} post={post} />
+            ))}
+          </ul>
+          <a
+            href={links.substack}
+            target='_blank'
+            rel='noreferrer noopener'
+            className='portfolio-view-all group mx-auto mt-5'
+          >
+            {home.sections.writing.viewAllLabel}
+            <ArrowUpRight size={15} className='view-all-arrow' aria-hidden />
+          </a>
+        </PortfolioSection>
+
+        <PortfolioSection
+          id='skills'
+          title={home.sections.skills.title}
+          note={home.sections.skills.note}
+          seed={601}
+        >
+          <div className='space-y-5'>
+            {skillGroups.map((group) => (
+              <div key={group.label} className='grid gap-3 sm:grid-cols-[110px_1fr]'>
+                <h3 className='pt-1 text-sm font-semibold text-board-muted'>{group.label}</h3>
+                <div className='flex flex-wrap gap-2'>
+                  {group.skills.map((skill) => (
+                    <span key={skill} className='skill-chip'>
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </PortfolioSection>
+
+        <section id='newsletter' className='portfolio-section scroll-mt-32'>
+          <NewsletterSection />
+        </section>
+
+        <Footer />
+      </div>
+
+      <div className='portfolio-closing' aria-hidden>
+        <span className='portfolio-cross portfolio-cross-left' />
+        <span className='portfolio-cross portfolio-cross-right' />
       </div>
     </div>
   );
