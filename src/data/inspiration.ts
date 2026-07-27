@@ -5,6 +5,11 @@ export type Inspiration = {
   note?: string;
 };
 
+export const inspirationIntro =
+  "people whose work, writing, or way of building has shaped how i think about shipping things. not a ranking — just a list of creators, indie hackers, engineers, and builders who left a mark.";
+
+export const inspirationLastUpdate = '2026-07-27';
+
 /**
  * people who have inspired me in some way.
  * edit this list freely — names are rendered as underlined links that open in a new tab.

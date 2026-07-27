@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { githubActivity } from '@/data/portfolio';
 
 type ContributionCell = {
@@ -25,8 +26,60 @@ function getContributionLabel(cell: ContributionCell) {
   return `${cell.count} ${unit} on ${cell.id}`;
 }
 
+function TooltipPortal({ text, cellRect }: { text: string; cellRect: DOMRect }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [style, setStyle] = useState<React.CSSProperties>({
+    position: 'fixed',
+    opacity: 0,
+    pointerEvents: 'none',
+    zIndex: 9999,
+  });
+
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const gap = 7;
+    const margin = 8;
+    const vw = window.innerWidth;
+    const tw = el.offsetWidth;
+    const th = el.offsetHeight;
+
+    let top = cellRect.top - th - gap;
+    const leftUnclamped = cellRect.left + cellRect.width / 2 - tw / 2;
+
+    if (top < margin) {
+      top = cellRect.bottom + gap;
+    }
+
+    const left = Math.max(margin, Math.min(leftUnclamped, vw - tw - margin));
+
+    setStyle({
+      position: 'fixed',
+      top,
+      left,
+      opacity: 1,
+      pointerEvents: 'none',
+      zIndex: 9999,
+    });
+  }, [cellRect]);
+
+  return (
+    <div ref={ref} style={style} className='github-tooltip' role='tooltip'>
+      {text}
+    </div>
+  );
+}
+
 export default function GitHubContributions() {
   const [cells, setCells] = useState(fallbackCells);
+  const [tooltip, setTooltip] = useState<{ text: string; rect: DOMRect } | null>(null);
+  const portalRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -60,6 +113,17 @@ export default function GitHubContributions() {
     return () => controller.abort();
   }, []);
 
+  useEffect(() => {
+    if (!tooltip) return;
+    const hide = () => setTooltip(null);
+    window.addEventListener('scroll', hide, { capture: true });
+    window.addEventListener('resize', hide);
+    return () => {
+      window.removeEventListener('scroll', hide, { capture: true });
+      window.removeEventListener('resize', hide);
+    };
+  }, [tooltip]);
+
   return (
     <section className='github-activity' aria-labelledby='github-activity-title'>
       <div className='mb-3 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center sm:gap-4'>
@@ -84,15 +148,31 @@ export default function GitHubContributions() {
       <div className='github-grid-scroll'>
         <div className='github-grid' aria-hidden>
           {cells.map((cell) => (
+            // biome-ignore lint/a11y/noStaticElementInteractions: grid is aria-hidden, handlers only for tooltip positioning
             <span
               key={cell.id}
               className='github-cell'
               data-level={cell.level}
-              data-tooltip={getContributionLabel(cell)}
+              onMouseEnter={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                setTooltip({
+                  text: getContributionLabel(cell),
+                  rect,
+                });
+              }}
+              onMouseLeave={() => setTooltip(null)}
             />
           ))}
         </div>
       </div>
+      <div ref={portalRef} />
+      {mounted &&
+        tooltip &&
+        portalRef.current &&
+        createPortal(
+          <TooltipPortal text={tooltip.text} cellRect={tooltip.rect} />,
+          portalRef.current,
+        )}
     </section>
   );
 }
