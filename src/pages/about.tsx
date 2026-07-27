@@ -49,6 +49,9 @@ const About: React.FC = () => {
         <RoughChip href='/more' seed={307}>
           journey
         </RoughChip>
+        <RoughChip href='/inspiration' seed={310}>
+          inspiration
+        </RoughChip>
       </div>
 
       <RoughSticky seed={308} color='yellow' rotate={-0.8} className='mt-2 max-w-md'>
