@@ -777,20 +777,19 @@
 
 .writing-article-meta {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.45rem;
+  gap: 1rem;
   font-family: var(--font-secondary);
   font-size: 0.78rem;
   color: var(--portfolio-ink-muted);
 }
 
-.writing-article-meta a {
-  display: inline-flex;
+.writing-article-details {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.2rem;
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
+  gap: 0.45rem;
 }
 
 .writing-article-description {
@@ -886,6 +885,15 @@
   max-width: 100%;
   border: 1px dashed var(--portfolio-border-muted);
   border-radius: 0.7rem;
+}
+
+.writing-article-content .image-link {
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.writing-article-content .image-link-expand {
+  display: none;
 }
 
 .writing-article-content figure {

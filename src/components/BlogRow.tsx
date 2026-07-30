@@ -10,7 +10,7 @@ export default function BlogRow({ post }: BlogRowProps) {
   const content = (
     <>
       <h3 className='writing-title'>
-        <span aria-hidden>•</span>
+        <span aria-hidden>{'->'}</span>
         <span>{post.title}</span>
       </h3>
       <time className='writing-date'>{post.publishedAt}</time>

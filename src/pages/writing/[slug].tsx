@@ -1,7 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import PageShell from '@/components/rough/PageShell';
-import RoughLink from '@/components/rough/RoughLink';
 import { getWritingBySlug, getWritingSlugs, type WritingPost } from '@/lib/writing';
 
 type WritingPostPageProps = {
@@ -9,27 +8,37 @@ type WritingPostPageProps = {
 };
 
 export default function WritingPostPage({ post }: WritingPostPageProps) {
+  const wordCount = post.contentHtml
+    .replace(/<[^>]*>/g, ' ')
+    .trim()
+    .split(/\s+/).length;
+  const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
   return (
     <PageShell title={post.title}>
+      {post.description ? <p className='writing-article-description'>{post.description}</p> : null}
+
       <div className='writing-article-meta'>
-        <time dateTime={post.publishedAtISO}>{post.publishedAt}</time>
-        <span aria-hidden>/</span>
-        <a href={post.sourceUrl} target='_blank' rel='noreferrer noopener'>
-          read on substack <ArrowUpRight size={13} aria-hidden />
+        <div className='writing-article-details'>
+          <span>{readingTime} min read</span>
+          <span aria-hidden>•</span>
+          <time dateTime={post.publishedAtISO}>{post.publishedAt}</time>
+        </div>
+        <a
+          className='portfolio-view-all portfolio-button-secondary group'
+          href={post.sourceUrl}
+          target='_blank'
+          rel='noreferrer noopener'
+        >
+          read on substack <ArrowUpRight size={13} className='view-all-arrow' aria-hidden />
         </a>
       </div>
-
-      {post.description ? <p className='writing-article-description'>{post.description}</p> : null}
 
       <article
         className='writing-article-content'
         // biome-ignore lint/security/noDangerouslySetInnerHtml: Substack HTML is generated from local content authored by the site owner.
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
-
-      <RoughLink href='/writing' seed={801}>
-        back to writing
-      </RoughLink>
     </PageShell>
   );
 }
