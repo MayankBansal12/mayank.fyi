@@ -462,11 +462,11 @@
   background: color-mix(in srgb, var(--portfolio-surface) 88%, transparent);
 }
 
-.github-grid .github-cell::after {
-  position: absolute;
-  bottom: calc(100% + 7px);
-  left: 50%;
-  z-index: 10;
+.github-grid .github-cell:hover {
+  border-color: var(--portfolio-border);
+}
+
+.github-tooltip {
   width: max-content;
   max-width: 13rem;
   padding: 0.35rem 0.5rem;
@@ -474,46 +474,23 @@
   border-radius: 0.35rem 0.48rem 0.4rem 0.52rem;
   background: var(--board-background);
   box-shadow: 2px 2px 0 var(--portfolio-border-muted);
-  color: inherit;
-  content: attr(data-tooltip);
   font-family: var(--font-primary);
   font-size: 0.68rem;
   line-height: 1.2;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, 2px) rotate(-0.4deg);
-  transition:
-    opacity 120ms ease,
-    transform 120ms ease;
   white-space: nowrap;
+  pointer-events: none;
+  animation: github-tooltip-in 120ms ease both;
 }
 
-.github-grid .github-cell:hover {
-  border-color: var(--portfolio-border);
-}
-
-.github-grid .github-cell:hover::after {
-  opacity: 1;
-  transform: translate(-50%, 0) rotate(-0.4deg);
-}
-
-.github-grid .github-cell:nth-child(-n + 7)::after {
-  left: 0;
-  transform: translate(0, 2px) rotate(-0.4deg);
-}
-
-.github-grid .github-cell:nth-child(-n + 7):hover::after {
-  transform: translate(0, 0) rotate(-0.4deg);
-}
-
-.github-grid .github-cell:nth-last-child(-n + 7)::after {
-  right: 0;
-  left: auto;
-  transform: translate(0, 2px) rotate(-0.4deg);
-}
-
-.github-grid .github-cell:nth-last-child(-n + 7):hover::after {
-  transform: translate(0, 0) rotate(-0.4deg);
+@keyframes github-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .github-cell[data-level="1"] {

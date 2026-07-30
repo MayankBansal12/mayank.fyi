@@ -32,6 +32,9 @@ const NotFound: React.FC = () => {
         <RoughChip href='/contact' seed={806}>
           contact
         </RoughChip>
+        <RoughChip href='/inspiration' seed={807}>
+          inspiration
+        </RoughChip>
       </div>
     </div>
   );
