@@ -775,6 +775,142 @@
   white-space: nowrap;
 }
 
+.writing-article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-secondary);
+  font-size: 0.78rem;
+  color: var(--portfolio-ink-muted);
+}
+
+.writing-article-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.writing-article-description {
+  border-left: 1px dashed var(--portfolio-border);
+  padding-left: 1rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--portfolio-ink-muted);
+}
+
+.writing-article-content {
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: color-mix(in srgb, currentColor 88%, var(--portfolio-ink-muted));
+}
+
+.writing-article-content > * + * {
+  margin-top: 1rem;
+}
+
+.writing-article-content h2,
+.writing-article-content h3,
+.writing-article-content h4 {
+  margin-top: 2rem;
+  color: currentColor;
+  font-family: var(--active-font);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.writing-article-content h2 {
+  font-size: 1.55rem;
+}
+
+.writing-article-content h3 {
+  font-size: 1.3rem;
+}
+
+.writing-article-content h4 {
+  font-size: 1.1rem;
+}
+
+.writing-article-content a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.writing-article-content ul,
+.writing-article-content ol {
+  padding-left: 1.35rem;
+}
+
+.writing-article-content ul {
+  list-style: disc;
+}
+
+.writing-article-content ol {
+  list-style: decimal;
+}
+
+.writing-article-content li + li {
+  margin-top: 0.5rem;
+}
+
+.writing-article-content blockquote {
+  border-left: 1px dashed var(--portfolio-border);
+  padding-left: 1rem;
+  color: var(--portfolio-ink-muted);
+}
+
+.writing-article-content pre {
+  overflow-x: auto;
+  border: 1px dashed var(--portfolio-border-muted);
+  border-radius: 0.6rem;
+  background: var(--portfolio-surface);
+  padding: 0.9rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.writing-article-content :not(pre) > code {
+  border: 1px solid var(--portfolio-border-muted);
+  border-radius: 0.35rem;
+  background: var(--portfolio-surface);
+  padding: 0.08rem 0.28rem;
+  font-size: 0.88em;
+}
+
+.writing-article-content img {
+  height: auto;
+  max-width: 100%;
+  border: 1px dashed var(--portfolio-border-muted);
+  border-radius: 0.7rem;
+}
+
+.writing-article-content .image-link {
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.writing-article-content .image-link-expand {
+  display: none;
+}
+
+.writing-article-content figure {
+  margin: 1.35rem 0;
+}
+
+.writing-article-content figcaption {
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--portfolio-ink-muted);
+}
+
+.writing-article-content hr {
+  border: 0;
+  border-top: 1px dashed var(--portfolio-border);
+}
+
 .skill-chip {
   display: inline-flex;
   align-items: center;

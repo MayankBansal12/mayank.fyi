@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { BlogPost } from '@/data/portfolio';
 
 type BlogRowProps = {
@@ -5,10 +6,11 @@ type BlogRowProps = {
 };
 
 export default function BlogRow({ post }: BlogRowProps) {
+  const isExternalLink = post.href?.startsWith('http');
   const content = (
     <>
       <h3 className='writing-title'>
-        <span aria-hidden>•</span>
+        <span aria-hidden>{'->'}</span>
         <span>{post.title}</span>
       </h3>
       <time className='writing-date'>{post.publishedAt}</time>
@@ -17,10 +19,14 @@ export default function BlogRow({ post }: BlogRowProps) {
 
   return (
     <li className='writing-item'>
-      {post.href ? (
+      {post.href && isExternalLink ? (
         <a href={post.href} target='_blank' rel='noreferrer noopener' className='writing-row'>
           {content}
         </a>
+      ) : post.href ? (
+        <Link href={post.href} className='writing-row'>
+          {content}
+        </Link>
       ) : (
         <div className='writing-row'>{content}</div>
       )}

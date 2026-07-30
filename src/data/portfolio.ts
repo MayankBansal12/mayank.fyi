@@ -84,7 +84,7 @@ export const home = {
     writing: {
       title: 'writing',
       note: 'need to clear up my drafts :)',
-      viewAllLabel: 'visit my substack',
+      viewAllLabel: 'view more writings',
     },
     skills: {
       title: 'skills & tools',
