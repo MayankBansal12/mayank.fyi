@@ -6,7 +6,14 @@ export type Inspiration = {
 };
 
 export const inspirationIntro =
-  "people whose work, writing, or way of building has shaped how i think about shipping things. not a ranking — just a list of creators, indie hackers, engineers, and builders who left a mark.";
+  'internet is filled with lots of cool people and their works...listing some of creators, builders, designers and engineers whose work have inspired me to keep going (in no particular order)';
+
+export const inspirationMetadata = {
+  title: 'inspiration • mayank bansal',
+  description:
+    'people whose work, writing, and way of building have shaped how mayank thinks about shipping things.',
+  path: '/inspiration',
+};
 
 export const inspirationLastUpdate = '2026-07-27';
 
@@ -16,53 +23,115 @@ export const inspirationLastUpdate = '2026-07-27';
  */
 export const inspiration: Inspiration[] = [
   {
-    name: 'pieter levels',
-    href: 'https://levels.io',
-    note: 'indie hacker, ships in public',
+    name: 'angela yu',
+    href: 'https://uk.linkedin.com/in/angela-yu1',
   },
   {
     name: 'farza',
-    href: 'https://farza.com',
-    note: 'builder energy, content that sticks',
+    href: 'https://farza.com/',
   },
   {
-    name: 'paul graham',
-    href: 'https://paulgraham.com',
-    note: 'essays that rewire how you think',
+    name: 'theo',
+    href: 'https://t3.gg/',
   },
   {
-    name: 'derek sivers',
-    href: 'https://sive.rs',
-    note: 'short writing, long aftertaste',
+    name: 'reaper',
+    href: 'https://reaper.is',
   },
   {
-    name: 'tibo',
-    href: 'https://x.com/tibo_maker',
-    note: 'indie maker, always shipping',
+    name: 'webdevcody',
+    href: 'https://www.youtube.com/@webdevcody',
   },
   {
-    name: 'marc lou',
-    href: 'https://marclou.com',
-    note: 'ship fast, learn in public',
+    name: 'hkirat',
+    href: 'https://github.com/hkirat',
   },
   {
-    name: 'dan abramov',
-    href: 'https://overreacted.io',
-    note: 'deep, patient engineering writing',
+    name: 'chris tate',
+    href: 'https://ctate.dev/',
   },
   {
-    name: 'steve jobs',
-    href: 'https://en.wikipedia.org/wiki/Steve_Jobs',
-    note: 'taste, focus, and the long game',
+    name: 'shadcn',
+    href: 'https://shadcn.com/',
   },
   {
-    name: 'linus torvalds',
-    href: 'https://github.com/torvalds',
-    note: 'build the tool, trust the craft',
+    name: 'emil kowalski',
+    href: 'https://emilkowal.ski/',
   },
   {
-    name: 'casey neistat',
-    href: 'https://www.youtube.com/@CaseyNeistat',
-    note: 'just start, film the process',
+    name: 'rauno',
+    href: 'https://rauno.me/',
+  },
+  {
+    name: 'sahaj',
+    href: 'https://iamsahaj.xyz/',
+  },
+  {
+    name: 'gurvinder',
+    href: 'https://gxuri.in',
+  },
+  {
+    name: 'aman varshney',
+    href: 'https://amanv.dev/',
+  },
+  {
+    name: 'gurbinder',
+    href: 'https://gurbinder.dev/',
+  },
+  {
+    name: 'prateek singh',
+    href: 'https://www.prateeksingh.xyz/',
+  },
+  {
+    name: 'julien',
+    href: 'https://ibelick.com/',
+  },
+  {
+    name: 'pankaj tanwar',
+    href: 'https://www.pankajtanwar.in/',
+  },
+  {
+    name: 'jakub',
+    href: 'https://jakub.kr/',
+  },
+  {
+    name: 'ryan florence',
+    href: 'https://github.com/ryanflorence',
+  },
+  {
+    name: 'dominik',
+    href: 'https://dominiksobe.com/',
+  },
+  {
+    name: 'mario zechner',
+    href: 'https://mariozechner.at/',
+  },
+  {
+    name: 'kit langton',
+    href: 'https://kitlangton.com/',
+  },
+  {
+    name: 'bakai',
+    href: 'https://www.bakai.me/',
+  },
+  {
+    name: 'hayk an',
+    href: 'https://hayk.design',
+  },
+  {
+    name: 'mrinal',
+    href: 'https://github.com/mrinalxdev',
+  },
+  {
+    name: 'julius marminge',
+    href: 'https://www.jumr.dev/',
+  },
+  {
+    name: 'amit prakash',
+    href: 'https://github.com/iamitprakash',
+  },
+  {
+    name: 'anuj chhikara',
+    href: 'https://anujchhikara.com/',
   },
 ];

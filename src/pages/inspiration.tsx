@@ -4,7 +4,7 @@ import { inspiration, inspirationIntro, inspirationLastUpdate } from '@/data/ins
 
 const Inspiration: React.FC = () => {
   return (
-    <PageShell title='inspiration'>
+    <PageShell title='cool ppls'>
       <p>{inspirationIntro}</p>
 
       <ul className='flex flex-col gap-4'>
