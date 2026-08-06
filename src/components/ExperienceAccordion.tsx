@@ -1,4 +1,4 @@
-import { ChevronDown, SquareArrowOutUpRight } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import RoughBox from '@/components/rough/RoughBox';
 import type { Experience } from '@/data/portfolio';
@@ -41,15 +41,11 @@ export default function ExperienceAccordion({ items }: ExperienceAccordionProps)
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggleItem(item.id)}
+                data-sound='tap'
               >
                 <span className='min-w-0 text-left'>
                   <span className='flex flex-wrap items-baseline gap-x-2 gap-y-1'>
                     <span className='text-lg font-semibold md:text-xl'>{item.company}</span>
-                    {item.companyUrl ? (
-                      <span className='inline-flex items-center gap-0.5 text-xs text-board-muted'>
-                        visit <SquareArrowOutUpRight size={10} aria-hidden />
-                      </span>
-                    ) : null}
                   </span>
                   <span className='mt-0.5 block text-sm opacity-75'>{item.role}</span>
                 </span>
@@ -88,16 +84,6 @@ export default function ExperienceAccordion({ items }: ExperienceAccordionProps)
                         </span>
                       ))}
                     </div>
-                    {item.companyUrl ? (
-                      <a
-                        href={item.companyUrl}
-                        target='_blank'
-                        rel='noreferrer noopener'
-                        className='portfolio-text-link mt-4 inline-flex items-center gap-1 text-sm font-semibold'
-                      >
-                        visit {item.company} <SquareArrowOutUpRight size={12} aria-hidden />
-                      </a>
-                    ) : null}
                   </div>
                 </div>
               </div>

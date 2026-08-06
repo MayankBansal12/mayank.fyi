@@ -15,7 +15,7 @@ export type RoughPalette = {
 export function getRoughPalette(isDark: boolean): RoughPalette {
   if (isDark) {
     return {
-      ink: '#e8e4d9',
+      ink: '#b1ab9e',
       muted: '#9a9588',
       paper: '#161616',
       stickyYellow: '#5c5340',

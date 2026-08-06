@@ -10,64 +10,72 @@ const About: React.FC = () => {
     <PageShell title='about'>
       <p>hey. i am mayank.</p>
       <p>
-        -&gt; working as a backend developer at{' '}
-        <RoughLink href='https://echio.in' seed={301}>
-          echio
+        -&gt; i am a software engineer based in hyderabad. i enjoy taking ideas from a rough sketch
+        to software people can actually use.
+      </p>
+      <p>
+        -&gt; my work spans backend systems, AI agents, developer tools, and product interfaces. i
+        care about reliable infrastructure as much as the small details that make a product feel
+        good.
+      </p>
+      <p>
+        -&gt; currently volunteering with{' '}
+        <RoughLink href='https://evoljewels.com' seed={301}>
+          evol jewels
         </RoughLink>
+        , where i build ERP and AI-assisted jewelry design systems. i also contribute to{' '}
+        <RoughLink href='https://realdevsquad.com' seed={302}>
+          real dev squad
+        </RoughLink>{' '}
+        and its open-source developer tooling.
       </p>
       <p>
-        -&gt; i have been building products, dev tools, tech projects. obsessed over learning more
-        tech and pushing my limits of what i can build.
+        -&gt; recently i have been exploring deterministic icon rendering, translated reader modes,
+        LLM game agents, and agentic writing through my open-source projects.
       </p>
       <p>
-        -&gt; i have worked in different programming languages and frameworks both professionally
-        and in projects, hackathons...java and javascript are the two i have used the most. <br />
-        javascript has become my go-to language whenever i need to experiment or try out a new idea.
-      </p>
-      <p>
-        -&gt; i am always looking to work on more projects so if you have something interesting,
-        feel free to{' '}
-        <RoughLink href='/contact' seed={302}>
+        -&gt; if you are building something thoughtful and need an engineer who can move across the
+        stack, feel free to{' '}
+        <RoughLink href='/contact' seed={303}>
           contact
         </RoughLink>{' '}
-        me and let&apos;s discuss how can i add value.
+        me.
       </p>
 
       <div className='flex flex-wrap gap-2 pt-1'>
-        <RoughChip href='/work' seed={303}>
+        <RoughChip href='/work' seed={304}>
           work
         </RoughChip>
-        <RoughChip href='https://github.com/mayankbansal12' seed={304}>
+        <RoughChip href='https://github.com/mayankbansal12' seed={305}>
           github
         </RoughChip>
-        <RoughChip href='/hire' seed={305}>
+        <RoughChip href='/hire' seed={306}>
           hire me
         </RoughChip>
-        <RoughChip href='/now' seed={306}>
+        <RoughChip href='/now' seed={307}>
           now
         </RoughChip>
-        <RoughChip href='/more' seed={307}>
+        <RoughChip href='/more' seed={308}>
           journey
         </RoughChip>
-        <RoughChip href='/inspiration' seed={310}>
+        <RoughChip href='/inspiration' seed={309}>
           inspiration
         </RoughChip>
       </div>
 
-      <RoughSticky seed={308} color='yellow' rotate={-0.8} className='mt-2 max-w-md'>
+      <RoughSticky seed={310} color='yellow' rotate={-0.8} className='mt-2 max-w-md'>
         <p className='text-sm opacity-90'>
-          p.s.) ) if you are wondering why is everything in lowercase, it&apos;s my cool design
-          blend.
+          p.s. the lowercase is intentional. the occasional typo may not be.
         </p>
       </RoughSticky>
 
       <RoughBox
-        seed={309}
+        seed={311}
         dashed
         paddingClassName={ROUGH_PADDING.compact}
         className='ml-auto w-fit'
       >
-        <p className='text-xs opacity-60'>last update: 2024-12-30</p>
+        <p className='text-xs opacity-60'>last update: 2026-08-06</p>
       </RoughBox>
     </PageShell>
   );

@@ -20,15 +20,23 @@ export default function BlogRow({ post }: BlogRowProps) {
   return (
     <li className='writing-item'>
       {post.href && isExternalLink ? (
-        <a href={post.href} target='_blank' rel='noreferrer noopener' className='writing-row'>
+        <a
+          href={post.href}
+          target='_blank'
+          rel='noreferrer noopener'
+          className='writing-row'
+          data-sound='tap'
+        >
           {content}
         </a>
       ) : post.href ? (
-        <Link href={post.href} className='writing-row'>
+        <Link href={post.href} className='writing-row' data-sound='tap'>
           {content}
         </Link>
       ) : (
-        <div className='writing-row'>{content}</div>
+        <div className='writing-row' data-sound='tap'>
+          {content}
+        </div>
       )}
     </li>
   );
