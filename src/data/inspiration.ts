@@ -127,6 +127,10 @@ export const inspiration: Inspiration[] = [
     href: 'https://www.jumr.dev/',
   },
   {
+    name: 'rishabh das',
+    href: 'https://github.com/metent',
+  },
+  {
     name: 'amit prakash',
     href: 'https://github.com/iamitprakash',
   },

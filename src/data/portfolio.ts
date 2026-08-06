@@ -61,10 +61,11 @@ export const home = {
   hero: {
     heading: "hey. i'm mayank.",
     role: 'just an engineer trying to create things that matter',
-    intro:
-      'i build backend systems, AI tools, and useful products that turn ambitious ideas into reliable software.',
-    currentStatus:
-      'currently building ERP and AI workflows for evol jewels, contributing to real dev squad, and shipping open-source experiments.',
+    pointers: [
+      "i'm inspired by the people on the internet, working and creating stuff out of their passion and love for the craft.",
+      "i've worked with early-stage teams, moving between frontend, backend, and deployments wherever the product needed me.",
+      "i'm currently working on a bunch of experiments to push the limits of myself and what i can do with models.",
+    ],
     availability: {
       visible: true,
       text: "i'm available for hire",
@@ -115,16 +116,18 @@ export const newsletter = {
 
 export const experiences: Experience[] = [
   {
-    id: 'evol-jewels',
-    company: 'evol jewels',
+    id: 'evol',
+    company: 'evol',
     companyUrl: 'https://evoljewels.com',
-    role: 'software engineer · volunteering',
+    role: 'SDE',
     period: "feb '26 - present",
     location: 'hyderabad',
-    summary: 'building product systems across business software, AI, and connected hardware.',
+    summary:
+      'building ERP, AI design tooling, and connected retail systems for business operations.',
     highlights: [
-      'building a nest.js and next.js ERP with postgresql and drizzle.',
-      'built langgraph design workflows and stabilized a raspberry pi and ESP32 kiosk for 50+ users.',
+      'building a nest.js and next.js ERP with postgresql and drizzle for core workflows.',
+      'developing langgraph workflows for design generation, editing, routing, and fallbacks.',
+      'stabilized a raspberry pi and ESP32 vending kiosk for a 50+ user live store launch.',
     ],
     skills: ['nest.js', 'next.js', 'postgresql', 'drizzle', 'langgraph', 'IoT'],
   },
@@ -132,29 +135,37 @@ export const experiences: Experience[] = [
     id: 'echio',
     company: 'echio',
     companyUrl: 'https://echio.in',
-    role: 'software engineer · volunteering',
+    role: 'SDE Intern -> SDE',
     period: "may '24 - nov '25",
     location: 'remote',
-    summary: 'built and operated backend systems for an early-stage product.',
+    summary: 'built backend, media, analytics, deployment, and internal operations systems.',
     highlights: [
-      'designed an HLS pipeline with azure queues and docker-based parallel workers.',
-      'cut API latency and CI build times by 50% with redis caching and deployment automation.',
+      'designed an HLS transcoding pipeline with azure queues and docker-based parallel workers.',
+      'reduced high-traffic API latency by 50% using redis caching and backend rate limiting.',
+      're-architected spring boot services for modularity, reliability, and better error handling.',
+      'automated instagram and youtube analytics ingestion with cron jobs and health monitoring.',
+      'migrated CI/CD to blacksmith and watchtower, cutting build times by over 50%.',
+      'built admin dashboards and internal tooling with react.js and shadcn/ui.',
     ],
-    skills: ['java', 'spring boot', 'redis', 'azure', 'docker', 'CI/CD'],
+    skills: ['java', 'spring boot', 'redis', 'azure', 'docker', 'CI/CD', 'react'],
   },
   {
     id: 'real-dev-squad',
     company: 'real dev squad',
     companyUrl: 'https://realdevsquad.com',
-    role: 'software engineer · volunteering',
+    role: 'SDE (Volunteering)',
     period: "aug '24 - present",
     location: 'remote',
-    summary: 'contributing to open-source products and internal developer tooling.',
+    summary:
+      'contributing to open-source platform migrations, testing, tooling, and team-led delivery.',
     highlights: [
-      'migrated legacy features and added unit and integration coverage to react projects.',
-      'built an MCP server for internal APIs and led a four-developer product revamp.',
+      'migrated legacy features to ember.js, helping deprecate the old platform.',
+      'added unit and integration tests for a new react.js project.',
+      'migrated a core service from next.js to tanstack router for better navigation and DX.',
+      'built an MCP server that exposes internal APIs as tools for AI agents.',
+      'led four developers to revamp a project with GenAI and image-validation features.',
     ],
-    skills: ['ember.js', 'react', 'tanstack router', 'typescript', 'MCP'],
+    skills: ['ember.js', 'react', 'tanstack router', 'typescript', 'MCP', 'GenAI'],
   },
 ];
 

@@ -10,28 +10,19 @@ const About: React.FC = () => {
     <PageShell title='about'>
       <p>hey. i am mayank.</p>
       <p>
-        -&gt; i am a software engineer based in hyderabad. i enjoy taking ideas from a rough sketch
-        to software people can actually use.
-      </p>
-      <p>
-        -&gt; my work spans backend systems, AI agents, developer tools, and product interfaces. i
-        care about reliable infrastructure as much as the small details that make a product feel
-        good.
-      </p>
-      <p>
-        -&gt; currently volunteering with{' '}
-        <RoughLink href='https://evoljewels.com' seed={301}>
-          evol jewels
-        </RoughLink>
-        , where i build ERP and AI-assisted jewelry design systems. i also contribute to{' '}
-        <RoughLink href='https://realdevsquad.com' seed={302}>
-          real dev squad
+        -&gt; i&apos;m{' '}
+        <RoughLink href='/inspiration' seed={301} showIcon={false}>
+          inspired by the people
         </RoughLink>{' '}
-        and its open-source developer tooling.
+        on the internet, working and creating stuff out of their passion and love for the craft.
       </p>
       <p>
-        -&gt; recently i have been exploring deterministic icon rendering, translated reader modes,
-        LLM game agents, and agentic writing through my open-source projects.
+        -&gt; i&apos;ve worked with early-stage teams, moving between frontend, backend, and
+        deployments wherever the product needed me.
+      </p>
+      <p>
+        -&gt; i&apos;m currently working on a bunch of experiments to push the limits of myself and
+        what i can do with models.
       </p>
       <p>
         -&gt; if you are building something thoughtful and need an engineer who can move across the
