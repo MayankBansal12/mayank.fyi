@@ -122,8 +122,7 @@ export const experiences: Experience[] = [
     role: 'SDE',
     period: "feb '26 - present",
     location: 'hyderabad',
-    summary:
-      'building ERP, AI design tooling, and connected retail systems for business operations.',
+    summary: 'building agentic systems and internal tools.',
     highlights: [
       'building a nest.js and next.js ERP with postgresql and drizzle for core workflows.',
       'developing langgraph workflows for design generation, editing, routing, and fallbacks.',
@@ -138,7 +137,8 @@ export const experiences: Experience[] = [
     role: 'SDE Intern -> SDE',
     period: "may '24 - nov '25",
     location: 'remote',
-    summary: 'built backend, media, analytics, deployment, and internal operations systems.',
+    summary:
+      'met my first set of mentors here and had a lot of fun working on different things.',
     highlights: [
       'designed an HLS transcoding pipeline with azure queues and docker-based parallel workers.',
       'reduced high-traffic API latency by 50% using redis caching and backend rate limiting.',
@@ -156,8 +156,7 @@ export const experiences: Experience[] = [
     role: 'SDE (Volunteering)',
     period: "aug '24 - present",
     location: 'remote',
-    summary:
-      'contributing to open-source platform migrations, testing, tooling, and team-led delivery.',
+    summary: 'hanging out on nights & weekends, working and making some good friends',
     highlights: [
       'migrated legacy features to ember.js, helping deprecate the old platform.',
       'added unit and integration tests for a new react.js project.',

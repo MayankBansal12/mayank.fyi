@@ -48,6 +48,7 @@ export default function ExperienceAccordion({ items }: ExperienceAccordionProps)
                     <span className='text-lg font-semibold md:text-xl'>{item.company}</span>
                   </span>
                   <span className='mt-0.5 block text-sm opacity-75'>{item.role}</span>
+                  <span className='mt-1 block text-sm opacity-80'>{item.summary}</span>
                 </span>
                 <span className='flex shrink-0 items-center gap-3'>
                   <span className='text-right text-xs text-board-muted sm:text-sm'>
@@ -66,7 +67,6 @@ export default function ExperienceAccordion({ items }: ExperienceAccordionProps)
               >
                 <div className='overflow-hidden'>
                   <div className='px-4 pt-1 pb-5 sm:px-5'>
-                    <p className='mb-3 text-sm opacity-80'>{item.summary}</p>
                     <ul className='space-y-2 text-sm opacity-[0.85]'>
                       {item.highlights.map((highlight) => (
                         <li key={highlight} className='flex gap-2'>
