@@ -63,6 +63,7 @@ function MenuTrigger({
       aria-haspopup='menu'
       title={label}
       onClick={onClick}
+      data-sound-hover
     >
       {children}
       <span className='hidden sm:inline'>{label}</span>

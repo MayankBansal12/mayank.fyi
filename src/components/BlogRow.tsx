@@ -25,16 +25,17 @@ export default function BlogRow({ post }: BlogRowProps) {
           target='_blank'
           rel='noreferrer noopener'
           className='writing-row'
-          data-sound='tap'
+          data-sound-hover
+          data-sound-click
         >
           {content}
         </a>
       ) : post.href ? (
-        <Link href={post.href} className='writing-row' data-sound='tap'>
+        <Link href={post.href} className='writing-row' data-sound-hover data-sound-click>
           {content}
         </Link>
       ) : (
-        <div className='writing-row' data-sound='tap'>
+        <div className='writing-row' data-sound-hover>
           {content}
         </div>
       )}

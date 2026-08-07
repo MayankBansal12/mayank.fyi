@@ -111,7 +111,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 
   return (
-    <div className={liveLink ? 'h-full cursor-pointer' : 'h-full'} data-sound='tap'>
+    <div className={liveLink ? 'h-full cursor-pointer' : 'h-full'} data-sound-hover>
       {card}
     </div>
   );
