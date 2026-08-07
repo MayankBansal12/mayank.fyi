@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import type { CSSProperties, ReactNode } from 'react';
 import { backgrounds, fonts, useAppearance } from '@/components/AppearanceProvider';
 import Header from '@/components/Header';
+import InteractionSounds from '@/components/InteractionSounds';
 import Preloader from '@/components/Preloader';
 import Metadata from './Metadata';
 
@@ -25,6 +26,7 @@ const Layout: React.FC<ILayout> = ({ children }) => {
     <>
       <Metadata />
       <Preloader />
+      <InteractionSounds />
       <main
         className={`board-surface flex w-full flex-col items-center lowercase ${
           isHome ? 'min-h-dvh px-3 py-3 sm:px-5 sm:py-4' : 'h-dvh px-4 py-6 lg:py-8'

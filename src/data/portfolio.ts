@@ -13,6 +13,8 @@ export type Experience = {
 export type Project = {
   title: string;
   date: string;
+  image?: string;
+  imageAlt?: string;
   githubLink?: string;
   liveLink?: string;
   description: string[];
@@ -59,10 +61,11 @@ export const home = {
   hero: {
     heading: "hey. i'm mayank.",
     role: 'just an engineer trying to create things that matter',
-    intro:
-      'i build backend systems, developer tools, and useful products while learning how far i can push an idea.',
-    currentStatus:
-      'currently working on core product development with java, spring boot, bun, docker, and the occasional next.js fix.',
+    pointers: [
+      "i'm inspired by the people on the internet, working and creating stuff out of their passion and love for the craft.",
+      "i've worked with early-stage teams, moving between frontend, backend, and deployments wherever the product needed me.",
+      "i'm currently working on a bunch of experiments to push the limits of myself and what i can do with models.",
+    ],
     availability: {
       visible: true,
       text: "i'm available for hire",
@@ -104,7 +107,7 @@ export const githubActivity = {
 export const newsletter = {
   eyebrow: '',
   heading: 'join my newsletter',
-  description: 'writes about stuff i learn or find interesting (from an ameteur point of view)',
+  description: 'notes on software, products, and whatever i am learning along the way.',
   emailLabel: 'email address',
   placeholder: 'you@example.com',
   buttonLabel: 'subscribe',
@@ -113,88 +116,102 @@ export const newsletter = {
 
 export const experiences: Experience[] = [
   {
+    id: 'evol',
+    company: 'evol',
+    companyUrl: 'https://evoljewels.com',
+    role: 'SDE',
+    period: "feb '26 - present",
+    location: 'hyderabad',
+    summary: 'building agentic systems and internal tools.',
+    highlights: [
+      'building a nest.js and next.js ERP with postgresql and drizzle for core workflows.',
+      'developing langgraph workflows for design generation, editing, routing, and fallbacks.',
+      'stabilized a raspberry pi and ESP32 vending kiosk for a 50+ user live store launch.',
+    ],
+    skills: ['nest.js', 'next.js', 'postgresql', 'drizzle', 'langgraph', 'IoT'],
+  },
+  {
     id: 'echio',
     company: 'echio',
     companyUrl: 'https://echio.in',
-    role: 'backend developer',
-    period: "jan '24 - present",
+    role: 'SDE Intern -> SDE',
+    period: "may '24 - nov '25",
     location: 'remote',
-    summary: 'building and operating the backend behind an early-stage product.',
+    summary:
+      'met my first set of mentors here and had a lot of fun working on different things.',
     highlights: [
-      'developing core product APIs with java and spring boot, plus website services with bun.',
-      'built an azure function for media optimization using blob triggers and node.js.',
-      'manage docker deployments and occasionally fix issues in the next.js frontend.',
+      'designed an HLS transcoding pipeline with azure queues and docker-based parallel workers.',
+      'reduced high-traffic API latency by 50% using redis caching and backend rate limiting.',
+      're-architected spring boot services for modularity, reliability, and better error handling.',
+      'automated instagram and youtube analytics ingestion with cron jobs and health monitoring.',
+      'migrated CI/CD to blacksmith and watchtower, cutting build times by over 50%.',
+      'built admin dashboards and internal tooling with react.js and shadcn/ui.',
     ],
-    skills: ['java', 'spring boot', 'bun', 'node.js', 'azure', 'docker', 'next.js'],
+    skills: ['java', 'spring boot', 'redis', 'azure', 'docker', 'CI/CD', 'react'],
   },
   {
-    id: 'teaching-assistant',
-    company: 'java & dsa program',
-    role: 'teaching assistant intern',
-    period: 'during second year',
-    summary: 'helped other students learn java, data structures, and problem solving.',
+    id: 'real-dev-squad',
+    company: 'real dev squad',
+    companyUrl: 'https://realdevsquad.com',
+    role: 'SDE (Volunteering)',
+    period: "aug '24 - present",
+    location: 'remote',
+    summary: 'hanging out on nights & weekends, working and making some good friends',
     highlights: [
-      'supported students while strengthening my own computer science fundamentals.',
-      'used the experience to become more confident communicating technical ideas clearly.',
+      'migrated legacy features to ember.js, helping deprecate the old platform.',
+      'added unit and integration tests for a new react.js project.',
+      'migrated a core service from next.js to tanstack router for better navigation and DX.',
+      'built an MCP server that exposes internal APIs as tools for AI agents.',
+      'led four developers to revamp a project with GenAI and image-validation features.',
     ],
-    skills: ['java', 'data structures', 'algorithms', 'mentoring'],
+    skills: ['ember.js', 'react', 'tanstack router', 'typescript', 'MCP', 'GenAI'],
   },
 ];
 
 export const projects: Project[] = [
   {
-    title: 'browserpop',
-    date: "dec '24",
-    githubLink: 'https://github.com/MayankBansal12/browser-pop-main',
-    liveLink: 'https://browserpop.vercel.app/',
+    title: 'sketchicon',
+    date: "aug '26",
+    image: '/projects/sketchicon.png',
+    imageAlt: 'Sketchicon hand-drawn React icon library',
+    githubLink: 'https://github.com/MayankBansal12/sketchicon',
+    liveLink: 'https://sketchicon.com',
+    description: ['1,700+ deterministic, customizable hand-drawn SVG icons for React.'],
+    featured: true,
+  },
+  {
+    title: 'shift-read',
+    date: "jul '26",
+    image: '/projects/shift-read.png',
+    imageAlt: 'Shift reader homepage with a URL input',
+    githubLink: 'https://github.com/MayankBansal12/shift-read',
+    liveLink: 'https://shft.page',
     description: [
-      'a browser extension for blocking distracting sites, planning focus hours, and managing browser activity.',
+      'a focused reader that translates any article while preserving its structure and formatting.',
     ],
     featured: true,
   },
   {
-    title: 'feedback',
-    date: "jul '24 - present",
-    githubLink: 'https://github.com/MayankBansal12/Feedback',
-    liveLink: 'https://feedback-easy.vercel.app/',
-    description: [
-      'a developer tool for collecting and managing product feedback through APIs and a focused dashboard.',
-    ],
+    title: 'chess with llm',
+    date: "aug '26",
+    image: '/projects/chess-with-llm.png',
+    imageAlt: 'Chess with LLM model selection screen',
+    githubLink: 'https://github.com/MayankBansal12/chess-with-llm',
+    liveLink: 'https://chess.mayank.fyi/',
+    description: ['a chess arena for playing legal, timed matches against open-weight LLM models.'],
     featured: true,
   },
   {
-    title: 'getogether',
-    date: "may '24 - jun '24",
-    githubLink: 'https://github.com/MayankBansal12/Getogether',
-    liveLink: 'https://getogether-ten.vercel.app',
+    title: 'wavmo playground',
+    date: "dec '25",
+    image: '/projects/wavmo-playground.gif',
+    imageAlt: 'Wavmo AI writing workspace and agent chat',
+    githubLink: 'https://github.com/MayankBansal12/wavmo-playground',
+    liveLink: 'https://docs.mayank.fyi',
     description: [
-      'a hackathon-built platform for organizing events, with work across the frontend and backend.',
+      'an agentic writing workspace that plans, drafts, reviews, and improves technical documents.',
     ],
     featured: true,
-  },
-  {
-    title: 'pushnote',
-    date: "oct '23 - nov '23",
-    githubLink: 'https://github.com/MayankBansal12/pushnote',
-    liveLink: 'https://pushnote-mayankbansal12.vercel.app',
-    description: [
-      'a collaborative project and task manager that won second place in a three-week hackathon.',
-    ],
-    featured: true,
-  },
-  {
-    title: 'mb docs',
-    date: "dec '23",
-    githubLink: 'https://github.com/MayankBansal12/MB-Docs',
-    liveLink: 'http://mb-docs.vercel.app/',
-    description: ['a real-time collaborative document editor for writing together.'],
-  },
-  {
-    title: 'examgpt',
-    date: "sep '23",
-    githubLink: 'https://github.com/MayankBansal12/Exam-GPT',
-    liveLink: 'https://examgpt.vercel.app/',
-    description: ['an oral-exam assistant that creates questions from an uploaded PDF.'],
   },
 ];
 
@@ -214,10 +231,24 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const skillGroups = [
-  { label: 'backend', skills: ['java', 'spring boot', 'bun', 'node.js', 'express', 'REST APIs'] },
-  { label: 'frontend', skills: ['javascript', 'typescript', 'react', 'next.js', 'html', 'css'] },
-  { label: 'data', skills: ['postgresql', 'mongodb', 'prisma', 'socket.io'] },
-  { label: 'infrastructure', skills: ['docker', 'azure', 'git', 'linux'] },
+  { label: 'languages', skills: ['typescript', 'javascript', 'java', 'go', 'sql'] },
+  { label: 'frontend', skills: ['react', 'next.js', 'ember.js', 'tailwind css'] },
+  {
+    label: 'backend & AI',
+    skills: [
+      'node.js',
+      'bun',
+      'nest.js',
+      'spring boot',
+      'fastify',
+      'REST APIs',
+      'websockets',
+      'langgraph',
+      'MCP',
+    ],
+  },
+  { label: 'data', skills: ['postgresql', 'mongodb', 'redis', 'drizzle', 'prisma'] },
+  { label: 'infrastructure', skills: ['docker', 'azure', 'CI/CD', 'nginx', 'traefik', 'linux'] },
 ];
 
 export const socials: Social[] = [

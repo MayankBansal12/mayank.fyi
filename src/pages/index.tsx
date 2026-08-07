@@ -9,6 +9,7 @@ import NewsletterSection from '@/components/NewsletterSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import ProjectCard from '@/components/rough/ProjectCard';
 import RoughCurvedArrow from '@/components/rough/RoughCurvedArrow';
+import RoughLink from '@/components/rough/RoughLink';
 import ScrollMinimap from '@/components/ScrollMinimap';
 import { experiences, home, links, projects, skillGroups, socials } from '@/data/portfolio';
 import { getAllWritings, type WritingIndexItem } from '@/lib/writing';
@@ -46,9 +47,25 @@ export default function Home({ writings }: HomeProps) {
             </div>
           </div>
 
-          <div className='portfolio-hero-copy mt-8 max-w-2xl space-y-4 text-base leading-relaxed md:text-lg'>
-            <p>{home.hero.intro}</p>
-            <p className='opacity-80'>{home.hero.currentStatus}</p>
+          <div className='portfolio-hero-copy mt-8 max-w-2xl space-y-3 text-base leading-relaxed md:text-lg'>
+            {home.hero.pointers.map((pointer) => {
+              const linkText = 'people on the internet';
+              const [before, after] = pointer.split(linkText);
+
+              return (
+                <p key={pointer}>
+                  -&gt; {after ? before : pointer}
+                  {after ? (
+                    <>
+                      <RoughLink href='/inspiration' seed={301} showIcon={false}>
+                        {linkText}
+                      </RoughLink>
+                      {after}
+                    </>
+                  ) : null}
+                </p>
+              );
+            })}
           </div>
 
           <div className='portfolio-hero-actions mt-6 flex flex-wrap gap-3'>
