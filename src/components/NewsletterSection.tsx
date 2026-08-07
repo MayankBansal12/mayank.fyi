@@ -67,7 +67,6 @@ export default function NewsletterSection() {
             autoComplete='email'
             placeholder={newsletter.placeholder}
             className='portfolio-input min-w-0 flex-1'
-            data-sound='tap'
           />
           <button type='submit' className='portfolio-button group justify-center'>
             {newsletter.buttonLabel}{' '}

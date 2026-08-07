@@ -57,9 +57,11 @@ export default function Home({ writings }: HomeProps) {
                   -&gt; {after ? before : pointer}
                   {after ? (
                     <>
-                      <RoughLink href='/inspiration' seed={301} showIcon={false}>
-                        {linkText}
-                      </RoughLink>
+                      <span data-sound-click>
+                        <RoughLink href='/inspiration' seed={301} showIcon={false}>
+                          {linkText}
+                        </RoughLink>
+                      </span>
                       {after}
                     </>
                   ) : null}

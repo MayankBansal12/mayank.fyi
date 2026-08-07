@@ -24,6 +24,7 @@ const ThemeToggler: React.FC<IThemeToggler> = ({ className = '', ...rest }) => {
       title={`Toggle ${nextTheme} theme`}
       type='button'
       onClick={() => setTheme(nextTheme)}
+      data-sound-click
       {...rest}
     >
       {resolvedTheme === 'light' ? <FiMoon /> : <FiSun />}

@@ -41,7 +41,7 @@ export default function ExperienceAccordion({ items }: ExperienceAccordionProps)
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggleItem(item.id)}
-                data-sound='tap'
+                data-sound-hover
               >
                 <span className='min-w-0 text-left'>
                   <span className='flex flex-wrap items-baseline gap-x-2 gap-y-1'>
