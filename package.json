@@ -29,6 +29,7 @@
     "react-dom": "^19.2.8",
     "react-icons": "^5.7.0",
     "roughjs": "^4.6.6",
+    "sketchicon": "^0.1.5",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {

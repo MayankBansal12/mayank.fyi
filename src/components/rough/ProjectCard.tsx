@@ -11,6 +11,7 @@ type ProjectCardProps = {
   githubLink?: string;
   liveLink?: string;
   seed?: number;
+  onPreview?: () => void;
 };
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -22,6 +23,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   githubLink,
   liveLink,
   seed = 80,
+  onPreview,
 }) => {
   const previewUrl = liveLink?.replace(/^https?:\/\//, '').replace(/\/$/, '') ?? 'project preview';
 
@@ -34,35 +36,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       fill='solid'
       fillColor='var(--portfolio-surface)'
     >
-      {liveLink ? (
-        <a
-          href={liveLink}
-          target='_blank'
-          rel='noreferrer noopener'
+      {liveLink && onPreview ? (
+        <button
+          type='button'
+          onClick={onPreview}
           className='project-card-hit-area'
-          aria-label={`open ${title} website`}
+          aria-label={`preview ${title} website`}
         >
-          <span className='sr-only'>open {title} website</span>
-        </a>
+          <span className='sr-only'>preview {title} website</span>
+        </button>
       ) : null}
       <div className='project-preview'>
         <div className='project-preview-bar'>
           <span />
           <span />
           <span />
-          {liveLink ? (
-            <a
-              href={liveLink}
-              target='_blank'
-              rel='noreferrer noopener'
-              className='project-preview-url'
-              title={liveLink}
-            >
-              {previewUrl}
-            </a>
-          ) : (
-            <small className='project-preview-url'>{previewUrl}</small>
-          )}
+          <small className='project-preview-url' title={liveLink}>
+            {previewUrl}
+          </small>
           {githubLink ? (
             <a
               href={githubLink}

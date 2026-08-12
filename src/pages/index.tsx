@@ -1,5 +1,6 @@
-import { ArrowUpRight, CalendarDays, Mail } from 'lucide-react';
 import Link from 'next/link';
+import { useCallback, useState } from 'react';
+import { ArrowUpRight, CalendarDays, Mail, SketchIcon } from 'sketchicon';
 import BlogRow from '@/components/BlogRow';
 import ExperienceAccordion from '@/components/ExperienceAccordion';
 import Footer from '@/components/Footer';
@@ -7,11 +8,20 @@ import GitHubContributions from '@/components/GitHubContributions';
 import Monogram from '@/components/Monogram';
 import NewsletterSection from '@/components/NewsletterSection';
 import PortfolioSection from '@/components/PortfolioSection';
+import ProjectPreviewModal from '@/components/ProjectPreviewModal';
 import ProjectCard from '@/components/rough/ProjectCard';
 import RoughCurvedArrow from '@/components/rough/RoughCurvedArrow';
 import RoughLink from '@/components/rough/RoughLink';
 import ScrollMinimap from '@/components/ScrollMinimap';
-import { experiences, home, links, projects, skillGroups, socials } from '@/data/portfolio';
+import {
+  experiences,
+  home,
+  links,
+  type Project,
+  projects,
+  skillGroups,
+  socials,
+} from '@/data/portfolio';
 import { getAllWritings, type WritingIndexItem } from '@/lib/writing';
 
 type HomeProps = {
@@ -19,6 +29,9 @@ type HomeProps = {
 };
 
 export default function Home({ writings }: HomeProps) {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const closeProjectPreview = useCallback(() => setSelectedProject(null), []);
+
   return (
     <div id='top' className='portfolio-home mx-auto w-full max-w-[760px]'>
       <ScrollMinimap />
@@ -77,10 +90,18 @@ export default function Home({ writings }: HomeProps) {
               rel='noreferrer noopener'
               className='portfolio-button'
             >
-              <CalendarDays size={15} aria-hidden /> {home.hero.calendarCta}
+              <SketchIcon
+                roughness={1.8}
+                strokeWidth={1.7}
+                icon={CalendarDays}
+                size={15}
+                aria-hidden
+              />{' '}
+              {home.hero.calendarCta}
             </a>
             <a href={links.email} className='portfolio-button portfolio-button-secondary'>
-              <Mail size={15} aria-hidden /> {home.hero.emailCta}
+              <SketchIcon roughness={1.8} strokeWidth={1.7} icon={Mail} size={15} aria-hidden />{' '}
+              {home.hero.emailCta}
             </a>
           </div>
 
@@ -99,7 +120,13 @@ export default function Home({ writings }: HomeProps) {
                   aria-label={`${social.label}: ${social.handle}`}
                 >
                   <span>{social.label}</span>
-                  <ArrowUpRight className='social-chip-arrow' size={13} aria-hidden />
+                  <SketchIcon
+                    roughness={1.8}
+                    icon={ArrowUpRight}
+                    className='social-chip-arrow'
+                    size={13}
+                    aria-hidden
+                  />
                 </a>
               ))}
             </div>
@@ -128,7 +155,12 @@ export default function Home({ writings }: HomeProps) {
             {projects
               .filter((project) => project.featured)
               .map((project, index) => (
-                <ProjectCard key={project.title} {...project} seed={201 + index} />
+                <ProjectCard
+                  key={project.title}
+                  {...project}
+                  seed={201 + index}
+                  onPreview={() => setSelectedProject(project)}
+                />
               ))}
           </div>
           <a
@@ -138,7 +170,14 @@ export default function Home({ writings }: HomeProps) {
             className='portfolio-view-all group mx-auto mt-5'
           >
             {home.sections.projects.viewAllLabel}
-            <ArrowUpRight size={15} className='view-all-arrow' aria-hidden />
+            <SketchIcon
+              roughness={1.8}
+              strokeWidth={1.7}
+              icon={ArrowUpRight}
+              size={15}
+              className='view-all-arrow'
+              aria-hidden
+            />
           </a>
         </PortfolioSection>
 
@@ -155,7 +194,14 @@ export default function Home({ writings }: HomeProps) {
           </ul>
           <Link href='/writing' className='portfolio-view-all group mx-auto mt-5'>
             {home.sections.writing.viewAllLabel}
-            <ArrowUpRight size={15} className='view-all-arrow' aria-hidden />
+            <SketchIcon
+              roughness={1.8}
+              strokeWidth={1.7}
+              icon={ArrowUpRight}
+              size={15}
+              className='view-all-arrow'
+              aria-hidden
+            />
           </Link>
         </PortfolioSection>
 
@@ -192,6 +238,11 @@ export default function Home({ writings }: HomeProps) {
         <span className='portfolio-cross portfolio-cross-left' />
         <span className='portfolio-cross portfolio-cross-right' />
       </div>
+      <ProjectPreviewModal
+        key={selectedProject?.liveLink ?? 'closed'}
+        project={selectedProject}
+        onClose={closeProjectPreview}
+      />
     </div>
   );
 }
