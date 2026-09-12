@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  allowedDevOrigins: ['mayank--3000.getbb.app'],
   experimental: {
     useTypeScriptCli: true,
   },

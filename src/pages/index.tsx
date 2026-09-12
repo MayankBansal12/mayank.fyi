@@ -5,7 +5,7 @@ import BlogRow from '@/components/BlogRow';
 import ExperienceAccordion from '@/components/ExperienceAccordion';
 import Footer from '@/components/Footer';
 import GitHubContributions from '@/components/GitHubContributions';
-import Monogram from '@/components/Monogram';
+import HalftonePortrait from '@/components/HalftonePortrait';
 import NewsletterSection from '@/components/NewsletterSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import ProjectPreviewModal from '@/components/ProjectPreviewModal';
@@ -50,7 +50,7 @@ export default function Home({ writings }: HomeProps) {
                   <RoughCurvedArrow seed={102} width={48} height={30} className='ml-auto' />
                 </div>
               ) : null}
-              <Monogram />
+              <HalftonePortrait />
             </div>
             <div className='portfolio-identity-copy'>
               <h1 className='text-3xl leading-none font-semibold md:text-4xl'>
