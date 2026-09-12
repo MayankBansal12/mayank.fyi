@@ -3,6 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 
 const SIZE = 256;
 const SPACING = 2.4;
+const CORNER_RADIUS = SIZE * 0.1;
+const REVEAL_RADIUS = 52;
+const INFLUENCE_RADIUS = 78;
+const LOCAL_GROWTH = 0.12;
 
 type Dot = {
   x: number;
@@ -13,17 +17,35 @@ type Dot = {
 };
 
 const clamp = (value: number) => Math.max(0, Math.min(1, value));
+const smoothstep = (start: number, end: number, value: number) => {
+  const t = clamp((value - start) / (end - start));
+  return t * t * (3 - 2 * t);
+};
 const noise = (x: number, y: number) => {
   const value = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
   return value - Math.floor(value);
 };
 
-function samplePortrait(image: HTMLImageElement): Dot[] {
+// Signed distance inside the same 10% rounded frame used by the CSS and canvas clip.
+function edgeDistance(x: number, y: number) {
+  const dx = Math.abs(x - SIZE / 2) - (SIZE / 2 - CORNER_RADIUS);
+  const dy = Math.abs(y - SIZE / 2) - (SIZE / 2 - CORNER_RADIUS);
+  return (
+    CORNER_RADIUS - Math.hypot(Math.max(dx, 0), Math.max(dy, 0)) - Math.min(Math.max(dx, dy), 0)
+  );
+}
+
+type Portrait = {
+  dots: Dot[];
+  color: HTMLCanvasElement;
+};
+
+function samplePortrait(image: HTMLImageElement): Portrait | null {
   const sample = document.createElement('canvas');
   sample.width = SIZE;
   sample.height = SIZE;
   const context = sample.getContext('2d', { willReadFrequently: true });
-  if (!context) return [];
+  if (!context) return null;
 
   // Keep the original photograph intact; crop to the head and shoulders at render time.
   const cropSize = image.naturalWidth * 0.57;
@@ -38,7 +60,8 @@ function samplePortrait(image: HTMLImageElement): Dot[] {
     SIZE,
     SIZE,
   );
-  const { data } = context.getImageData(0, 0, SIZE, SIZE);
+  const imageData = context.getImageData(0, 0, SIZE, SIZE);
+  const { data } = imageData;
   const luminance = new Float32Array(SIZE * SIZE);
   const histogram = new Uint32Array(256);
   for (let index = 0; index < luminance.length; index++) {
@@ -48,7 +71,7 @@ function samplePortrait(image: HTMLImageElement): Dot[] {
     histogram[Math.round(value)]++;
   }
 
-  // The source is intentionally dark. Open up its midtones before making ink dots.
+  // Normalize the source, then merge the lower midtones into a strong ink silhouette.
   const percentile = (fraction: number) => {
     let count = 0;
     for (let value = 0; value < histogram.length; value++) {
@@ -64,17 +87,72 @@ function samplePortrait(image: HTMLImageElement): Dot[] {
   for (let y = SPACING / 2; y < SIZE; y += SPACING) {
     for (let x = SPACING / 2; x < SIZE; x += SPACING) {
       const seed = noise(x, y);
-      const edge = Math.min(x, y, SIZE - x, SIZE - y);
+      const edge = edgeDistance(x, y);
       const edgeFade = clamp(edge / (12 + noise(y, x) * 24));
       if (seed > edgeFade) continue;
       const value = luminance[Math.floor(y) * SIZE + Math.floor(x)];
-      const brightness = clamp((value - black) / range) ** 0.55;
-      const radius = SPACING * 0.76 * (1 - brightness) ** 0.85;
-      const highlightRadius = SPACING * 0.76 * brightness ** 0.85;
-      dots.push({ x, y, radius, highlightRadius, seed });
+      const exposure = clamp((value - black) / range);
+      // Keep a few highlights, while letting facial detail disappear into shadow.
+      const brightness = clamp((exposure - 0.4) / 0.5) ** 1.6;
+      // Fixed grain keeps the print textured without introducing random flicker.
+      const grain = noise(x + 43.2, y + 17.8);
+      const dotSize = SPACING * 0.78 * (grain < 0.025 ? 0.3 : 0.9 + grain * 0.14);
+      const radius = dotSize * (1 - brightness) ** 0.85;
+      const highlightRadius = dotSize * brightness ** 0.85;
+      dots.push({
+        x: x + (noise(y, x) - 0.5) * SPACING * 0.18,
+        y: y + (noise(y + 11, x + 29) - 0.5) * SPACING * 0.18,
+        radius,
+        highlightRadius,
+        seed,
+      });
     }
   }
-  return dots;
+  // Lift the original photo's dark exposure for the reveal, preserving its warm colors.
+  // This is prepared once; pointer movement only changes the reveal mask.
+  for (let index = 0; index < luminance.length; index++) {
+    const offset = index * 4;
+    const value = luminance[index];
+    const brightness = clamp((value - black) / range) ** 0.6;
+    const gain = Math.min(5, (brightness * 210) / Math.max(value, 1));
+    data[offset] = Math.min(255, data[offset] * gain);
+    data[offset + 1] = Math.min(255, data[offset + 1] * gain);
+    data[offset + 2] = Math.min(255, data[offset + 2] * gain);
+    const x = index % SIZE;
+    const y = Math.floor(index / SIZE);
+    data[offset + 3] = 255 * clamp(edgeDistance(x, y) / 18);
+  }
+  context.putImageData(imageData, 0, 0);
+  return { dots, color: sample };
+}
+
+function drawRevealMask(
+  context: CanvasRenderingContext2D,
+  dots: Dot[],
+  x: number,
+  y: number,
+  radius: number,
+) {
+  context.clearRect(0, 0, SIZE, SIZE);
+  context.save();
+  context.beginPath();
+  context.arc(x, y, radius, 0, Math.PI * 2);
+  context.clip();
+  context.fillStyle = '#000';
+  context.beginPath();
+  const core = radius * 0.26;
+  context.arc(x, y, core, 0, Math.PI * 2);
+  // A clear center opens into growing ink-sized dots, rather than a blurry circle.
+  for (const dot of dots) {
+    const distance = Math.hypot(dot.x - x, dot.y - y);
+    if (distance < core - SPACING || distance > radius) continue;
+    const coverage = 1 - smoothstep(core, radius, distance);
+    const dotRadius = SPACING * 0.8 * coverage ** 0.65 * (0.92 + dot.seed * 0.16);
+    context.moveTo(dot.x + dotRadius, dot.y);
+    context.arc(dot.x, dot.y, dotRadius, 0, Math.PI * 2);
+  }
+  context.fill();
+  context.restore();
 }
 
 export default function HalftonePortrait() {
@@ -93,14 +171,25 @@ export default function HalftonePortrait() {
       const context = canvas.getContext('2d');
       if (!context) return;
 
-      let dots: Dot[];
+      let portrait: Portrait | null;
       try {
-        dots = samplePortrait(image);
+        portrait = samplePortrait(image);
       } catch {
         // A readable monochrome photo remains if canvas sampling is unavailable.
         return;
       }
-      if (!dots.length) return;
+      if (!portrait?.dots.length) return;
+      const { dots, color } = portrait;
+      const reveal = document.createElement('canvas');
+      reveal.width = SIZE;
+      reveal.height = SIZE;
+      const revealContext = reveal.getContext('2d');
+      if (!revealContext) return;
+      const revealMask = document.createElement('canvas');
+      revealMask.width = SIZE;
+      revealMask.height = SIZE;
+      const maskContext = revealMask.getContext('2d');
+      if (!maskContext) return;
 
       const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
       const pointer = { x: SIZE / 2, y: SIZE / 2, lagX: SIZE / 2, lagY: SIZE / 2 };
@@ -117,35 +206,84 @@ export default function HalftonePortrait() {
         frame = 0;
         const delta = Math.min(time - (previousTime || time - 16.67), 40);
         previousTime = time;
-        const follow = 1 - Math.exp(-delta / 65);
+        const reducedMotion = motion.matches;
+        const follow = reducedMotion ? 1 : 1 - Math.exp(-delta / 45);
         pointer.lagX += (pointer.x - pointer.lagX) * follow;
         pointer.lagY += (pointer.y - pointer.lagY) * follow;
-        const target = active && !motion.matches ? 1 : 0;
-        strength += (target - strength) * (1 - Math.exp(-delta / (active ? 90 : 110)));
-        if (!active && strength < 0.002) strength = 0;
-        velocity *= Math.exp(-delta / 100);
+        if (Math.abs(pointer.x - pointer.lagX) < 0.04) pointer.lagX = pointer.x;
+        if (Math.abs(pointer.y - pointer.lagY) < 0.04) pointer.lagY = pointer.y;
+        const target = active ? 1 : 0;
+        strength = reducedMotion
+          ? target
+          : strength + (target - strength) * (1 - Math.exp(-delta / (active ? 90 : 110)));
+        if (Math.abs(target - strength) < 0.002) strength = target;
+        velocity *= Math.exp(-delta / 120);
+        if (velocity < 0.002) velocity = 0;
+
+        // The portrait stays anchored. Only the small area beneath the cursor grows.
+        const cursorX = pointer.lagX;
+        const cursorY = pointer.lagY;
+        const edgeLock = clamp(edgeDistance(cursorX, cursorY) / 32);
+        const growth = reducedMotion ? 0 : LOCAL_GROWTH * strength * edgeLock;
 
         context.clearRect(0, 0, SIZE, SIZE);
+        context.save();
+        // The rounded frame and the surrounding ink never scale or translate.
+        context.beginPath();
+        context.roundRect(0, 0, SIZE, SIZE, CORNER_RADIUS);
+        context.clip();
         context.fillStyle = ink;
         context.beginPath();
         for (const dot of dots) {
-          const dx = dot.x - pointer.lagX;
-          const dy = dot.y - pointer.lagY;
+          const dx = dot.x - cursorX;
+          const dy = dot.y - cursorY;
           const distance = Math.hypot(dx, dy);
-          const influence = clamp(1 - distance / (70 + velocity * 20)) ** 2 * strength;
-          const recovery = 0.55 + 0.45 * Math.sin(time / (170 + dot.seed * 280) + dot.seed * 30);
-          const dissolve = influence * (0.35 + dot.seed * 0.6) * (0.65 + recovery * 0.35);
-          const radius = (dark ? dot.highlightRadius : dot.radius) * (1 - dissolve);
+          const falloff = 1 - smoothstep(REVEAL_RADIUS * 0.55, INFLUENCE_RADIUS, distance);
+          const pinnedEdge = clamp(edgeDistance(dot.x, dot.y) / 24);
+          const influence = reducedMotion ? 0 : falloff * strength * pinnedEdge;
+          const dissolve = influence * (0.08 + dot.seed * 0.5) * (0.7 + velocity * 0.3);
+          const localGrowth = growth * falloff * pinnedEdge;
+          const radius =
+            (dark ? dot.highlightRadius : dot.radius) * (1 + localGrowth) * (1 - dissolve);
           if (radius < 0.12) continue;
-          const displacement = influence * (3 + dot.seed * 5);
-          const x = dot.x + (dx / Math.max(distance, 1)) * displacement;
-          const y = dot.y + (dy / Math.max(distance, 1)) * displacement;
+          const x = dot.x + dx * localGrowth;
+          const y = dot.y + dy * localGrowth;
           context.moveTo(x + radius, y);
           context.arc(x, y, radius, 0, Math.PI * 2);
         }
         context.fill();
-        // No idle render loop, and no animation in hidden tabs or offscreen.
-        if ((active || strength > 0) && !motion.matches && inView && !document.hidden) {
+
+        if (strength > 0) {
+          revealContext.clearRect(0, 0, SIZE, SIZE);
+          revealContext.globalCompositeOperation = 'source-over';
+          // Magnify within the reveal mask, anchored at the cursor instead of panning.
+          revealContext.save();
+          revealContext.translate(cursorX, cursorY);
+          revealContext.scale(1 + growth, 1 + growth);
+          revealContext.translate(-cursorX, -cursorY);
+          revealContext.drawImage(color, 0, 0);
+          revealContext.restore();
+          drawRevealMask(
+            maskContext,
+            dots,
+            cursorX,
+            cursorY,
+            REVEAL_RADIUS * (0.82 + strength * 0.18),
+          );
+          revealContext.globalCompositeOperation = 'destination-in';
+          revealContext.drawImage(revealMask, 0, 0);
+          context.globalAlpha = strength;
+          context.drawImage(reveal, 0, 0);
+          context.globalAlpha = 1;
+        }
+        context.restore();
+        // Settle completely when the cursor rests; movement wakes the effect again.
+        const settling =
+          strength !== target ||
+          pointer.lagX !== pointer.x ||
+          pointer.lagY !== pointer.y ||
+          velocity > 0;
+        if (settling && !reducedMotion && inView && !document.hidden) {
           frame = requestAnimationFrame(draw);
         }
       };
@@ -158,11 +296,13 @@ export default function HalftonePortrait() {
         requestDraw();
       };
       const move = (event: PointerEvent) => {
-        if (motion.matches || event.pointerType !== 'mouse') return;
+        if (event.pointerType !== 'mouse') return;
         const rect = canvas.getBoundingClientRect();
         const x = ((event.clientX - rect.left) / rect.width) * SIZE;
         const y = ((event.clientY - rect.top) / rect.height) * SIZE;
-        velocity = Math.min(1, Math.hypot(x - pointer.x, y - pointer.y) / 35);
+        velocity = active
+          ? Math.min(1, velocity * 0.4 + Math.hypot(x - pointer.x, y - pointer.y) / 35)
+          : 0;
         if (!active) {
           pointer.lagX = x;
           pointer.lagY = y;
@@ -182,6 +322,9 @@ export default function HalftonePortrait() {
       const reset = () => {
         active = false;
         strength = 0;
+        velocity = 0;
+        pointer.lagX = pointer.x;
+        pointer.lagY = pointer.y;
         cancelAnimationFrame(frame);
         frame = 0;
         requestDraw();
