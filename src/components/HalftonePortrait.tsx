@@ -82,6 +82,37 @@ function samplePortrait(image: HTMLImageElement): Portrait | null {
   };
   const black = percentile(0.04);
   const range = Math.max(1, percentile(0.98) - black);
+  const tones = Array.from(luminance, (value) => {
+    const exposure = clamp((value - black) / range);
+    return clamp((exposure - 0.4) / 0.5) ** 1.6;
+  });
+  // Follow the central silhouette, bridging small highlight holes in the face.
+  const rightOutline = new Float32Array(SIZE);
+  const reflection = new Float32Array(SIZE);
+  const anchor = Math.round(SIZE * 0.46);
+  for (let y = 0; y < SIZE; y++) {
+    const edges = [anchor, anchor];
+    for (const [side, direction] of [-1, 1].entries()) {
+      let gap = 0;
+      for (let x = anchor; x >= 0 && x < SIZE; x += direction) {
+        if (tones[y * SIZE + x] < 0.25) {
+          edges[side] = x;
+          gap = 0;
+        } else if (++gap > 8) break;
+      }
+    }
+    rightOutline[y] = edges[1];
+    // Keep the head's alignment when the shoulders merge into the left shadow.
+    reflection[y] = Math.max(SIZE * 0.85, Math.min(SIZE * 0.97, edges[0] + edges[1]));
+  }
+  // Smooth the reflected background so individual hairs do not make horizontal seams.
+  const axes = reflection.map((_, y) => {
+    let sum = 0;
+    for (let offset = -6; offset <= 6; offset++) {
+      sum += reflection[Math.max(0, Math.min(SIZE - 1, y + offset))];
+    }
+    return sum / 13;
+  });
   const dots: Dot[] = [];
 
   for (let y = SPACING / 2; y < SIZE; y += SPACING) {
@@ -90,10 +121,16 @@ function samplePortrait(image: HTMLImageElement): Portrait | null {
       const edge = edgeDistance(x, y);
       const edgeFade = clamp(edge / (12 + noise(y, x) * 24));
       if (seed > edgeFade) continue;
-      const value = luminance[Math.floor(y) * SIZE + Math.floor(x)];
-      const exposure = clamp((value - black) / range);
-      // Keep a few highlights, while letting facial detail disappear into shadow.
-      const brightness = clamp((exposure - 0.4) / 0.5) ** 1.6;
+      const row = Math.floor(y);
+      const originalBrightness = tones[row * SIZE + Math.floor(x)];
+      // Match the left background at the same distance from the figure, keeping
+      // the original silhouette and crop intact. Only the right background changes.
+      const sourceX = Math.max(0, Math.min(SIZE - 1, Math.round(axes[row] - x)));
+      const blend = smoothstep(rightOutline[row] + 1, rightOutline[row] + 7, x);
+      const brightness = Math.min(
+        originalBrightness,
+        originalBrightness + (tones[row * SIZE + sourceX] - originalBrightness) * blend,
+      );
       // Fixed grain keeps the print textured without introducing random flicker.
       const grain = noise(x + 43.2, y + 17.8);
       const dotSize = SPACING * 0.78 * (grain < 0.025 ? 0.3 : 0.9 + grain * 0.14);
