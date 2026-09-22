@@ -1,5 +1,13 @@
 [
   {
+    "slug": "multi-device-madness-of-my-coding",
+    "title": "Multi-machine madness of my coding workflow",
+    "description": "remote machines, VMs, daemon processes, ssh, tmux, tailscale, opencode, codex, t3 code, and the new agent IDE that rewired my brain",
+    "publishedAt": "09-08-2026",
+    "publishedAtISO": "2026-08-09T20:51:18.000Z",
+    "sourceUrl": "https://mayank12.substack.com/p/multi-device-madness-of-my-coding"
+  },
+  {
     "slug": "dns-resolution-on-the-internet",
     "title": "DNS resolution on the internet",
     "description": "how a domain name gets resolved to a server IP (browser cache, authoritative nameserver and everything in between)",
