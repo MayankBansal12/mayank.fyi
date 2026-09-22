@@ -9,7 +9,7 @@ Run `pnpm import:writings` to fetch the Substack RSS feed and update
 `pnpm import:writings path/to/feed.xml`. Existing posts are retained when they
 drop out of the feed; matching posts are refreshed and the index is sorted newest first.
 
-The **Update writings** GitHub Actions workflow runs daily at 06:23 UTC and can
+The **Update writings** GitHub Actions workflow runs weekly (Mondays at 06:23 UTC) and can
 also be started from the Actions tab with **Run workflow**. It opens or updates
 one `chore: update writings from Substack` PR when content changes. Merge that PR
 to publish the updates. The workflow must be merged into the default branch for
