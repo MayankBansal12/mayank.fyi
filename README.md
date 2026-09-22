@@ -19,7 +19,13 @@ In **Settings → Actions → General → Workflow permissions**, enable **Allow
 GitHub Actions to create and approve pull requests**. The workflow grants its
 `GITHUB_TOKEN` `contents: write` and `pull-requests: write`; no extra secret is needed.
 
-HTTP errors (including Substack/Cloudflare blocking a runner), empty feeds, and
-invalid posts fail the import before it writes content. Check the workflow logs
-if updates stop arriving. PRs created with `GITHUB_TOKEN` do not trigger other
+The importer first requests the feed directly, then retries with a Bing crawler
+User-Agent if the request fails or returns something other than non-empty RSS XML.
+This header currently allows the feed through Substack's Cloudflare protection
+without a proxy, dependency, or API key. Cloudflare rules can change; each request
+has a 60-second timeout, and the logs identify which strategy succeeded or failed.
+
+If both fetch strategies fail, or posts are invalid, the import fails before it
+writes content. Check the workflow logs if updates stop arriving.
+PRs created with `GITHUB_TOKEN` do not trigger other
 push/pull-request workflows automatically.
