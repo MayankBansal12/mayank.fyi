@@ -1,7 +1,8 @@
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, join } from 'node:path';
 
-const feedPath = 'feed.xml';
+const feedPath = process.argv[2];
+const feedUrl = 'https://mayank12.substack.com/feed.xml';
 const outputDir = join('src', 'content', 'writing');
 const postsDir = join(outputDir, 'posts');
 
@@ -57,27 +58,44 @@ const formatDate = (date) =>
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
+    timeZone: 'UTC',
   })
     .format(date)
     .replaceAll('/', '-');
 
-const feed = readFileSync(feedPath, 'utf8');
+const fetchFeed = async () => {
+  const response = await fetch(feedUrl, { signal: AbortSignal.timeout(60_000) });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${feedUrl}: HTTP ${response.status}`);
+  }
+  return response.text();
+};
+
+// An explicit local file remains useful for offline imports and testing.
+const feed = feedPath ? readFileSync(feedPath, 'utf8') : await fetchFeed();
 const items = [...feed.matchAll(/<item>([\s\S]*?)<\/item>/gi)].map((match) => match[1]);
 
 if (items.length === 0) {
-  throw new Error(`No RSS items found in ${feedPath}`);
+  throw new Error(`No RSS items found in ${feedPath || feedUrl}`);
 }
 
-rmSync(outputDir, { recursive: true, force: true });
-mkdirSync(postsDir, { recursive: true });
-
-const posts = items.map((item) => {
+const importedPosts = items.map((item) => {
   const title = getTag(item, 'title');
   const description = getTag(item, 'description');
   const sourceUrl = getTag(item, 'link');
   const contentHtml = getTag(item, 'content:encoded');
   const publishedDate = new Date(getTag(item, 'pubDate'));
   const slug = getSlug(sourceUrl, title);
+
+  if (
+    !title ||
+    !slug ||
+    !sourceUrl.startsWith('https://mayank12.substack.com/p/') ||
+    !contentHtml ||
+    Number.isNaN(publishedDate.getTime())
+  ) {
+    throw new Error(`Invalid RSS item: ${title || '(missing title)'}`);
+  }
 
   return {
     slug,
@@ -90,8 +108,26 @@ const posts = items.map((item) => {
   };
 });
 
+if (new Set(importedPosts.map((post) => post.slug)).size !== importedPosts.length) {
+  throw new Error('Duplicate post slugs in RSS feed');
+}
+
+// RSS feeds are rolling windows. Keep archived posts that are no longer in the feed.
+// Validate and parse everything before writing any output.
+const postsBySlug = new Map();
+if (existsSync(postsDir)) {
+  for (const file of readdirSync(postsDir).filter((file) => file.endsWith('.json'))) {
+    const post = JSON.parse(readFileSync(join(postsDir, file), 'utf8'));
+    postsBySlug.set(post.slug, post);
+  }
+}
+for (const post of importedPosts) postsBySlug.set(post.slug, post);
+const posts = [...postsBySlug.values()].sort(
+  (a, b) => b.publishedAtISO.localeCompare(a.publishedAtISO) || a.slug.localeCompare(b.slug),
+);
 const index = posts.map(({ contentHtml: _contentHtml, ...post }) => post);
 
+mkdirSync(postsDir, { recursive: true });
 writeFileSync(join(outputDir, 'index.json'), `${JSON.stringify(index, null, 2)}\n`);
 
 for (const post of posts) {

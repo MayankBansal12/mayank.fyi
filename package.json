@@ -8,6 +8,7 @@
     "node": ">=20.9.0"
   },
   "scripts": {
+    "import:writings": "node scripts/import-substack-feed.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
