@@ -82,7 +82,11 @@ test('imports, updates, retains archives, and rejects bad feeds without changing
 
   writeFileSync(
     mock,
-    `globalThis.fetch = async (url) => {
+    `import assert from 'node:assert/strict';
+    let calls = 0;
+    process.on('exit', () => assert.equal(calls, 1));
+    globalThis.fetch = async (url) => {
+    calls++;
     if (url !== 'https://mayank12.substack.com/feed.xml') throw new Error('Unexpected URL');
     return { ok: true, text: async () => ${JSON.stringify(`<rss><channel>${feed}</channel></rss>`)} };
   };`,
@@ -93,4 +97,62 @@ test('imports, updates, retains archives, and rejects bad feeds without changing
   });
   assert.equal(success.status, 0, success.stderr);
   assert.deepEqual(snapshot(), before);
+
+  for (const firstResponse of [
+    'return { ok: false, status: 403 };',
+    "throw new TypeError('Network failure');",
+    "throw new DOMException('Request timed out', 'TimeoutError');",
+    "return { ok: true, text: async () => { throw new Error('Body read failed'); } };",
+    ...[
+      '<html>Just a moment...</html>',
+      `<html><rss><channel>${feed}</channel></rss></html>`,
+      `<rss><channel>${feed}`,
+      '<rss><channel></channel></rss>',
+    ].map((body) => `return { ok: true, text: async () => ${JSON.stringify(body)} };`),
+  ]) {
+    writeFileSync(
+      mock,
+      `import assert from 'node:assert/strict';
+      let calls = 0;
+      const signals = new Set();
+      process.on('exit', () => assert.equal(calls, 2));
+      globalThis.fetch = async (url, options) => {
+        assert.equal(url, 'https://mayank12.substack.com/feed.xml');
+        assert.ok(options.signal instanceof AbortSignal);
+        assert.ok(!signals.has(options.signal));
+        signals.add(options.signal);
+        calls++;
+        if (calls === 1) {
+          assert.deepEqual(options.headers, {});
+          ${firstResponse}
+        }
+        assert.equal(options.headers['User-Agent'],
+          'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)');
+        return { ok: true, text: async () => ${JSON.stringify(`<?xml version="1.0"?><rss version="2.0"><channel>${feed}</channel></rss>`)} };
+      };`,
+    );
+    const fallback = spawnSync(process.execPath, ['--import', mock, script.pathname], {
+      cwd,
+      encoding: 'utf8',
+    });
+    assert.equal(fallback.status, 0, fallback.stderr);
+    assert.match(fallback.stdout, /Fetched Substack RSS using crawler User-Agent/);
+    assert.deepEqual(snapshot(), before);
+  }
+
+  writeFileSync(
+    mock,
+    `let calls = 0;
+    globalThis.fetch = async () => {
+      if (++calls === 1) return { ok: false, status: 403 };
+      return { ok: true, text: async () => '<html>Just a moment...</html>' };
+    };`,
+  );
+  const invalidFallback = spawnSync(process.execPath, ['--import', mock, script.pathname], {
+    cwd,
+    encoding: 'utf8',
+  });
+  assert.notEqual(invalidFallback.status, 0);
+  assert.match(invalidFallback.stderr, /direct: HTTP 403; crawler User-Agent: Response is not/);
+  assert.deepEqual(snapshot(), before, 'failed fallback leaves content untouched');
 });

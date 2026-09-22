@@ -64,11 +64,37 @@ const formatDate = (date) =>
     .replaceAll('/', '-');
 
 const fetchFeed = async () => {
-  const response = await fetch(feedUrl, { signal: AbortSignal.timeout(60_000) });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${feedUrl}: HTTP ${response.status}`);
+  const strategies = [
+    { name: 'direct', headers: {} },
+    {
+      name: 'crawler User-Agent',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)',
+      },
+    },
+  ];
+  const errors = [];
+  for (const { name, headers } of strategies) {
+    try {
+      const response = await fetch(feedUrl, { headers, signal: AbortSignal.timeout(60_000) });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const xml = await response.text();
+      if (
+        !/^\s*(?:<\?xml\s[^?]*\?>\s*)?<rss\b[^>]*>\s*<channel\b[^>]*>[\s\S]*<\/channel>\s*<\/rss>\s*$/i.test(
+          xml,
+        ) ||
+        !/<item>[\s\S]*?<\/item>/i.test(xml)
+      ) {
+        throw new Error('Response is not a non-empty RSS feed');
+      }
+      console.log(`Fetched Substack RSS using ${name}`);
+      return xml;
+    } catch (error) {
+      errors.push(`${name}: ${error.message}`);
+      console.warn(`Substack fetch failed (${name}): ${error.message}`);
+    }
   }
-  return response.text();
+  throw new Error(`Failed to fetch ${feedUrl}: ${errors.join('; ')}`);
 };
 
 // An explicit local file remains useful for offline imports and testing.
