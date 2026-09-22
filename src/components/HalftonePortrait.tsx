@@ -333,7 +333,8 @@ export default function HalftonePortrait() {
         requestDraw();
       };
       const move = (event: PointerEvent) => {
-        if (event.pointerType !== 'mouse') return;
+        if (!event.isPrimary) return;
+        if (event.pointerType !== 'mouse' && event.buttons === 0) return;
         const rect = canvas.getBoundingClientRect();
         const x = ((event.clientX - rect.left) / rect.width) * SIZE;
         const y = ((event.clientY - rect.top) / rect.height) * SIZE;
@@ -348,6 +349,9 @@ export default function HalftonePortrait() {
         pointer.y = y;
         active = true;
         requestDraw();
+      };
+      const release = (event: PointerEvent) => {
+        if (event.isPrimary && event.pointerType !== 'mouse') leave();
       };
       const resize = () => {
         const pixels = Math.round(canvas.clientWidth * Math.min(window.devicePixelRatio || 1, 2));
@@ -387,7 +391,9 @@ export default function HalftonePortrait() {
         attributes: true,
         attributeFilter: ['class'],
       });
+      canvas.addEventListener('pointerdown', move);
       canvas.addEventListener('pointermove', move);
+      canvas.addEventListener('pointerup', release);
       canvas.addEventListener('pointerleave', leave);
       canvas.addEventListener('pointercancel', leave);
       motion.addEventListener('change', reset);
@@ -398,7 +404,9 @@ export default function HalftonePortrait() {
         resizeObserver.disconnect();
         visibilityObserver.disconnect();
         themeObserver.disconnect();
+        canvas.removeEventListener('pointerdown', move);
         canvas.removeEventListener('pointermove', move);
+        canvas.removeEventListener('pointerup', release);
         canvas.removeEventListener('pointerleave', leave);
         canvas.removeEventListener('pointercancel', leave);
         motion.removeEventListener('change', reset);

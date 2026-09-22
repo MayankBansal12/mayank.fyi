@@ -111,6 +111,8 @@
 }
 
 .portfolio-home {
+  container-type: inline-size;
+  --portfolio-rail-inset: 0.75rem;
   background-image:
     repeating-linear-gradient(
       to bottom,
@@ -220,8 +222,8 @@
       transparent 15px
     );
   background-position:
-    0.75rem top,
-    calc(100% - 0.75rem) top;
+    var(--portfolio-rail-inset) top,
+    calc(100% - var(--portfolio-rail-inset)) top;
   background-repeat: no-repeat;
   background-size:
     1px 100%,
@@ -231,8 +233,8 @@
 .portfolio-rail::before,
 .portfolio-rail::after {
   position: absolute;
-  right: 0.75rem;
-  left: 0.75rem;
+  right: var(--portfolio-rail-inset);
+  left: var(--portfolio-rail-inset);
   z-index: 1;
   height: 1px;
   content: "";
@@ -332,6 +334,8 @@
 }
 
 .portfolio-portrait-canvas {
+  /* Let one finger explore the reveal while keeping pinch zoom available. */
+  touch-action: pinch-zoom;
   position: absolute;
   inset: 0;
   width: 100%;
@@ -470,18 +474,18 @@
 .portfolio-section-divider::after {
   position: absolute;
   top: 0;
-  width: 0.75rem;
+  width: calc(var(--portfolio-rail-inset) + 1px);
   height: 11px;
   content: "";
   background: var(--portfolio-border);
 }
 
 .portfolio-section-divider::before {
-  left: max(0.75rem, calc(50% - 380px));
+  left: calc((100% - 100cqw) / 2);
 }
 
 .portfolio-section-divider::after {
-  right: max(0.75rem, calc(50% - 380px));
+  right: calc((100% - 100cqw) / 2);
 }
 
 .github-activity {
@@ -1466,38 +1470,35 @@ html.scroll-minimap-dragging {
 
   .project-modal-layout {
     width: 100%;
-    grid-template-columns: 2.35rem minmax(0, 1fr);
+    height: calc(100dvh - 1.3rem);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
     gap: 0.5rem;
   }
 
   .project-modal-actions {
+    flex-direction: row;
+    justify-content: flex-end;
     gap: 0.45rem;
   }
 
   .project-modal-action {
-    width: 2.35rem;
-    height: 2.35rem;
+    width: 2.75rem;
+    height: 2.75rem;
     font-size: 0.95rem;
   }
 
   .project-modal-browser {
-    height: 88dvh;
+    height: 100%;
+    min-height: 0;
   }
 
   .portfolio-opening {
     min-height: 4.75rem;
   }
 
-  .portfolio-rail {
-    background-position:
-      0.35rem top,
-      calc(100% - 0.35rem) top;
-  }
-
-  .portfolio-rail::before,
-  .portfolio-rail::after {
-    right: 0.35rem;
-    left: 0.35rem;
+  .portfolio-home {
+    --portfolio-rail-inset: 0.35rem;
   }
 
   .portfolio-hero,
@@ -1531,7 +1532,7 @@ html.scroll-minimap-dragging {
 
   .portfolio-hero-copy {
     margin-top: 1.6rem;
-    text-align: center;
+    text-align: start;
   }
 
   .portfolio-hero-actions,
@@ -1541,14 +1542,6 @@ html.scroll-minimap-dragging {
 
   .portfolio-social-heading {
     text-align: center;
-  }
-
-  .portfolio-section-divider::before {
-    left: 0.35rem;
-  }
-
-  .portfolio-section-divider::after {
-    right: 0.35rem;
   }
 
   .github-activity {
