@@ -21,6 +21,7 @@ const Metadata: React.FC = () => {
     <Head>
       <title>{metadata.title}</title>
       <link rel='canonical' href={canonicalUrl} />
+      <meta property='og:site_name' content={siteDomain} />
       <meta property='og:title' content={metadata.title} />
       <meta property='og:description' content={metadata.description} />
       <meta property='og:url' content={canonicalUrl} />
