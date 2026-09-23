@@ -25,6 +25,9 @@ const Metadata: React.FC = () => {
       <meta property='og:description' content={metadata.description} />
       <meta property='og:url' content={canonicalUrl} />
       <meta property='og:image' content={site.socialImage} />
+      <meta property='og:image:type' content='image/png' />
+      <meta property='og:image:width' content='1200' />
+      <meta property='og:image:height' content='630' />
       <meta property='og:image:alt' content={site.socialImageAlt} />
       <meta property='og:type' content='website' />
 

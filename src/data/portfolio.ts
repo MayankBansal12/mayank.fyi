@@ -40,9 +40,9 @@ export const site = {
   title: 'mayank bansal • your friendly neighbourhood developer',
   description: 'mayank bansal portfolio, backend developer and software engineer.',
   socialDescription: 'portfolio website for mayank bansal',
-  socialImage:
-    'https://res.cloudinary.com/dwuyp1nss/image/upload/v1735586934/mayankbansal.xyz/g2s0ah77imvhuzpac1nu.jpg',
-  socialImageAlt: 'mayank bansal portfolio',
+  socialImage: 'https://mayank.fyi/images/og-postmark.png',
+  socialImageAlt:
+    'mayank. just an engineer. creating things that matter. — on warm cream paper with hand-drawn postmarks',
 };
 
 export const links = {
