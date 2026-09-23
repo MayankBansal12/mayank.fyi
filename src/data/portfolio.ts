@@ -39,7 +39,7 @@ export const site = {
   url: 'https://mayank.fyi',
   title: 'mayank. | just another engineer on the internet',
   description:
-    'inspired by the great creators building for the love of their craft\nworked with early stage startups moving b/w frontend, backend, infra.\ncurrently working on diff experiments to push limits of myself and what i can do with these models.',
+    '-> inspired by the great creators building for the love of their craft\n-> worked with early stage startups moving b/w frontend, backend, infra.\n-> currently working on diff experiments to push limits of myself and what i can do with these models.',
   socialDescription: 'portfolio website for mayank bansal',
   socialImage: 'https://mayank.fyi/images/og-postmark.png',
   socialImageAlt: 'mayank. just an engineer. creating things that matter.',
