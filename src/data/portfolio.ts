@@ -41,8 +41,7 @@ export const site = {
   description: 'mayank bansal portfolio, backend developer and software engineer.',
   socialDescription: 'portfolio website for mayank bansal',
   socialImage: 'https://mayank.fyi/images/og-postmark.png',
-  socialImageAlt:
-    'mayank. just an engineer. creating things that matter. — on warm cream paper with hand-drawn postmarks',
+  socialImageAlt: 'mayank. just an engineer. creating things that matter.',
 };
 
 export const links = {
