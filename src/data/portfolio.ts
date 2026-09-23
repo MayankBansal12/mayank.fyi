@@ -37,8 +37,9 @@ export const site = {
   name: 'mayank bansal',
   initials: 'mb',
   url: 'https://mayank.fyi',
-  title: 'mayank bansal • your friendly neighbourhood developer',
-  description: 'mayank bansal portfolio, backend developer and software engineer.',
+  title: 'mayank. | just another engineer on the internet',
+  description:
+    'inspired by the great creators building for the love of their craft\nworked with early stage startups moving b/w frontend, backend, infra.\ncurrently working on diff experiments to push limits of myself and what i can do with these models.',
   socialDescription: 'portfolio website for mayank bansal',
   socialImage: 'https://mayank.fyi/images/og-postmark.png',
   socialImageAlt: 'mayank. just an engineer. creating things that matter.',
