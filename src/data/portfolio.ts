@@ -265,6 +265,7 @@ export const skillGroups = [
       'nest.js',
       'spring boot',
       'fastify',
+      'convex',
       'REST APIs',
       'websockets',
       'langgraph',
