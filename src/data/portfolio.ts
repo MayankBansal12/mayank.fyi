@@ -125,11 +125,13 @@ export const experiences: Experience[] = [
     location: 'hyderabad',
     summary: 'building agentic systems and internal tools.',
     highlights: [
-      'building a nest.js and next.js ERP with postgresql and drizzle for core workflows.',
-      'developing langgraph workflows for design generation, editing, routing, and fallbacks.',
-      'stabilized a raspberry pi and ESP32 vending kiosk for a 50+ user live store launch.',
+      'building a nest.js and next.js ERP with postgresql and drizzle ORM to support sales workflows, operations tracking, and business reporting.',
+      'integrated a real-time voice agent using livekit so the operations team can create and manage work through voice commands.',
+      'built an internal assistant and scheduled-update automations to help teams track work and manage day-to-day processes.',
+      'developing a langgraph-based workflow for jewelry design generation and editing, with structured state, tool routing, and fallbacks.',
+      'resolved raspberry pi/ESP32 kiosk integration issues, supporting stable operation during a live store launch with 50+ users.',
     ],
-    skills: ['nest.js', 'next.js', 'postgresql', 'drizzle', 'langgraph', 'IoT'],
+    skills: ['nest.js', 'next.js', 'postgresql', 'drizzle', 'livekit', 'langgraph', 'IoT'],
   },
   {
     id: 'echio',
@@ -154,7 +156,7 @@ export const experiences: Experience[] = [
     company: 'real dev squad',
     companyUrl: 'https://realdevsquad.com',
     role: 'SDE (Volunteering)',
-    period: "aug '24 - present",
+    period: "aug '24 - aug '26",
     location: 'remote',
     summary: 'hanging out on nights & weekends, working and making some good friends',
     highlights: [
