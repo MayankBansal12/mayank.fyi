@@ -7,6 +7,7 @@ type ProjectCardProps = {
   date: string;
   image?: string;
   imageAlt?: string;
+  imagePosition?: 'top' | 'center' | 'bottom';
   description: string[];
   githubLink?: string;
   liveLink?: string;
@@ -19,6 +20,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   date,
   image,
   imageAlt,
+  imagePosition,
   description,
   githubLink,
   liveLink,
@@ -73,6 +75,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               src={image}
               alt={imageAlt ?? `${title} project preview`}
               className={`project-preview-image ${title === 'shift-read' ? 'project-preview-image-center' : ''}`}
+              style={{ objectPosition: imagePosition }}
               width={1440}
               height={900}
               loading='lazy'

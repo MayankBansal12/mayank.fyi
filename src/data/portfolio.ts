@@ -15,6 +15,7 @@ export type Project = {
   date: string;
   image?: string;
   imageAlt?: string;
+  imagePosition?: 'top' | 'center' | 'bottom';
   githubLink?: string;
   liveLink?: string;
   description: string[];
@@ -122,13 +123,15 @@ export const experiences: Experience[] = [
     role: 'SDE',
     period: "feb '26 - present",
     location: 'hyderabad',
-    summary: 'building agentic systems and internal tools.',
+    summary: 'building internal tools and agents and working with a great manager.',
     highlights: [
-      'building a nest.js and next.js ERP with postgresql and drizzle for core workflows.',
-      'developing langgraph workflows for design generation, editing, routing, and fallbacks.',
-      'stabilized a raspberry pi and ESP32 vending kiosk for a 50+ user live store launch.',
+      'building an erp/internal operations tool for sales, operations tracking, and reporting with nest.js, next.js, postgresql, and drizzle.',
+      'integrated a real-time voice agent with livekit and rumik voice models so the operations team can manage their work using their voices.',
+      'built an internal assistant and automated scheduled updates to help teams keep track of work and day-to-day processes.',
+      'developed a langgraph workflow for generating and editing jewelry designs, with structured state, tool routing, and fallbacks.',
+      'fixed raspberry pi/ESP32 kiosk integration issues and helped keep the kiosks stable through a live store launch with 50+ users.',
     ],
-    skills: ['nest.js', 'next.js', 'postgresql', 'drizzle', 'langgraph', 'IoT'],
+    skills: ['nest.js', 'next.js', 'postgresql', 'drizzle', 'livekit', 'langgraph', 'IoT'],
   },
   {
     id: 'echio',
@@ -137,8 +140,7 @@ export const experiences: Experience[] = [
     role: 'SDE Intern -> SDE',
     period: "may '24 - nov '25",
     location: 'remote',
-    summary:
-      'met my first set of mentors here and had a lot of fun working on different things.',
+    summary: 'met my first set of mentors here and had a lot of fun working on different things.',
     highlights: [
       'designed an HLS transcoding pipeline with azure queues and docker-based parallel workers.',
       'reduced high-traffic API latency by 50% using redis caching and backend rate limiting.',
@@ -154,9 +156,9 @@ export const experiences: Experience[] = [
     company: 'real dev squad',
     companyUrl: 'https://realdevsquad.com',
     role: 'SDE (Volunteering)',
-    period: "aug '24 - present",
+    period: "aug '24 - aug '26",
     location: 'remote',
-    summary: 'hanging out on nights & weekends, working and making some good friends',
+    summary: 'hanging out on nights & weekends, working and making some good friends.',
     highlights: [
       'migrated legacy features to ember.js, helping deprecate the old platform.',
       'added unit and integration tests for a new react.js project.',
@@ -170,13 +172,25 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
-    title: 'sketchicon',
-    date: "aug '26",
-    image: '/projects/sketchicon.png',
-    imageAlt: 'Sketchicon hand-drawn React icon library',
-    githubLink: 'https://github.com/MayankBansal12/sketchicon',
-    liveLink: 'https://sketchicon.com',
-    description: ['1,700+ deterministic, customizable hand-drawn SVG icons for React.'],
+    title: 'snip',
+    date: "sep '26",
+    image: '/projects/snip.png',
+    imageAlt: 'Snip video editor with a video preview and clip timeline',
+    imagePosition: 'bottom',
+    githubLink: 'https://github.com/MayankBansal12/snip',
+    liveLink: 'https://snip.mayank.fyi',
+    description: ['a simple editor for small potato stuff. free, no watermarks, works offline.'],
+    featured: true,
+  },
+  {
+    title: 'common',
+    date: "oct '26",
+    image: '/projects/common.png',
+    imageAlt: 'Common: a common space for you, your people and your agents',
+    imagePosition: 'center',
+    githubLink: 'https://github.com/MayankBansal12/common',
+    liveLink: 'https://www.usecommon.app',
+    description: ['a common space for you, your people and your agents.'],
     featured: true,
   },
   {
@@ -198,7 +212,7 @@ export const projects: Project[] = [
     imageAlt: 'Chess with LLM model selection screen',
     githubLink: 'https://github.com/MayankBansal12/chess-with-llm',
     liveLink: 'https://chess.mayank.fyi/',
-    description: ['a chess arena for playing legal, timed matches against open-weight LLM models.'],
+    description: ['a chess arena for playing legal, timed matches against open-weight LLMs.'],
     featured: true,
   },
   {
@@ -211,6 +225,16 @@ export const projects: Project[] = [
     description: [
       'an agentic writing workspace that plans, drafts, reviews, and improves technical documents.',
     ],
+    featured: true,
+  },
+  {
+    title: 'sketchicon',
+    date: "aug '26",
+    image: '/projects/sketchicon.png',
+    imageAlt: 'Sketchicon hand-drawn React icon library',
+    githubLink: 'https://github.com/MayankBansal12/sketchicon',
+    liveLink: 'https://sketchicon.com',
+    description: ['1,700+ deterministic, customizable hand-drawn SVG icons for React.'],
     featured: true,
   },
 ];
@@ -241,6 +265,7 @@ export const skillGroups = [
       'nest.js',
       'spring boot',
       'fastify',
+      'convex',
       'REST APIs',
       'websockets',
       'langgraph',
