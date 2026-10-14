@@ -126,7 +126,7 @@ export const experiences: Experience[] = [
     summary: 'building internal tools and agents and working with a great manager.',
     highlights: [
       'building an erp/internal operations tool for sales, operations tracking, and reporting with nest.js, next.js, postgresql, and drizzle.',
-      'integrated a real-time livekit voice agent so the operations team can manage their work using their voices.',
+      'integrated a real-time voice agent with livekit and rumik voice models so the operations team can manage their work using their voices.',
       'built an internal assistant and automated scheduled updates to help teams keep track of work and day-to-day processes.',
       'developed a langgraph workflow for generating and editing jewelry designs, with structured state, tool routing, and fallbacks.',
       'fixed raspberry pi/ESP32 kiosk integration issues and helped keep the kiosks stable through a live store launch with 50+ users.',
