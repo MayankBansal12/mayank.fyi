@@ -123,7 +123,7 @@ export const experiences: Experience[] = [
     role: 'SDE',
     period: "feb '26 - present",
     location: 'hyderabad',
-    summary: 'building internal tools and agents and working with a great manager',
+    summary: 'building internal tools and agents and working with a great manager.',
     highlights: [
       'building an erp/internal operations tool for sales, operations tracking, and reporting with nest.js, next.js, postgresql, and drizzle.',
       'integrated a real-time livekit voice agent so the operations team can manage their work using their voices.',
@@ -158,7 +158,7 @@ export const experiences: Experience[] = [
     role: 'SDE (Volunteering)',
     period: "aug '24 - aug '26",
     location: 'remote',
-    summary: 'hanging out on nights & weekends, working and making some good friends',
+    summary: 'hanging out on nights & weekends, working and making some good friends.',
     highlights: [
       'migrated legacy features to ember.js, helping deprecate the old platform.',
       'added unit and integration tests for a new react.js project.',
@@ -190,7 +190,7 @@ export const projects: Project[] = [
     imagePosition: 'center',
     githubLink: 'https://github.com/MayankBansal12/common',
     liveLink: 'https://www.usecommon.app',
-    description: ['A common space for you, your people and your agents.'],
+    description: ['a common space for you, your people and your agents.'],
     featured: true,
   },
   {
@@ -212,7 +212,7 @@ export const projects: Project[] = [
     imageAlt: 'Chess with LLM model selection screen',
     githubLink: 'https://github.com/MayankBansal12/chess-with-llm',
     liveLink: 'https://chess.mayank.fyi/',
-    description: ['a chess arena for playing legal, timed matches against open-weight LLM models.'],
+    description: ['a chess arena for playing legal, timed matches against open-weight LLMs.'],
     featured: true,
   },
   {
