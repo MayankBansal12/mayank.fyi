@@ -15,6 +15,7 @@ export type Project = {
   date: string;
   image?: string;
   imageAlt?: string;
+  imagePosition?: 'top' | 'center' | 'bottom';
   githubLink?: string;
   liveLink?: string;
   description: string[];
@@ -137,8 +138,7 @@ export const experiences: Experience[] = [
     role: 'SDE Intern -> SDE',
     period: "may '24 - nov '25",
     location: 'remote',
-    summary:
-      'met my first set of mentors here and had a lot of fun working on different things.',
+    summary: 'met my first set of mentors here and had a lot of fun working on different things.',
     highlights: [
       'designed an HLS transcoding pipeline with azure queues and docker-based parallel workers.',
       'reduced high-traffic API latency by 50% using redis caching and backend rate limiting.',
@@ -170,13 +170,25 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
-    title: 'sketchicon',
-    date: "aug '26",
-    image: '/projects/sketchicon.png',
-    imageAlt: 'Sketchicon hand-drawn React icon library',
-    githubLink: 'https://github.com/MayankBansal12/sketchicon',
-    liveLink: 'https://sketchicon.com',
-    description: ['1,700+ deterministic, customizable hand-drawn SVG icons for React.'],
+    title: 'snip',
+    date: "sep '26",
+    image: '/projects/snip.png',
+    imageAlt: 'Snip video editor with a video preview and clip timeline',
+    imagePosition: 'bottom',
+    githubLink: 'https://github.com/MayankBansal12/snip',
+    liveLink: 'https://snip.mayank.fyi',
+    description: ['a simple editor for small potato stuff. free, no watermarks, works offline.'],
+    featured: true,
+  },
+  {
+    title: 'common',
+    date: "oct '26",
+    image: '/projects/common.png',
+    imageAlt: 'Common: a common space for you, your people and your agents',
+    imagePosition: 'center',
+    githubLink: 'https://github.com/MayankBansal12/common',
+    liveLink: 'https://www.usecommon.app',
+    description: ['A common space for you, your people and your agents.'],
     featured: true,
   },
   {
@@ -211,6 +223,16 @@ export const projects: Project[] = [
     description: [
       'an agentic writing workspace that plans, drafts, reviews, and improves technical documents.',
     ],
+    featured: true,
+  },
+  {
+    title: 'sketchicon',
+    date: "aug '26",
+    image: '/projects/sketchicon.png',
+    imageAlt: 'Sketchicon hand-drawn React icon library',
+    githubLink: 'https://github.com/MayankBansal12/sketchicon',
+    liveLink: 'https://sketchicon.com',
+    description: ['1,700+ deterministic, customizable hand-drawn SVG icons for React.'],
     featured: true,
   },
 ];
