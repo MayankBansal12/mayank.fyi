@@ -1376,7 +1376,6 @@ small.project-preview-url {
 
 .experience-trigger:active {
   background: var(--portfolio-row-hover);
-  transform: translateY(1px);
 }
 
 .portfolio-back-to-top {

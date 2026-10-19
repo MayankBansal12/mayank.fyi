@@ -49,11 +49,14 @@ export function useRoughDraw({ seed = 1, deps = [], draw }: UseRoughDrawOptions)
       const { width, height } = el.getBoundingClientRect();
       if (width < 2 || height < 2) return;
 
-      const w = Math.ceil(width);
-      const h = Math.ceil(height);
+      // Draw at the exact (often fractional) box size. Rounding the viewBox made the SVG
+      // rescale to fit, nudging the side borders by ~1px per frame while a box resized.
+      const w = Math.round(width * 100) / 100;
+      const h = Math.round(height * 100) / 100;
       svg.setAttribute('width', String(w));
       svg.setAttribute('height', String(h));
       svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      svg.setAttribute('preserveAspectRatio', 'none');
 
       while (svg.firstChild) {
         svg.removeChild(svg.firstChild);
