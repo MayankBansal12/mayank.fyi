@@ -35,7 +35,7 @@
 :root {
   scroll-behavior: smooth;
   color: #1e1e1e;
-  background-color: #faf7f0;
+  background-color: var(--board-background-light, #faf7f0);
 }
 
 *,
@@ -57,7 +57,7 @@
 
 .dark {
   color: #e8e4d9;
-  background-color: #161616;
+  background-color: var(--board-background-dark, #161616);
 }
 
 /* Excalidraw-style subtle dot grid */
@@ -70,6 +70,8 @@
   background-image: radial-gradient(circle, rgba(30, 30, 30, 0.09) 1px, transparent 1px);
   background-size: 22px 22px;
   font-family: var(--active-font);
+  /* Keep full-bleed decorations from widening the page; clip keeps sticky working. */
+  overflow-x: clip;
   transition: background-color 180ms ease;
 }
 
