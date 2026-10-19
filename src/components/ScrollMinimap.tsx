@@ -1,7 +1,10 @@
 import type { KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from 'react';
 import { useEffect, useRef } from 'react';
 
-const minimapLines = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
+const TICK_COUNT = 17;
+const minimapTicks = Array.from({ length: TICK_COUNT }, (_, i) => `tick-${i}`);
+/** Time constant for the viewport box easing toward the scroll position */
+const FOLLOW_MS = 70;
 
 function getScrollLimit() {
   return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
@@ -84,12 +87,16 @@ export default function ScrollMinimap() {
 
   useEffect(() => {
     let animationFrame = 0;
+    let lastTime = 0;
+    let currentY: number | null = null;
+    let targetY = 0;
     const portfolio = document.getElementById('top');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    const updateMinimap = () => {
+    const measure = () => {
       const track = trackRef.current;
       const thumb = thumbRef.current;
-      if (!track || !thumb) return;
+      if (!track || !thumb) return false;
 
       const documentHeight = document.documentElement.scrollHeight;
       const scrollLimit = getScrollLimit();
@@ -97,20 +104,47 @@ export default function ScrollMinimap() {
       const inset =
         Number.parseFloat(getComputedStyle(track).getPropertyValue('--minimap-inset')) || 0;
       const availableHeight = track.clientHeight - inset * 2;
-      const thumbHeight = Math.max(
-        20,
-        Math.min(28, availableHeight * (window.innerHeight / documentHeight)),
+      const thumbHeight = Math.round(
+        Math.max(18, Math.min(34, availableHeight * (window.innerHeight / documentHeight))),
       );
-      const travel = Math.max(0, availableHeight - thumbHeight);
 
       thumb.style.height = `${thumbHeight}px`;
-      thumb.style.transform = `translateY(${travel * progress}px) rotate(-0.7deg)`;
+      // Rest on whole pixels so the 1px outline stays crisp
+      targetY = Math.round(Math.max(0, availableHeight - thumbHeight) * progress);
       track.setAttribute('aria-valuenow', String(Math.round(progress * 100)));
+      return true;
+    };
+
+    const render = (y: number) => {
+      const thumb = thumbRef.current;
+      if (thumb) thumb.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0)`;
+    };
+
+    // Exponential ease toward the target so the box glides instead of stepping
+    const tick = (time: number) => {
+      const dt = lastTime ? Math.min(64, time - lastTime) : 16;
+      lastTime = time;
+
+      if (currentY === null || reducedMotion.matches) {
+        currentY = targetY;
+      } else {
+        currentY += (targetY - currentY) * (1 - Math.exp(-dt / FOLLOW_MS));
+        if (Math.abs(targetY - currentY) < 0.05) currentY = targetY;
+      }
+
+      render(currentY);
+
+      if (currentY !== targetY) {
+        animationFrame = window.requestAnimationFrame(tick);
+      } else {
+        animationFrame = 0;
+        lastTime = 0;
+      }
     };
 
     const requestUpdate = () => {
-      window.cancelAnimationFrame(animationFrame);
-      animationFrame = window.requestAnimationFrame(updateMinimap);
+      if (!measure() || animationFrame) return;
+      animationFrame = window.requestAnimationFrame(tick);
     };
 
     const resizeObserver = new ResizeObserver(requestUpdate);
@@ -147,9 +181,9 @@ export default function ScrollMinimap() {
       onLostPointerCapture={stopDragging}
       onKeyDown={handleKeyDown}
     >
-      <span className='scroll-minimap-lines' aria-hidden>
-        {minimapLines.map((line) => (
-          <span key={line} />
+      <span className='scroll-minimap-ticks' aria-hidden>
+        {minimapTicks.map((tick) => (
+          <span key={tick} />
         ))}
       </span>
       <span ref={thumbRef} className='scroll-minimap-thumb' aria-hidden />

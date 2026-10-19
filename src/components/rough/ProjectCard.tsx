@@ -53,9 +53,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <span />
           <span />
           <span />
-          <small className='project-preview-url' title={liveLink}>
-            {previewUrl}
-          </small>
+          {liveLink ? (
+            <a
+              href={liveLink}
+              target='_blank'
+              rel='noreferrer noopener'
+              className='project-preview-url'
+              aria-label={`open ${title} website in a new tab`}
+              title={liveLink}
+            >
+              {previewUrl}
+            </a>
+          ) : (
+            <small className='project-preview-url'>{previewUrl}</small>
+          )}
           {githubLink ? (
             <a
               href={githubLink}

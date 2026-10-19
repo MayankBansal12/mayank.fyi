@@ -45,8 +45,6 @@ export function useRoughDraw({ seed = 1, deps = [], draw }: UseRoughDrawOptions)
     const svg = svgRef.current;
     if (!el || !svg) return;
 
-    let frame = 0;
-
     const paint = () => {
       const { width, height } = el.getBoundingClientRect();
       if (width < 2 || height < 2) return;
@@ -75,17 +73,13 @@ export function useRoughDraw({ seed = 1, deps = [], draw }: UseRoughDrawOptions)
       });
     };
 
-    const schedule = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(paint);
-    };
-
     paint();
-    const ro = new ResizeObserver(schedule);
+    // ResizeObserver fires after layout and before paint, so redrawing here keeps the
+    // outline in lockstep with animated size changes (a rAF hop would trail by a frame).
+    const ro = new ResizeObserver(paint);
     ro.observe(el);
 
     return () => {
-      cancelAnimationFrame(frame);
       ro.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- deps passed by caller

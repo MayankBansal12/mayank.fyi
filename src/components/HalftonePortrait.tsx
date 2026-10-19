@@ -7,6 +7,10 @@ const CORNER_RADIUS = SIZE * 0.1;
 const REVEAL_RADIUS = 52;
 const INFLUENCE_RADIUS = 78;
 const LOCAL_GROWTH = 0.12;
+/** Photo-to-halftone resolve on first paint; keep near the fallback fade in CSS */
+const INTRO_MS = 1100;
+/** How long each dot takes to grow in once its turn comes (fraction of INTRO_MS) */
+const INTRO_DOT_SPAN = 0.22;
 
 type Dot = {
   x: number;
@@ -235,7 +239,12 @@ export default function HalftonePortrait() {
       let velocity = 0;
       let frame = 0;
       let previousTime = 0;
+      let introStart = 0;
       let inView = true;
+      const isPreloading = () => {
+        const { classList } = document.documentElement;
+        return classList.contains('preloader-pending') || classList.contains('preloader-active');
+      };
       let ink = getComputedStyle(canvas).color;
       let dark = document.documentElement.classList.contains('dark');
 
@@ -244,6 +253,12 @@ export default function HalftonePortrait() {
         const delta = Math.min(time - (previousTime || time - 16.67), 40);
         previousTime = time;
         const reducedMotion = motion.matches;
+        // Hold the photo until the welcome preloader has cleared, so the resolve is seen.
+        if (!introStart && !isPreloading()) {
+          introStart = time;
+          setReady(true);
+        }
+        const intro = reducedMotion || !introStart ? 1 : clamp((time - introStart) / INTRO_MS);
         const follow = reducedMotion ? 1 : 1 - Math.exp(-delta / 45);
         pointer.lagX += (pointer.x - pointer.lagX) * follow;
         pointer.lagY += (pointer.y - pointer.lagY) * follow;
@@ -280,8 +295,15 @@ export default function HalftonePortrait() {
           const influence = reducedMotion ? 0 : falloff * strength * pinnedEdge;
           const dissolve = influence * (0.08 + dot.seed * 0.5) * (0.7 + velocity * 0.3);
           const localGrowth = growth * falloff * pinnedEdge;
-          const radius =
+          let radius =
             (dark ? dot.highlightRadius : dot.radius) * (1 + localGrowth) * (1 - dissolve);
+          if (intro < 1) {
+            // Dots print in from the center outward, with grain jitter so it reads as ink.
+            const fromCenter = Math.hypot(dot.x - SIZE / 2, dot.y - SIZE / 2) / (SIZE * 0.71);
+            const delay = fromCenter * (0.78 - INTRO_DOT_SPAN) + dot.seed * 0.22;
+            const appear = clamp((intro - delay) / INTRO_DOT_SPAN);
+            radius *= 1 - (1 - appear) ** 3;
+          }
           if (radius < 0.12) continue;
           const x = dot.x + dx * localGrowth;
           const y = dot.y + dy * localGrowth;
@@ -316,6 +338,7 @@ export default function HalftonePortrait() {
         context.restore();
         // Settle completely when the cursor rests; movement wakes the effect again.
         const settling =
+          intro < 1 ||
           strength !== target ||
           pointer.lagX !== pointer.x ||
           pointer.lagY !== pointer.y ||
@@ -384,7 +407,6 @@ export default function HalftonePortrait() {
       resize();
       cancelAnimationFrame(frame);
       draw(performance.now());
-      setReady(true);
       resizeObserver.observe(canvas);
       visibilityObserver.observe(canvas);
       themeObserver.observe(document.documentElement, {
