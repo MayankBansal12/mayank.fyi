@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 
 export const PRELOADER_STORAGE_KEY = 'preloader-seen';
 
-const HOLD_MS = 3500;
-/** Full-panel lift duration — keep in sync with `.preloader` exit transition */
-const EXIT_MS = 820;
+/** Total time on screen once the font is ready, including the exit fade */
+const HOLD_MS = 2700;
+/** Text fade + panel fade — keep in sync with `.preloader--exit` transitions */
+const EXIT_MS = 620;
 /** Don't block forever if the font request stalls */
 const FONT_WAIT_MS = 4000;
 
@@ -68,7 +69,7 @@ export default function Preloader() {
       setFontReady(true);
 
       const hold = reduced ? 900 : HOLD_MS;
-      const exitDuration = reduced ? 320 : EXIT_MS;
+      const exitDuration = reduced ? 300 : EXIT_MS;
       const exitAt = Math.max(0, hold - exitDuration);
 
       timers.exit = window.setTimeout(() => setExiting(true), exitAt);
@@ -114,7 +115,7 @@ export default function Preloader() {
               <span
                 key={word}
                 className='preloader__word'
-                style={{ animationDelay: `${120 + i * 55}ms` }}
+                style={{ animationDelay: `${80 + i * 45}ms` }}
               >
                 {word}
                 {i < WELCOME_WORDS.length - 1 ? '\u00a0' : ''}
@@ -122,7 +123,6 @@ export default function Preloader() {
             ))}
           </p>
           <span className='preloader__underline' aria-hidden='true' />
-          <span className='preloader__dot' aria-hidden='true' />
         </div>
       )}
     </div>

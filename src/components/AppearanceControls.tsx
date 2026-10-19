@@ -14,6 +14,9 @@ import {
 
 type OpenMenu = 'background' | 'font' | null;
 
+/** Keep in sync with the `.appearance-menu[data-closing]` transition */
+const MENU_EXIT_MS = 160;
+
 function RoughSwatch({ color, seed }: { color: string; seed: number }) {
   const { containerRef, svgRef } = useRoughDraw({
     seed,
@@ -67,9 +70,7 @@ function MenuTrigger({
     >
       {children}
       <span className='hidden sm:inline'>{label}</span>
-      <ChevronDown
-        className={`hidden h-3.5 w-3.5 transition-transform sm:block ${open ? 'rotate-180' : ''}`}
-      />
+      <ChevronDown className='appearance-trigger-chevron hidden h-3.5 w-3.5 sm:block' />
     </button>
   );
 }
@@ -83,6 +84,10 @@ const focusOption = (menu: HTMLElement | null, index: number) => {
 export default function AppearanceControls() {
   const { background, font, setBackground, setFont } = useAppearance();
   const [openMenu, setOpenMenu] = useState<OpenMenu>(null);
+  // Lags behind `openMenu` so a closed menu stays mounted while it animates out
+  const [renderedMenu, setRenderedMenu] = useState<OpenMenu>(null);
+  const visibleMenu = openMenu ?? renderedMenu;
+  const closing = openMenu === null && renderedMenu !== null;
   const rootRef = useRef<HTMLDivElement>(null);
   const backgroundTriggerRef = useRef<HTMLDivElement>(null);
   const fontTriggerRef = useRef<HTMLDivElement>(null);
@@ -98,6 +103,15 @@ export default function AppearanceControls() {
     document.addEventListener('pointerdown', close);
     return () => document.removeEventListener('pointerdown', close);
   }, []);
+
+  useEffect(() => {
+    if (openMenu) {
+      setRenderedMenu(openMenu);
+      return;
+    }
+    const timer = window.setTimeout(() => setRenderedMenu(null), MENU_EXIT_MS);
+    return () => window.clearTimeout(timer);
+  }, [openMenu]);
 
   useEffect(() => {
     const close = () => setOpenMenu(null);
@@ -140,25 +154,27 @@ export default function AppearanceControls() {
     if (next) requestAnimationFrame(() => focusOption(menuRef.current, 0));
   };
 
-  const menu = openMenu && (
+  const menu = visibleMenu && (
     <div
       ref={menuRef}
-      id={openMenu === 'background' ? backgroundMenuId : fontMenuId}
+      id={visibleMenu === 'background' ? backgroundMenuId : fontMenuId}
       role='menu'
-      aria-label={`${openMenu} options`}
+      aria-label={`${visibleMenu} options`}
       className='appearance-menu absolute right-0 top-[calc(100%+0.5rem)] z-50 w-52 origin-top-right'
+      data-closing={closing || undefined}
+      inert={closing || undefined}
       onKeyDown={handleKeys}
     >
       <RoughBox
-        seed={openMenu === 'background' ? 81 : 82}
+        seed={visibleMenu === 'background' ? 81 : 82}
         fill='solid'
         fillColor='var(--board-background)'
         paddingClassName='px-3 pt-4 pb-3'
         strokeWidth={0.85}
         className='appearance-menu-paper'
       >
-        <p className='px-2 pb-2 text-left text-xs text-board-muted'>{openMenu}</p>
-        {openMenu === 'background'
+        <p className='px-2 pb-2 text-left text-xs text-board-muted'>{visibleMenu}</p>
+        {visibleMenu === 'background'
           ? backgrounds.map((option, index) => (
               <button
                 type='button'
@@ -212,7 +228,7 @@ export default function AppearanceControls() {
         >
           <Palette className='h-[17px] w-[17px]' />
         </MenuTrigger>
-        {openMenu === 'background' && menu}
+        {visibleMenu === 'background' && menu}
       </div>
       <div ref={fontTriggerRef} className='relative'>
         <MenuTrigger
@@ -223,7 +239,7 @@ export default function AppearanceControls() {
         >
           <Type className='h-[17px] w-[17px]' />
         </MenuTrigger>
-        {openMenu === 'font' && menu}
+        {visibleMenu === 'font' && menu}
       </div>
     </div>
   );
