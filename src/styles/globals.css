@@ -331,10 +331,9 @@
   mask-image: radial-gradient(ellipse, black 48%, transparent 72%);
 }
 
-/* The photo dissolves while the halftone dots print in over it (see INTRO_MS) */
+/* The canvas redraws this same plain photo before cracking it, so the swap is seamless */
 .portfolio-portrait[data-ready="true"] .portfolio-portrait-fallback {
   opacity: 0;
-  transition: opacity 800ms cubic-bezier(0.65, 0, 0.35, 1) 240ms;
 }
 
 .portfolio-portrait-canvas {
@@ -1764,8 +1763,7 @@ html.scroll-minimap-dragging {
     transition-delay: 0ms;
   }
 
-  .scroll-minimap,
-  .portfolio-portrait[data-ready="true"] .portfolio-portrait-fallback {
+  .scroll-minimap {
     transition: none;
   }
 }
