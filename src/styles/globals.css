@@ -505,10 +505,13 @@
   overflow-x: auto;
   overflow-y: visible;
   padding-bottom: 0.15rem;
+  /* Start at the most recent week when the chart overflows. */
+  direction: rtl;
 }
 
 .github-grid {
   display: grid;
+  direction: ltr;
   width: 100%;
   min-width: 570px;
   grid-auto-flow: column;

@@ -135,12 +135,7 @@ export default function Home({ writings }: HomeProps) {
           <div className='portfolio-section-divider mt-9' aria-hidden />
         </section>
 
-        <PortfolioSection
-          id='projects'
-          title={home.sections.projects.title}
-          note={home.sections.projects.note}
-          seed={401}
-        >
+        <PortfolioSection id='projects' title={home.sections.projects.title} seed={401}>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             {projects
               .filter((project) => project.featured)
@@ -161,7 +156,7 @@ export default function Home({ writings }: HomeProps) {
               href={links.repositories}
               target='_blank'
               rel='noreferrer noopener'
-              className='portfolio-view-all group'
+              className='portfolio-view-all'
             >
               {home.sections.projects.viewAllLabel}
               <SketchIcon

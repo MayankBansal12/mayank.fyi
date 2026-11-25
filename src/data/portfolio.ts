@@ -82,8 +82,7 @@ export const home = {
     },
     projects: {
       title: 'selected projects',
-      note: 'things i have built',
-      workLabel: 'view all work',
+      workLabel: 'view work',
       viewAllLabel: 'view all repositories',
     },
     writing: {
@@ -176,6 +175,7 @@ export const projects: Project[] = [
     date: "oct '26",
     image: '/projects/rook.jpg',
     imageAlt: 'Rook finding collaborators for a film project in Lisbon',
+    imagePosition: 'center',
     liveLink: 'https://roook.space',
     description: ['find collaborators, leads, and gigs for creative work.'],
     featured: true,
