@@ -1,75 +1,77 @@
+import Link from 'next/link';
+import { ArrowUpRight, SketchIcon } from 'sketchicon';
 import PageShell from '@/components/rough/PageShell';
-import RoughBox from '@/components/rough/RoughBox';
-import RoughChip from '@/components/rough/RoughChip';
 import RoughLink from '@/components/rough/RoughLink';
 import RoughSticky from '@/components/rough/RoughSticky';
-import { ROUGH_PADDING } from '@/lib/rough/geometry';
+import { links } from '@/data/portfolio';
 
-const About: React.FC = () => {
+export default function About() {
   return (
     <PageShell title='about'>
-      <p>hey. i am mayank.</p>
-      <p>
-        -&gt; i&apos;m{' '}
-        <RoughLink href='/inspiration' seed={301} showIcon={false}>
-          inspired by the people
-        </RoughLink>{' '}
-        on the internet who make stuff purely out of love for the craft.
-      </p>
-      <p>
-        -&gt; i&apos;ve worked with early-stage teams, moving between frontend, backend, and
-        deployments wherever the product needed me.
-      </p>
-      <p>
-        -&gt; i&apos;m currently running a bunch of experiments to see how far i can push myself,
-        and what i can build with models.
-      </p>
-      <p>
-        -&gt; if you are building something thoughtful and need an engineer who can move across the
-        stack, feel free to{' '}
-        <RoughLink href='/contact' seed={303}>
-          contact
-        </RoughLink>{' '}
-        me.
-      </p>
-
-      <div className='flex flex-wrap gap-2 pt-1'>
-        <RoughChip href='/work' seed={304}>
-          work
-        </RoughChip>
-        <RoughChip href='https://github.com/mayankbansal12' seed={305}>
-          github
-        </RoughChip>
-        <RoughChip href='/hire' seed={306}>
-          hire me
-        </RoughChip>
-        <RoughChip href='/now' seed={307}>
-          now
-        </RoughChip>
-        <RoughChip href='/more' seed={308}>
-          journey
-        </RoughChip>
-        <RoughChip href='/inspiration' seed={309}>
-          inspiration
-        </RoughChip>
+      <div className='portfolio-page-prose space-y-3'>
+        <p>hey. i am mayank.</p>
+        <p>
+          -&gt; i&apos;m{' '}
+          <RoughLink href='/inspiration' seed={301} showIcon={false}>
+            inspired by the people
+          </RoughLink>{' '}
+          on the internet who make stuff purely out of love for the craft.
+        </p>
+        <p>
+          -&gt; i&apos;ve worked with early-stage teams, moving between frontend, backend, and
+          deployments wherever the product needed me.
+        </p>
+        <p>
+          -&gt; i&apos;m currently running a bunch of experiments to see how far i can push myself,
+          and what i can build with models.
+        </p>
+        <p>
+          -&gt; if you are building something thoughtful and need an engineer who can move across
+          the stack, feel free to{' '}
+          <RoughLink href='/contact' seed={303}>
+            contact
+          </RoughLink>{' '}
+          me.
+        </p>
       </div>
 
-      <RoughSticky seed={310} color='yellow' rotate={-0.8} className='mt-2 max-w-md'>
-        <p className='text-sm opacity-90'>
+      <nav aria-label='more about mayank' className='flex flex-wrap gap-2'>
+        <Link href='/work' className='social-chip'>
+          work
+        </Link>
+        <a href={links.github} target='_blank' rel='noreferrer noopener' className='social-chip'>
+          github
+          <SketchIcon
+            icon={ArrowUpRight}
+            roughness={1.8}
+            size={13}
+            className='social-chip-arrow'
+            aria-hidden
+          />
+        </a>
+        <Link href='/hire' className='social-chip'>
+          hire me
+        </Link>
+        <Link href='/now' className='social-chip'>
+          now
+        </Link>
+        <Link href='/more' className='social-chip'>
+          journey
+        </Link>
+        <Link href='/inspiration' className='social-chip'>
+          inspiration
+        </Link>
+      </nav>
+
+      <RoughSticky seed={310} color='yellow' rotate={-0.8} className='w-fit max-w-md'>
+        <p className='text-sm'>
           p.s. the lowercase is intentional. the occasional typo may not be.
         </p>
       </RoughSticky>
 
-      <RoughBox
-        seed={311}
-        dashed
-        paddingClassName={ROUGH_PADDING.compact}
-        className='ml-auto w-fit'
-      >
-        <p className='text-xs opacity-60'>last update: 2026-08-06</p>
-      </RoughBox>
+      <p className='text-xs text-(--portfolio-ink-muted)'>
+        last update: <time dateTime='2026-08-06'>2026-08-06</time>
+      </p>
     </PageShell>
   );
-};
-
-export default About;
+}

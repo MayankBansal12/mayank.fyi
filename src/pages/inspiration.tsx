@@ -1,34 +1,45 @@
+import { ArrowUpRight, SketchIcon } from 'sketchicon';
 import PageShell from '@/components/rough/PageShell';
-import RoughLink from '@/components/rough/RoughLink';
 import { inspiration, inspirationIntro, inspirationLastUpdate } from '@/data/inspiration';
 
-const Inspiration: React.FC = () => {
+export default function Inspiration() {
   return (
     <PageShell title='cool ppls'>
-      <p>{inspirationIntro}</p>
+      <p className='portfolio-page-prose'>{inspirationIntro}</p>
 
-      <ul className='flex flex-col gap-4'>
-        {inspiration.map((person, index) => (
-          <li
-            key={person.name}
-            className='flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3'
-          >
-            <span className='shrink-0'>
-              <span className='text-sm opacity-40'>{'-> '}</span>
-              <RoughLink href={person.href} seed={900 + index}>
-                {person.name}
-              </RoughLink>
-            </span>
-            {person.note ? (
-              <span className='text-base opacity-60 md:text-lg'>— {person.note}</span>
-            ) : null}
+      <ul className='writing-list grid gap-x-6 sm:grid-cols-2'>
+        {inspiration.map(({ name, href, note }) => (
+          <li key={name} className='writing-item'>
+            <a
+              href={href}
+              target='_blank'
+              rel='noreferrer noopener'
+              className='writing-row portfolio-directory-row'
+              data-sound-hover
+              data-sound-click
+            >
+              <div>
+                <span className='writing-title'>
+                  <span aria-hidden>{'->'}</span>
+                  <span>{name}</span>
+                </span>
+                {note ? <p className='mt-1 pl-4 text-sm'>{note}</p> : null}
+              </div>
+              <SketchIcon
+                icon={ArrowUpRight}
+                size={14}
+                roughness={1.8}
+                className='mt-1 shrink-0'
+                aria-hidden
+              />
+            </a>
           </li>
         ))}
       </ul>
 
-      <p className='py-4 text-right text-xs opacity-50'>last update: {inspirationLastUpdate}</p>
+      <p className='text-xs text-(--portfolio-ink-muted)'>
+        last update: <time dateTime={inspirationLastUpdate}>{inspirationLastUpdate}</time>
+      </p>
     </PageShell>
   );
-};
-
-export default Inspiration;
+}

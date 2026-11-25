@@ -1,80 +1,84 @@
+import { ArrowUpRight, CalendarDays, Mail, SketchIcon } from 'sketchicon';
 import PageShell from '@/components/rough/PageShell';
-import RoughLink from '@/components/rough/RoughLink';
-import RoughSticky from '@/components/rough/RoughSticky';
+import { links } from '@/data/portfolio';
 
 const channels = [
   {
-    plain: "twitter (don't like to call it x)",
-    href: 'https://x.com/SimplerMayank',
-    text: 'simplermayank',
-    color: 'blue' as const,
-    seed: 401,
+    label: 'email (i read all my emails ^-^)',
+    href: links.email,
+    text: links.email.replace('mailto:', ''),
+    icon: Mail,
   },
   {
-    plain: 'github (trying to be consistent)',
-    href: 'https://github.com/MayankBansal12',
-    text: 'mayankbansal12',
-    color: 'purple' as const,
-    seed: 402,
-  },
-  {
-    plain: 'gmail (i read all my emails ^-^)',
-    href: 'mailto:mayankbansal125@gmail.com',
-    text: 'mayankbansal125@gmail.com',
-    color: 'salmon' as const,
-    seed: 403,
-  },
-  {
-    plain: 'linkedin (forgot linkedin passwd)',
-    href: 'https://www.linkedin.com/in/mayank-bansal200604012/',
-    text: '--mb2004--',
-    color: 'blue' as const,
-    seed: 404,
-  },
-  {
-    plain: 'my blog (not super consistent..)',
-    href: 'https://mayank12.substack.com/',
-    text: 'substack',
-    color: 'yellow' as const,
-    seed: 405,
-  },
-  {
-    plain: 'you can schedule a online meet',
-    href: 'https://cal.com/mayankbansal',
+    label: 'schedule a call',
+    href: links.calendar,
     text: 'cal.com',
-    color: 'green' as const,
-    seed: 406,
+    icon: CalendarDays,
   },
   {
-    plain: 'leave anonymous mess/feedback',
-    href: 'https://mayank.sayout.net/',
+    label: "twitter (don't like to call it x)",
+    href: links.twitter,
+    text: 'simplermayank',
+    icon: ArrowUpRight,
+  },
+  {
+    label: 'github (trying to be consistent)',
+    href: links.github,
+    text: 'mayankbansal12',
+    icon: ArrowUpRight,
+  },
+  {
+    label: 'linkedin (forgot linkedin passwd)',
+    href: links.linkedin,
+    text: '--mb2004--',
+    icon: ArrowUpRight,
+  },
+  {
+    label: 'my blog (not super consistent..)',
+    href: links.substack,
+    text: 'substack',
+    icon: ArrowUpRight,
+  },
+  {
+    label: 'leave an anonymous note or feedback',
+    href: links.anonymousNote,
     text: 'sayout',
-    color: 'salmon' as const,
-    seed: 407,
+    icon: ArrowUpRight,
   },
 ];
 
-const Contact: React.FC = () => {
+export default function Contact() {
   return (
     <PageShell title='contact'>
-      <p>you can find me online on:</p>
-      <div className='flex flex-col gap-4'>
-        {channels.map((ch) => (
-          <div
-            key={ch.href}
-            className='flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between'
-          >
-            <p className='text-lg opacity-90 md:text-xl'>-&gt; {ch.plain}</p>
-            <RoughSticky seed={ch.seed} color={ch.color} className='shrink-0'>
-              <RoughLink href={ch.href} seed={ch.seed + 10} className='text-sm'>
-                {ch.text}
-              </RoughLink>
-            </RoughSticky>
-          </div>
+      <ul className='writing-list'>
+        {channels.map(({ href, label, text, icon }) => (
+          <li key={href} className='writing-item'>
+            <a
+              href={href}
+              target={href === links.email ? undefined : '_blank'}
+              rel={href === links.email ? undefined : 'noreferrer noopener'}
+              className='writing-row'
+              data-sound-hover
+              data-sound-click
+            >
+              <span className='writing-title'>
+                <span aria-hidden>{'->'}</span>
+                <span>{label}</span>
+              </span>
+              <span className='flex max-w-full items-center gap-1.5 pl-4 text-sm sm:pl-0'>
+                <span className='wrap-anywhere'>{text}</span>
+                <SketchIcon
+                  icon={icon}
+                  size={14}
+                  roughness={1.8}
+                  className='shrink-0'
+                  aria-hidden
+                />
+              </span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </PageShell>
   );
-};
-
-export default Contact;
+}

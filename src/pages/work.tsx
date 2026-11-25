@@ -1,67 +1,91 @@
+import { useCallback, useState } from 'react';
+import { ArrowDown, ArrowUpRight, SketchIcon } from 'sketchicon';
 import ExperienceAccordion from '@/components/ExperienceAccordion';
+import PortfolioSection from '@/components/PortfolioSection';
+import ProjectPreviewModal from '@/components/ProjectPreviewModal';
+import PageShell from '@/components/rough/PageShell';
 import ProjectCard from '@/components/rough/ProjectCard';
-import RoughChip from '@/components/rough/RoughChip';
-import RoughDivider from '@/components/rough/RoughDivider';
-import { experiences, projects } from '@/data/portfolio';
+import { experiences, links, type Project, projects } from '@/data/portfolio';
 
-const Work: React.FC = () => {
+const repositoryFilters = [
+  { language: 'typescript', label: 'typescript' },
+  { language: 'javascript', label: 'javascript' },
+  { language: 'css', label: 'design proj' },
+  { language: 'java', label: 'java' },
+];
+
+export default function Work() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const closeProjectPreview = useCallback(() => setSelectedProject(null), []);
+
   return (
-    <div className='mt-12 mb-10 flex flex-col items-center justify-center gap-3 md:mt-16'>
-      <div className='w-[95%] md:w-2/3 lg:w-3/5 xl:w-1/2'>
-        <h2 className='mb-6 text-3xl font-semibold'>work</h2>
+    <>
+      <PageShell title='work'>
+        <nav aria-label='work sections' className='flex flex-wrap gap-2'>
+          <a href='#projects' className='social-chip'>
+            projects <SketchIcon icon={ArrowDown} size={13} roughness={1.8} aria-hidden />
+          </a>
+          <a href='#experience' className='social-chip'>
+            experience <SketchIcon icon={ArrowDown} size={13} roughness={1.8} aria-hidden />
+          </a>
+        </nav>
 
-        <div className='flex flex-col gap-6 text-xl opacity-90'>
-          <RoughDivider seed={210} label='volunteering experience' />
-
-          <ExperienceAccordion items={experiences} />
-
-          <RoughDivider seed={213} label='personal & hackathon projects' className='mt-2' />
-
+        <PortfolioSection
+          id='projects'
+          title='projects'
+          note='personal & hackathon projects'
+          seed={213}
+        >
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             {projects.map((project, index) => (
-              <ProjectCard key={project.title} {...project} seed={201 + index} />
+              <ProjectCard
+                key={project.title}
+                {...project}
+                seed={201 + index}
+                onPreview={() => setSelectedProject(project)}
+              />
             ))}
           </div>
 
-          <RoughDivider
-            seed={214}
-            label='view all works related to language on github'
-            className='mt-2'
-          />
-
-          <div className='flex flex-wrap gap-3'>
-            <RoughChip
-              seed={215}
-              href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=typescript&sort='
-            >
-              typescript
-            </RoughChip>
-            <RoughChip
-              seed={216}
-              href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=javascript&sort='
-            >
-              javascript
-            </RoughChip>
-            <RoughChip
-              seed={217}
-              href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=css&sort='
-            >
-              design proj
-            </RoughChip>
-            <RoughChip
-              seed={218}
-              href='https://github.com/MayankBansal12?tab=repositories&q=&type=public&language=java&sort='
-            >
-              java
-            </RoughChip>
+          <div className='mt-6'>
+            <h3 className='mb-2 text-sm text-(--portfolio-ink-muted)'>repositories by language</h3>
+            <div className='flex flex-wrap gap-2'>
+              {repositoryFilters.map(({ language, label }) => (
+                <a
+                  key={language}
+                  href={`${links.repositories}&q=&type=public&language=${language}&sort=`}
+                  target='_blank'
+                  rel='noreferrer noopener'
+                  className='social-chip'
+                >
+                  {label}
+                  <SketchIcon
+                    icon={ArrowUpRight}
+                    size={13}
+                    roughness={1.8}
+                    className='social-chip-arrow'
+                    aria-hidden
+                  />
+                </a>
+              ))}
+            </div>
+            <p className='mt-2 text-xs text-(--portfolio-ink-muted)'>used java mostly at work</p>
           </div>
-          <p className='text-sm opacity-70'>(note:- used java mostly at work)</p>
-        </div>
+        </PortfolioSection>
 
-        <p className='py-4 text-right text-xs opacity-50'>last update: 2026-08-05</p>
-      </div>
-    </div>
+        <PortfolioSection id='experience' title='experience' seed={210}>
+          <ExperienceAccordion items={experiences} />
+        </PortfolioSection>
+
+        <p className='text-xs text-(--portfolio-ink-muted)'>
+          last update: <time dateTime='2026-08-05'>2026-08-05</time>
+        </p>
+      </PageShell>
+      <ProjectPreviewModal
+        key={selectedProject?.liveLink ?? 'closed'}
+        project={selectedProject}
+        onClose={closeProjectPreview}
+      />
+    </>
   );
-};
-
-export default Work;
+}

@@ -1,5 +1,6 @@
-import { ArrowUpRight } from 'lucide-react';
 import type { GetStaticPaths, GetStaticProps } from 'next';
+import Link from 'next/link';
+import { ArrowLeft, ArrowUpRight, SketchIcon } from 'sketchicon';
 import PageShell from '@/components/rough/PageShell';
 import { getWritingBySlug, getWritingSlugs, type WritingPost } from '@/lib/writing';
 
@@ -30,7 +31,14 @@ export default function WritingPostPage({ post }: WritingPostPageProps) {
           target='_blank'
           rel='noreferrer noopener'
         >
-          read on substack <ArrowUpRight size={13} className='view-all-arrow' aria-hidden />
+          read on substack
+          <SketchIcon
+            icon={ArrowUpRight}
+            size={13}
+            roughness={1.8}
+            className='view-all-arrow'
+            aria-hidden
+          />
         </a>
       </div>
 
@@ -39,6 +47,11 @@ export default function WritingPostPage({ post }: WritingPostPageProps) {
         // biome-ignore lint/security/noDangerouslySetInnerHtml: Substack HTML is generated from local content authored by the site owner.
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
+
+      <Link href='/writing' className='portfolio-view-all portfolio-button-secondary'>
+        <SketchIcon icon={ArrowLeft} size={14} roughness={1.8} aria-hidden />
+        back to writing
+      </Link>
     </PageShell>
   );
 }

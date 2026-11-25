@@ -112,7 +112,8 @@
   backdrop-filter: blur(12px);
 }
 
-.portfolio-home {
+.portfolio-home,
+.portfolio-page {
   container-type: inline-size;
   --portfolio-rail-inset: 0.75rem;
   background-image:
@@ -266,6 +267,33 @@
 .portfolio-hero {
   padding-top: 1.5rem;
   padding-bottom: 0.5rem;
+}
+
+.portfolio-page :is(.portfolio-opening, .portfolio-closing) {
+  margin-inline: var(--portfolio-rail-inset);
+  min-height: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.portfolio-page .portfolio-page-heading {
+  padding-block: clamp(1.4rem, 4vw, 2rem) 1.25rem;
+}
+
+.portfolio-page .portfolio-page-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  padding-block: 0 2rem;
+}
+
+.portfolio-page-body .portfolio-section {
+  scroll-margin-top: 3.75rem;
+  padding: 0;
+}
+
+.portfolio-page-prose {
+  max-width: 40rem;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.65;
 }
 
 .portfolio-identity {
@@ -1011,6 +1039,11 @@ small.project-preview-url {
     color 160ms ease;
 }
 
+.portfolio-page .portfolio-directory-row {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
 /* Arrow nudges on hover instead of animating padding (which reflows the row) */
 .writing-title > span:first-child {
   transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
@@ -1043,6 +1076,7 @@ small.project-preview-url {
 
 .writing-article-meta {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
@@ -1071,6 +1105,8 @@ small.project-preview-url {
   font-size: 1rem;
   line-height: 1.75;
   color: color-mix(in srgb, currentColor 88%, var(--portfolio-ink-muted));
+  overflow-wrap: anywhere;
+  text-transform: none;
 }
 
 .writing-article-content > * + * {
@@ -1496,7 +1532,8 @@ html.scroll-minimap-dragging {
     min-height: 4.75rem;
   }
 
-  .portfolio-home {
+  .portfolio-home,
+  .portfolio-page {
     --portfolio-rail-inset: 0.35rem;
   }
 
