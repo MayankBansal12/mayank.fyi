@@ -6,12 +6,12 @@ i've worked with early-stage teams, moving between frontend, backend, and deploy
 
 i'm currently running a bunch of experiments to see how far i can push myself, and what i can build with models.
 
-mostly write typescript and java. day to day that means next.js, nest.js, spring boot, postgres, redis and docker.
+i've worked with typescript, java, next.js, nest.js, spring boot, postgres, redis and docker.
 
 ## experience
 
-- evol (sde, feb '26 - oct '26, hyderabad): built an internal ops platform used by ~20 people, a voice and chat assistant on livekit, and a langgraph workflow for jewelry designs.
-- echio (sde intern -> sde, may '24 - nov '25, remote): built an hls transcoding pipeline, cut api latency by 50% with redis caching, and cut ci/cd build times by over 50%.
+- evol (sde, feb '26 - oct '26, hyderabad): built an internal ops platform used by ~20 people and a voice and chat assistant on livekit. prototyped a langgraph workflow for jewelry designs.
+- echio (sde intern -> sde, may '24 - nov '25, remote): designed an hls transcoding pipeline, cut high-traffic api latency by 50% with redis caching and backend rate limiting, and cut ci/cd build times by over 50%.
 - real dev squad (volunteer sde, aug '24 - aug '26, remote): migrated legacy features to ember.js, built an mcp server for internal apis, and led four devs on a genai revamp.
 - [full work history](https://www.mayank.fyi/work)
 
