@@ -30,12 +30,7 @@ export default function Work() {
           </a>
         </nav>
 
-        <PortfolioSection
-          id='projects'
-          title='projects'
-          note='personal & hackathon projects'
-          seed={213}
-        >
+        <PortfolioSection id='projects' title='projects' seed={213}>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             {projects.map((project, index) => (
               <ProjectCard
@@ -76,10 +71,6 @@ export default function Work() {
         <PortfolioSection id='experience' title='experience' seed={210}>
           <ExperienceAccordion items={experiences} />
         </PortfolioSection>
-
-        <p className='text-xs text-(--portfolio-ink-muted)'>
-          last update: <time dateTime='2026-08-05'>2026-08-05</time>
-        </p>
       </PageShell>
       <ProjectPreviewModal
         key={selectedProject?.liveLink ?? 'closed'}

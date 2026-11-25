@@ -124,10 +124,6 @@ export default function More() {
           improving.
         </p>
       </div>
-
-      <p className='text-xs text-(--portfolio-ink-muted)'>
-        last update: <time dateTime='2024-09-15'>2024-09-15</time>
-      </p>
     </PageShell>
   );
 }

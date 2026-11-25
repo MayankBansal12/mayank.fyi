@@ -68,10 +68,6 @@ export default function About() {
           p.s. the lowercase is intentional. the occasional typo may not be.
         </p>
       </RoughSticky>
-
-      <p className='text-xs text-(--portfolio-ink-muted)'>
-        last update: <time dateTime='2026-08-06'>2026-08-06</time>
-      </p>
     </PageShell>
   );
 }
