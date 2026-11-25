@@ -14,15 +14,15 @@ const About: React.FC = () => {
         <RoughLink href='/inspiration' seed={301} showIcon={false}>
           inspired by the people
         </RoughLink>{' '}
-        on the internet, working and creating stuff out of their passion and love for the craft.
+        on the internet who make stuff purely out of love for the craft.
       </p>
       <p>
         -&gt; i&apos;ve worked with early-stage teams, moving between frontend, backend, and
         deployments wherever the product needed me.
       </p>
       <p>
-        -&gt; i&apos;m currently working on a bunch of experiments to push the limits of myself and
-        what i can do with models.
+        -&gt; i&apos;m currently running a bunch of experiments to see how far i can push myself,
+        and what i can build with models.
       </p>
       <p>
         -&gt; if you are building something thoughtful and need an engineer who can move across the

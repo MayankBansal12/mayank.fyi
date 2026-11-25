@@ -1,12 +1,21 @@
 # Mayank Bansal
 
-> just an engineer trying to create things that matter
+> just an engineer trying to create things that matter. currently available for hire: part-time, contract or full-time.
 
 i've worked with early-stage teams, moving between frontend, backend, and deployments wherever the product needed me.
 
-i'm currently working on a bunch of experiments to push the limits of myself and what i can do with models.
+i'm currently running a bunch of experiments to see how far i can push myself, and what i can build with models.
 
-## Work
+mostly write typescript and java. day to day that means next.js, nest.js, spring boot, postgres, redis and docker.
+
+## experience
+
+- evol (sde, feb '26 - oct '26, hyderabad): built an internal ops platform used by ~20 people, a voice and chat assistant on livekit, and a langgraph workflow for jewelry designs.
+- echio (sde intern -> sde, may '24 - nov '25, remote): built an hls transcoding pipeline, cut api latency by 50% with redis caching, and cut ci/cd build times by over 50%.
+- real dev squad (volunteer sde, aug '24 - aug '26, remote): migrated legacy features to ember.js, built an mcp server for internal apis, and led four devs on a genai revamp.
+- [full work history](https://www.mayank.fyi/work)
+
+## projects
 
 - [snip](https://snip.mayank.fyi): a simple editor for small potato stuff. free, no watermarks, works offline.
 - [common](https://www.usecommon.app): a common space for you, your people and your agents.
@@ -14,10 +23,13 @@ i'm currently working on a bunch of experiments to push the limits of myself and
 - [chess with llm](https://chess.mayank.fyi/): a chess arena for playing legal, timed matches against open-weight LLMs.
 - [wavmo playground](https://docs.mayank.fyi): an agentic writing workspace that plans, drafts, reviews, and improves technical documents.
 - [sketchicon](https://sketchicon.com): 1,700+ deterministic, customizable hand-drawn SVG icons for React.
-- [Work history](https://www.mayank.fyi/work)
-- [Writing](https://www.mayank.fyi/writing)
+- [everything else on github](https://github.com/MayankBansal12?tab=repositories)
 
-## Contact
+## writing
 
-- [Reach out on email](mailto:mayankbansal125@gmail.com)
-- [Book an intro call](https://cal.com/mayankbansal)
+- [writing](https://www.mayank.fyi/writing): notes on software, products, and whatever i'm learning along the way.
+
+## contact
+
+- [email](mailto:mayankbansal125@gmail.com): mayankbansal125@gmail.com
+- [book an intro call](https://cal.com/mayankbansal)

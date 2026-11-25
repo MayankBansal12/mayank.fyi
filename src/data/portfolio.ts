@@ -40,7 +40,7 @@ export const site = {
   url: 'https://mayank.fyi',
   title: 'mayank. | just another engineer on the internet',
   description:
-    '-> inspired by the great creators building for the love of their craft\n-> worked with early stage startups moving b/w frontend, backend, infra.\n-> currently working on diff experiments to push limits of myself and what i can do with these models.',
+    '-> inspired by people who build stuff purely out of love for the craft.\n-> worked with early-stage teams, moving b/w frontend, backend and infra.\n-> currently running a bunch of experiments to see how far i can push myself, and what i can build with models.',
   socialDescription: 'portfolio website for mayank bansal',
   socialImage: 'https://mayank.fyi/images/og-postmark.png',
   socialImageAlt: 'mayank. just an engineer. creating things that matter.',
@@ -63,9 +63,9 @@ export const home = {
     heading: "hey. i'm mayank.",
     role: 'just an engineer trying to create things that matter',
     pointers: [
-      "i'm inspired by the people on the internet, working and creating stuff out of their passion and love for the craft.",
+      "i'm inspired by the people on the internet who make stuff purely out of love for the craft.",
       "i've worked with early-stage teams, moving between frontend, backend, and deployments wherever the product needed me.",
-      "i'm currently working on a bunch of experiments to push the limits of myself and what i can do with models.",
+      "i'm currently running a bunch of experiments to see how far i can push myself, and what i can build with models.",
     ],
     availability: {
       visible: true,
