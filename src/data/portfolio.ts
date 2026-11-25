@@ -124,8 +124,7 @@ export const experiences: Experience[] = [
     role: 'SDE',
     period: "feb '26 - oct '26",
     location: 'hyderabad',
-    summary:
-      'built an ops platform used by ~20 people and a voice and chat assistant for managing tasks.',
+    summary: 'built an ops platform used by ~20 people and a voice and chat assistant.',
     highlights: [
       'built an internal ops platform (NestJS, Next.js, PostgreSQL, Drizzle) for operations tracking and business reporting, used by a team of ~20 people.',
       'built an internal AI assistant with a real-time LiveKit voice agent and scheduled update automations, so the team could manage tasks by chat or voice.',
@@ -151,7 +150,7 @@ export const experiences: Experience[] = [
       'migrated CI/CD to blacksmith and watchtower, cutting build times by over 50%.',
       'built admin dashboards and internal tooling with react.js and shadcn/ui.',
     ],
-    personalNote: 'i met my first set of mentors here.',
+    personalNote: 'i met my first mentors here.',
     skills: ['java', 'spring boot', 'redis', 'azure', 'docker', 'CI/CD', 'react'],
   },
   {
@@ -161,8 +160,7 @@ export const experiences: Experience[] = [
     role: 'SDE (Volunteering)',
     period: "aug '24 - aug '26",
     location: 'remote',
-    summary:
-      'built an mcp server for internal apis and led four developers in adding ai and image validation.',
+    summary: 'built an mcp server for internal apis and led four developers on a project revamp.',
     highlights: [
       'migrated legacy features to ember.js, helping deprecate the old platform.',
       'added unit and integration tests for a new react.js project.',
@@ -170,7 +168,7 @@ export const experiences: Experience[] = [
       'built an MCP server that exposes internal APIs as tools for AI agents.',
       'led four developers to revamp a project with GenAI and image-validation features.',
     ],
-    personalNote: 'i spent nights and weekends building things and making some good friends.',
+    personalNote: 'i spent nights and weekends building things and making friends.',
     skills: ['ember.js', 'react', 'tanstack router', 'typescript', 'MCP', 'GenAI'],
   },
 ];

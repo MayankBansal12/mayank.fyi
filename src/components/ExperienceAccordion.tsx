@@ -37,16 +37,14 @@ export default function ExperienceAccordion({ items }: ExperienceAccordionProps)
             <article>
               <button
                 type='button'
-                className='experience-trigger group'
+                className='experience-trigger'
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggleItem(item.id)}
                 data-sound-hover
               >
                 <span className='min-w-0 text-left'>
-                  <span className='flex flex-wrap items-baseline gap-x-2 gap-y-1'>
-                    <span className='text-lg font-semibold md:text-xl'>{item.company}</span>
-                  </span>
+                  <span className='block text-lg font-semibold md:text-xl'>{item.company}</span>
                   <span className='mt-0.5 block text-sm opacity-75'>{item.role}</span>
                   <span className='mt-1 block text-sm opacity-80'>{item.summary}</span>
                 </span>
