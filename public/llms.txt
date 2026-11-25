@@ -17,11 +17,11 @@ i've worked with typescript, java, next.js, nest.js, spring boot, postgres, redi
 
 ## projects
 
+- [rook](https://roook.space): find collaborators, leads, and gigs for creative work.
 - [snip](https://snip.mayank.fyi): a simple editor for small potato stuff. free, no watermarks, works offline.
 - [common](https://www.usecommon.app): a common space for you, your people and your agents.
 - [shift-read](https://shft.page): a focused reader that translates any article while preserving its structure and formatting.
 - [chess with llm](https://chess.mayank.fyi/): a chess arena for playing legal, timed matches against open-weight LLMs.
-- [wavmo playground](https://docs.mayank.fyi): an agentic writing workspace that plans, drafts, reviews, and improves technical documents.
 - [sketchicon](https://sketchicon.com): 1,700+ deterministic, customizable hand-drawn SVG icons for React.
 - [everything else on github](https://github.com/MayankBansal12?tab=repositories)
 

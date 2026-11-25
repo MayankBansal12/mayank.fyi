@@ -83,6 +83,7 @@ export const home = {
     projects: {
       title: 'selected projects',
       note: 'things i have built',
+      workLabel: 'view all work',
       viewAllLabel: 'view all repositories',
     },
     writing: {
@@ -171,6 +172,15 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
+    title: 'rook',
+    date: "oct '26",
+    image: '/projects/rook.jpg',
+    imageAlt: 'Rook finding collaborators for a film project in Lisbon',
+    liveLink: 'https://roook.space',
+    description: ['find collaborators, leads, and gigs for creative work.'],
+    featured: true,
+  },
+  {
     title: 'snip',
     date: "sep '26",
     image: '/projects/snip.png',
@@ -212,18 +222,6 @@ export const projects: Project[] = [
     githubLink: 'https://github.com/MayankBansal12/chess-with-llm',
     liveLink: 'https://chess.mayank.fyi/',
     description: ['a chess arena for playing legal, timed matches against open-weight LLMs.'],
-    featured: true,
-  },
-  {
-    title: 'wavmo playground',
-    date: "dec '25",
-    image: '/projects/wavmo-playground.gif',
-    imageAlt: 'Wavmo AI writing workspace and agent chat',
-    githubLink: 'https://github.com/MayankBansal12/wavmo-playground',
-    liveLink: 'https://docs.mayank.fyi',
-    description: [
-      'an agentic writing workspace that plans, drafts, reviews, and improves technical documents.',
-    ],
     featured: true,
   },
   {

@@ -132,18 +132,8 @@ export default function Home({ writings }: HomeProps) {
             </div>
           </div>
 
-          <GitHubContributions />
           <div className='portfolio-section-divider mt-9' aria-hidden />
         </section>
-
-        <PortfolioSection
-          id='experience'
-          title={home.sections.experience.title}
-          note={home.sections.experience.note}
-          seed={301}
-        >
-          <ExperienceAccordion items={experiences} />
-        </PortfolioSection>
 
         <PortfolioSection
           id='projects'
@@ -163,22 +153,36 @@ export default function Home({ writings }: HomeProps) {
                 />
               ))}
           </div>
-          <a
-            href={links.repositories}
-            target='_blank'
-            rel='noreferrer noopener'
-            className='portfolio-view-all group mx-auto mt-5'
-          >
-            {home.sections.projects.viewAllLabel}
-            <SketchIcon
-              roughness={1.8}
-              strokeWidth={1.7}
-              icon={ArrowUpRight}
-              size={15}
-              className='view-all-arrow'
-              aria-hidden
-            />
-          </a>
+          <div className='mt-5 flex flex-wrap justify-center gap-2'>
+            <Link href='/work' className='portfolio-view-all'>
+              {home.sections.projects.workLabel}
+            </Link>
+            <a
+              href={links.repositories}
+              target='_blank'
+              rel='noreferrer noopener'
+              className='portfolio-view-all group'
+            >
+              {home.sections.projects.viewAllLabel}
+              <SketchIcon
+                roughness={1.8}
+                strokeWidth={1.7}
+                icon={ArrowUpRight}
+                size={15}
+                className='view-all-arrow'
+                aria-hidden
+              />
+            </a>
+          </div>
+        </PortfolioSection>
+
+        <PortfolioSection
+          id='experience'
+          title={home.sections.experience.title}
+          note={home.sections.experience.note}
+          seed={301}
+        >
+          <ExperienceAccordion items={experiences} />
         </PortfolioSection>
 
         <PortfolioSection
@@ -226,6 +230,10 @@ export default function Home({ writings }: HomeProps) {
             ))}
           </div>
         </PortfolioSection>
+
+        <div className='portfolio-section'>
+          <GitHubContributions />
+        </div>
 
         <section id='newsletter' className='portfolio-section scroll-mt-32'>
           <NewsletterSection />
