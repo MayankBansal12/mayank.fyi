@@ -1,0 +1,23 @@
+# Mayank Bansal
+
+> just an engineer trying to create things that matter
+
+i've worked with early-stage teams, moving between frontend, backend, and deployments wherever the product needed me.
+
+i'm currently working on a bunch of experiments to push the limits of myself and what i can do with models.
+
+## Work
+
+- [snip](https://snip.mayank.fyi): a simple editor for small potato stuff. free, no watermarks, works offline.
+- [common](https://www.usecommon.app): a common space for you, your people and your agents.
+- [shift-read](https://shft.page): a focused reader that translates any article while preserving its structure and formatting.
+- [chess with llm](https://chess.mayank.fyi/): a chess arena for playing legal, timed matches against open-weight LLMs.
+- [wavmo playground](https://docs.mayank.fyi): an agentic writing workspace that plans, drafts, reviews, and improves technical documents.
+- [sketchicon](https://sketchicon.com): 1,700+ deterministic, customizable hand-drawn SVG icons for React.
+- [Work history](https://www.mayank.fyi/work)
+- [Writing](https://www.mayank.fyi/writing)
+
+## Contact
+
+- [Reach out on email](mailto:mayankbansal125@gmail.com)
+- [Book an intro call](https://cal.com/mayankbansal)

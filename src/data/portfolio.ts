@@ -35,7 +35,7 @@ export type Social = {
 };
 
 export const site = {
-  name: 'mayank bansal',
+  name: 'Mayank Bansal',
   initials: 'mb',
   url: 'https://mayank.fyi',
   title: 'mayank. | just another engineer on the internet',
