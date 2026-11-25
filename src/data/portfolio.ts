@@ -7,6 +7,7 @@ export type Experience = {
   location?: string;
   summary: string;
   highlights: string[];
+  personalNote: string;
   skills: string[];
 };
 
@@ -78,7 +79,7 @@ export const home = {
   sections: {
     experience: {
       title: 'experience',
-      note: 'click a row to see details',
+      note: 'open a row for details',
     },
     projects: {
       title: 'selected projects',
@@ -123,13 +124,15 @@ export const experiences: Experience[] = [
     role: 'SDE',
     period: "feb '26 - oct '26",
     location: 'hyderabad',
-    summary: 'built internal tools and agents and worked with a great manager.',
+    summary:
+      'built an ops platform used by ~20 people and a voice and chat assistant for managing tasks.',
     highlights: [
       'built an internal ops platform (NestJS, Next.js, PostgreSQL, Drizzle) for operations tracking and business reporting, used by a team of ~20 people.',
       'built an internal AI assistant with a real-time LiveKit voice agent and scheduled update automations, so the team could manage tasks by chat or voice.',
       'prototyped a LangGraph workflow that generated and edited jewelry designs, with structured state, tool routing, and fallbacks.',
       'fixed Raspberry Pi/ESP32 board integration issues ahead of a live store launch and kept the kiosk stable for 200+ users.',
     ],
+    personalNote: 'i got to work with a great manager.',
     skills: ['nest.js', 'next.js', 'postgresql', 'drizzle', 'livekit', 'langgraph', 'IoT'],
   },
   {
@@ -139,7 +142,7 @@ export const experiences: Experience[] = [
     role: 'SDE Intern -> SDE',
     period: "may '24 - nov '25",
     location: 'remote',
-    summary: 'met my first set of mentors here and had a lot of fun working on different things.',
+    summary: 'designed a video transcoding pipeline and cut high-traffic api latency by 50%.',
     highlights: [
       'designed an HLS transcoding pipeline with azure queues and docker-based parallel workers.',
       'reduced high-traffic API latency by 50% using redis caching and backend rate limiting.',
@@ -148,6 +151,7 @@ export const experiences: Experience[] = [
       'migrated CI/CD to blacksmith and watchtower, cutting build times by over 50%.',
       'built admin dashboards and internal tooling with react.js and shadcn/ui.',
     ],
+    personalNote: 'i met my first set of mentors here.',
     skills: ['java', 'spring boot', 'redis', 'azure', 'docker', 'CI/CD', 'react'],
   },
   {
@@ -157,7 +161,8 @@ export const experiences: Experience[] = [
     role: 'SDE (Volunteering)',
     period: "aug '24 - aug '26",
     location: 'remote',
-    summary: 'hanging out on nights & weekends, working and making some good friends.',
+    summary:
+      'built an mcp server for internal apis and led four developers in adding ai and image validation.',
     highlights: [
       'migrated legacy features to ember.js, helping deprecate the old platform.',
       'added unit and integration tests for a new react.js project.',
@@ -165,6 +170,7 @@ export const experiences: Experience[] = [
       'built an MCP server that exposes internal APIs as tools for AI agents.',
       'led four developers to revamp a project with GenAI and image-validation features.',
     ],
+    personalNote: 'i spent nights and weekends building things and making some good friends.',
     skills: ['ember.js', 'react', 'tanstack router', 'typescript', 'MCP', 'GenAI'],
   },
 ];

@@ -8,7 +8,7 @@ type ExperienceAccordionProps = {
 };
 
 export default function ExperienceAccordion({ items }: ExperienceAccordionProps) {
-  const [openItems, setOpenItems] = useState<Set<string>>(() => new Set([items[0]?.id]));
+  const [openItems, setOpenItems] = useState<Set<string>>(() => new Set());
 
   function toggleItem(id: string) {
     setOpenItems((current) => {
@@ -77,6 +77,7 @@ export default function ExperienceAccordion({ items }: ExperienceAccordionProps)
                         </li>
                       ))}
                     </ul>
+                    <p className='mt-3 text-sm opacity-80'>{item.personalNote}</p>
                     <div className='mt-4 flex flex-wrap gap-2'>
                       {item.skills.map((skill) => (
                         <span key={skill} className='portfolio-tag'>
