@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { inspirationMetadata } from '@/data/inspiration';
-import { site } from '@/data/portfolio';
+import { home, links, site } from '@/data/portfolio';
 
 const siteDomain = new URL(site.url).hostname;
 const pageMetadata = {
@@ -16,11 +16,24 @@ const Metadata: React.FC = () => {
     path: '/',
   };
   const canonicalUrl = new URL(metadata.path, site.url).toString();
+  const person = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: site.name,
+    url: canonicalUrl,
+    description: home.hero.role,
+    sameAs: [links.github, links.twitter, links.linkedin, links.substack],
+  };
 
   return (
     <Head>
       <title>{metadata.title}</title>
       <link rel='canonical' href={canonicalUrl} />
+      {pathname === '/' && (
+        <script type='application/ld+json'>
+          {JSON.stringify(person).replace(/</g, '\\u003c')}
+        </script>
+      )}
       <meta property='og:site_name' content={siteDomain} />
       <meta property='og:title' content={metadata.title} />
       <meta property='og:description' content={metadata.description} />
