@@ -132,25 +132,10 @@ export default function Home({ writings }: HomeProps) {
             </div>
           </div>
 
-          <GitHubContributions />
           <div className='portfolio-section-divider mt-9' aria-hidden />
         </section>
 
-        <PortfolioSection
-          id='experience'
-          title={home.sections.experience.title}
-          note={home.sections.experience.note}
-          seed={301}
-        >
-          <ExperienceAccordion items={experiences} />
-        </PortfolioSection>
-
-        <PortfolioSection
-          id='projects'
-          title={home.sections.projects.title}
-          note={home.sections.projects.note}
-          seed={401}
-        >
+        <PortfolioSection id='projects' title={home.sections.projects.title} seed={401}>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             {projects
               .filter((project) => project.featured)
@@ -167,7 +152,7 @@ export default function Home({ writings }: HomeProps) {
             href={links.repositories}
             target='_blank'
             rel='noreferrer noopener'
-            className='portfolio-view-all group mx-auto mt-5'
+            className='portfolio-view-all mx-auto mt-5'
           >
             {home.sections.projects.viewAllLabel}
             <SketchIcon
@@ -179,6 +164,15 @@ export default function Home({ writings }: HomeProps) {
               aria-hidden
             />
           </a>
+        </PortfolioSection>
+
+        <PortfolioSection
+          id='experience'
+          title={home.sections.experience.title}
+          note={home.sections.experience.note}
+          seed={301}
+        >
+          <ExperienceAccordion items={experiences} />
         </PortfolioSection>
 
         <PortfolioSection
@@ -226,6 +220,10 @@ export default function Home({ writings }: HomeProps) {
             ))}
           </div>
         </PortfolioSection>
+
+        <div className='portfolio-section'>
+          <GitHubContributions />
+        </div>
 
         <section id='newsletter' className='portfolio-section scroll-mt-32'>
           <NewsletterSection />

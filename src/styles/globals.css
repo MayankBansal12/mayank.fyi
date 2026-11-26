@@ -493,7 +493,6 @@
 }
 
 .github-activity {
-  margin-top: 1.75rem;
   border: 1px solid var(--portfolio-border);
   border-radius: 0.65rem;
   background: color-mix(in srgb, var(--portfolio-surface) 90%, transparent);
@@ -506,10 +505,13 @@
   overflow-x: auto;
   overflow-y: visible;
   padding-bottom: 0.15rem;
+  /* Start at the most recent week when the chart overflows. */
+  direction: rtl;
 }
 
 .github-grid {
   display: grid;
+  direction: ltr;
   width: 100%;
   min-width: 570px;
   grid-auto-flow: column;
@@ -1541,10 +1543,6 @@ html.scroll-minimap-dragging {
 
   .portfolio-social-heading {
     text-align: center;
-  }
-
-  .github-activity {
-    display: none;
   }
 
   .writing-row {
