@@ -148,27 +148,22 @@ export default function Home({ writings }: HomeProps) {
                 />
               ))}
           </div>
-          <div className='mt-5 flex flex-wrap justify-center gap-2'>
-            <Link href='/work' className='portfolio-view-all'>
-              {home.sections.projects.workLabel}
-            </Link>
-            <a
-              href={links.repositories}
-              target='_blank'
-              rel='noreferrer noopener'
-              className='portfolio-view-all'
-            >
-              {home.sections.projects.viewAllLabel}
-              <SketchIcon
-                roughness={1.8}
-                strokeWidth={1.7}
-                icon={ArrowUpRight}
-                size={15}
-                className='view-all-arrow'
-                aria-hidden
-              />
-            </a>
-          </div>
+          <a
+            href={links.repositories}
+            target='_blank'
+            rel='noreferrer noopener'
+            className='portfolio-view-all mx-auto mt-5'
+          >
+            {home.sections.projects.viewAllLabel}
+            <SketchIcon
+              roughness={1.8}
+              strokeWidth={1.7}
+              icon={ArrowUpRight}
+              size={15}
+              className='view-all-arrow'
+              aria-hidden
+            />
+          </a>
         </PortfolioSection>
 
         <PortfolioSection

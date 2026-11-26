@@ -82,7 +82,6 @@ export const home = {
     },
     projects: {
       title: 'selected projects',
-      workLabel: 'view work',
       viewAllLabel: 'view all repositories',
     },
     writing: {
