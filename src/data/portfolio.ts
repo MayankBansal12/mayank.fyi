@@ -5,7 +5,7 @@ export type Experience = {
   role: string;
   period: string;
   location?: string;
-  summary: string;
+  tldr: string[];
   highlights: string[];
   personalNote: string;
   skills: string[];
@@ -79,7 +79,7 @@ export const home = {
   sections: {
     experience: {
       title: 'experience',
-      note: 'open a row for details',
+      note: '',
     },
     projects: {
       title: 'selected projects',
@@ -124,7 +124,11 @@ export const experiences: Experience[] = [
     role: 'SDE',
     period: "feb '26 - oct '26",
     location: 'hyderabad',
-    summary: 'built an ops platform used by ~20 people and a voice and chat assistant.',
+    tldr: [
+      'built an ops platform for the ~20-person operations team.',
+      'shipped a voice and chat assistant to help the team manage tasks.',
+      'stabilized an in-store kiosk ahead of launch for 200+ users.',
+    ],
     highlights: [
       'built an internal ops platform (NestJS, Next.js, PostgreSQL, Drizzle) for operations tracking and business reporting, used by a team of ~20 people.',
       'built an internal AI assistant with a real-time LiveKit voice agent and scheduled update automations, so the team could manage tasks by chat or voice.',
@@ -141,7 +145,11 @@ export const experiences: Experience[] = [
     role: 'SDE Intern -> SDE',
     period: "may '24 - nov '25",
     location: 'remote',
-    summary: 'designed a video transcoding pipeline and cut high-traffic api latency by 50%.',
+    tldr: [
+      'designed an hls video pipeline with parallel workers.',
+      'cut high-traffic api latency by 50%.',
+      'cut ci/cd build times by more than 50%.',
+    ],
     highlights: [
       'designed an HLS transcoding pipeline with azure queues and docker-based parallel workers.',
       'reduced high-traffic API latency by 50% using redis caching and backend rate limiting.',
@@ -160,7 +168,11 @@ export const experiences: Experience[] = [
     role: 'SDE (Volunteering)',
     period: "aug '24 - aug '26",
     location: 'remote',
-    summary: 'built an mcp server for internal apis and led four developers on a project revamp.',
+    tldr: [
+      'built an mcp server to give agents access to internal tools.',
+      'moved a core service from next.js to tanstack router.',
+      'led four developers on an ai and image-validation revamp.',
+    ],
     highlights: [
       'migrated legacy features to ember.js, helping deprecate the old platform.',
       'added unit and integration tests for a new react.js project.',
