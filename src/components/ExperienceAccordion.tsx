@@ -66,7 +66,7 @@ function ExperienceCard({ item, seed }: { item: Experience; seed: number }) {
 
         <div
           id={tldrId}
-          className='experience-panel'
+          className='experience-panel experience-tldr-panel'
           data-open={tldrOpen}
           aria-hidden={!tldrOpen}
           inert={!tldrOpen}
@@ -75,6 +75,11 @@ function ExperienceCard({ item, seed }: { item: Experience; seed: number }) {
             <div className='px-4 pb-4 sm:px-5'>
               <div className='experience-tldr'>
                 <p className='experience-tldr-question'>what did you build?</p>
+                <div className='experience-tldr-typing' aria-hidden>
+                  <span />
+                  <span />
+                  <span />
+                </div>
                 <div className='experience-tldr-reply'>
                   <p className='experience-tldr-author'>mayank</p>
                   <ul className='list-disc space-y-1 pl-4 text-sm'>
