@@ -619,19 +619,51 @@
   isolation: isolate;
 }
 
-.experience-trigger {
-  display: flex;
-  width: calc(100% - 8px);
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin: 4px;
-  padding: 0.8rem;
-  border-radius: 0.45rem;
-  color: inherit;
-  transition:
-    background-color 160ms ease,
-    transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+.experience-view-trigger[aria-expanded="true"] {
+  border-color: var(--portfolio-border);
+  background: var(--portfolio-sticky-wash);
+}
+
+.experience-tldr {
+  display: grid;
+  gap: 0.65rem;
+  border: 1px dashed var(--portfolio-border);
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--portfolio-sticky-wash) 36%, var(--portfolio-surface));
+  padding: 0.65rem;
+}
+
+.experience-tldr-question {
+  justify-self: end;
+  border: 1px solid var(--portfolio-border-muted);
+  border-radius: 0.45rem 0.45rem 0.12rem 0.45rem;
+  background: var(--portfolio-surface);
+  padding: 0.35rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+.experience-tldr-typing,
+.experience-tldr-reply {
+  grid-area: 2 / 1;
+  justify-self: start;
+}
+
+.experience-tldr-reply {
+  border: 1px solid var(--portfolio-border);
+  border-radius: 0.45rem 0.45rem 0.45rem 0.12rem;
+  background: var(--portfolio-surface);
+  padding: 0.5rem 0.65rem 0.6rem;
+}
+
+.experience-tldr-author {
+  margin-bottom: 0.3rem;
+  color: var(--portfolio-ink-muted);
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+}
+
+.experience-tldr-typing {
+  display: none;
 }
 
 .experience-chevron {
@@ -639,7 +671,7 @@
   transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.experience-trigger[aria-expanded="true"] .experience-chevron {
+.experience-view-trigger[aria-expanded="true"] .experience-chevron {
   transform: rotate(180deg);
 }
 
@@ -670,6 +702,89 @@
 .experience-panel[data-open="true"] > div > div {
   transform: none;
   transition: transform 480ms cubic-bezier(0.23, 1, 0.32, 1) 60ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .experience-tldr-panel {
+    --tldr-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .experience-tldr-panel[data-open="true"] {
+    transition:
+      grid-template-rows 240ms var(--tldr-ease-out),
+      opacity 160ms var(--tldr-ease-out);
+  }
+
+  .experience-tldr-question,
+  .experience-tldr-reply {
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+      opacity 160ms var(--tldr-ease-out),
+      transform 160ms var(--tldr-ease-out);
+  }
+
+  .experience-tldr-panel[data-open="true"] .experience-tldr-question,
+  .experience-tldr-panel[data-open="true"] .experience-tldr-reply {
+    opacity: 1;
+    transform: none;
+  }
+
+  .experience-tldr-panel[data-open="true"] .experience-tldr-reply {
+    transition-delay: 300ms;
+  }
+
+  .experience-tldr-panel[data-open="true"] .experience-tldr-typing {
+    display: flex;
+    align-self: start;
+    align-items: center;
+    gap: 0.25rem;
+    border: 1px solid var(--portfolio-border);
+    border-radius: 0.45rem 0.45rem 0.45rem 0.12rem;
+    background: var(--portfolio-surface);
+    padding: 0.55rem 0.65rem;
+    animation: experience-tldr-cue 240ms linear 80ms both;
+    pointer-events: none;
+  }
+
+  .experience-tldr-typing span {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 50%;
+    background: var(--portfolio-ink-muted);
+    animation: experience-tldr-dot 160ms ease 80ms both;
+  }
+
+  .experience-tldr-typing span:nth-child(2) {
+    animation-delay: 120ms;
+  }
+
+  .experience-tldr-typing span:nth-child(3) {
+    animation-delay: 160ms;
+  }
+}
+
+@keyframes experience-tldr-cue {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  15%,
+  85% {
+    opacity: 1;
+  }
+}
+
+@keyframes experience-tldr-dot {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .portfolio-tag {
@@ -1251,7 +1366,6 @@ small.project-preview-url {
 .portfolio-view-all:focus-visible,
 .portfolio-icon-button:focus-visible,
 .social-chip:focus-visible,
-.experience-trigger:focus-visible,
 .writing-row:focus-visible,
 .project-live-link:focus-visible,
 .project-preview-url:focus-visible,
@@ -1276,11 +1390,6 @@ small.project-preview-url {
 @media (hover: hover) and (pointer: fine) {
   .social-chip:hover {
     background: var(--portfolio-surface-hover);
-    color: inherit;
-  }
-
-  .experience-trigger:hover {
-    background: var(--portfolio-row-hover);
     color: inherit;
   }
 
@@ -1374,10 +1483,6 @@ small.project-preview-url {
 .project-modal-action:focus-visible {
   outline: 2px solid var(--portfolio-focus);
   outline-offset: 2px;
-}
-
-.experience-trigger:active {
-  background: var(--portfolio-row-hover);
 }
 
 .portfolio-back-to-top {
@@ -1565,17 +1670,6 @@ html.scroll-minimap-dragging {
     padding-left: 1.05rem;
   }
 
-  .experience-trigger {
-    align-items: flex-start;
-    gap: 0.6rem;
-  }
-
-  .experience-trigger > span:last-child {
-    flex-direction: column-reverse;
-    align-items: flex-end;
-    gap: 0.35rem;
-  }
-
   .portfolio-back-to-top {
     right: 0.75rem;
     bottom: 0.75rem;
@@ -1740,7 +1834,6 @@ html.scroll-minimap-dragging {
   .portfolio-button,
   .portfolio-view-all,
   .portfolio-icon-button,
-  .experience-trigger,
   .experience-chevron,
   .experience-panel,
   .experience-panel[data-open="true"],
